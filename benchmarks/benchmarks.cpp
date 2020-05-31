@@ -28,6 +28,7 @@
 #include "boostqueue.h"
 #include "tbbqueue.h"
 #include "stdqueue.h"
+#include "ftlqueue.h"
 #include "../tests/common/simplethread.h"
 #include "../tests/common/systemtime.h"
 #include "cpuid.h"
@@ -192,6 +193,9 @@ enum queue_id_t
 	queue_simplelockfree,
 	queue_lockbased,
 	queue_std,
+	queue_ftlmpmc,
+	queue_ftlmpsc,
+	queue_ftlspmc,
 	
 	QUEUE_COUNT
 };
@@ -204,6 +208,9 @@ const char QUEUE_NAMES[QUEUE_COUNT][64] = {
 	"SimpleLockFreeQueue",
 	"LockBasedQueue",
 	"std::queue",
+	"ftl::MPMCLockfree",
+	"ftl::MPSCLockfree",
+	"ftl::SPMCLockfree",
 };
 
 const char QUEUE_SUMMARY_NOTES[QUEUE_COUNT][128] = {
@@ -214,11 +221,17 @@ const char QUEUE_SUMMARY_NOTES[QUEUE_COUNT][128] = {
 	"",
 	"",
 	"single thread only",
+	"MPMC with prealloc",
+	"MPSC",
+	"SPMC",
 };
 
 const bool QUEUE_TOKEN_SUPPORT[QUEUE_COUNT] = {
 	true,
 	true,
+	false,
+	false,
+	false,
 	false,
 	false,
 	false,
@@ -234,6 +247,9 @@ const int QUEUE_MAX_THREADS[QUEUE_COUNT] = {
 	-1,
 	-1,
 	1,
+	-1,
+	-1,
+	-1,
 };
 
 const bool QUEUE_BENCH_SUPPORT[QUEUE_COUNT][BENCHMARK_TYPE_COUNT] = {
@@ -244,6 +260,9 @@ const bool QUEUE_BENCH_SUPPORT[QUEUE_COUNT][BENCHMARK_TYPE_COUNT] = {
 	{ 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1 },
 	{ 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1 },
 	{ 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
+	{ 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 },
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 },
 };
 
 
@@ -295,13 +314,15 @@ counter_t adjustForThreads(counter_t suggestedOps, int nthreads)
 }
 
 
-template<typename TQueue>
+template<typename TQueue, bool bInitQueue=false>
 counter_t determineMaxOpsForBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, unsigned int randSeed)
 {
 	switch (benchmark) {
 	case bench_balanced: {
 		return adjustForThreads(rampUpToMeasurableNumberOfMaxOps([&](counter_t ops) {
 			TQueue q;
+			if constexpr( bInitQueue )
+			    q.init( ops );
 			RNG_t rng(randSeed * 1);
 			std::uniform_int_distribution<int> rand(0, 20);
 			double total = 0;
@@ -319,6 +340,8 @@ counter_t determineMaxOpsForBenchmark(benchmark_type_t benchmark, int nthreads, 
 	case bench_mostly_enqueue: {
 		return adjustForThreads(rampUpToMeasurableNumberOfMaxOps([](counter_t ops) {
 			TQueue q;
+			if constexpr( bInitQueue )
+			    q.init( ops );
 			auto start = getSystemTime();
 			for (counter_t i = 0; i != ops; ++i) {
 				q.enqueue(i);
@@ -333,6 +356,8 @@ counter_t determineMaxOpsForBenchmark(benchmark_type_t benchmark, int nthreads, 
 	case bench_mpsc: {
 		return adjustForThreads(rampUpToMeasurableNumberOfMaxOps([](counter_t ops) {
 			TQueue q;
+			if constexpr( bInitQueue )
+			    q.init( ops );
 			for (counter_t i = 0; i != ops; ++i) {
 				q.enqueue(i);
 			}
@@ -379,6 +404,8 @@ counter_t determineMaxOpsForBenchmark(benchmark_type_t benchmark, int nthreads, 
 	case bench_empty_dequeue: {
 		return adjustForThreads(rampUpToMeasurableNumberOfMaxOps([](counter_t ops) {
 			TQueue q;
+			if constexpr( bInitQueue )
+			    q.init( ops );
 			int item;
 			auto start = getSystemTime();
 			for (counter_t i = 0; i != ops; ++i) {
@@ -390,6 +417,8 @@ counter_t determineMaxOpsForBenchmark(benchmark_type_t benchmark, int nthreads, 
 	case bench_enqueue_dequeue_pairs: {
 		return adjustForThreads(rampUpToMeasurableNumberOfMaxOps([](counter_t ops) {
 			TQueue q;
+			if constexpr( bInitQueue )
+			    q.init( ops );
 			int item;
 			auto start = getSystemTime();
 			for (counter_t i = 0; i != ops; ++i) {
@@ -403,6 +432,8 @@ counter_t determineMaxOpsForBenchmark(benchmark_type_t benchmark, int nthreads, 
 	case bench_heavy_concurrent: {
 		return adjustForThreads(rampUpToMeasurableNumberOfMaxOps([](counter_t ops) {
 			TQueue q;
+			if constexpr( bInitQueue )
+			    q.init( ops );
 			int item;
 			auto start = getSystemTime();
 			for (counter_t i = 0; i != ops; ++i) {
@@ -421,7 +452,7 @@ counter_t determineMaxOpsForBenchmark(benchmark_type_t benchmark, int nthreads, 
 
 
 // Returns time elapsed, in (fractional) milliseconds
-template<typename TQueue>
+template<typename TQueue, bool bInitQueue = false>
 double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, unsigned int randSeed, counter_t maxOps, int maxThreads, counter_t& out_opCount)
 {
 	double result = 0;
@@ -431,6 +462,8 @@ double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, un
 	case bench_balanced: {
 		// Measures the average operation speed with multiple symmetrical threads under reasonable load
 		TQueue q;
+		if constexpr( bInitQueue )
+			q.init(maxOps * nthreads); 
 		std::vector<SimpleThread> threads(nthreads);
 		std::vector<counter_t> ops(nthreads);
 		std::vector<double> times(nthreads);
@@ -491,6 +524,8 @@ double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, un
 		out_opCount = maxOps * nthreads;
 		
 		TQueue q;
+		if constexpr( bInitQueue )
+			q.init(maxOps * nthreads); 
 		{
 			// Enqueue opcount elements first, then dequeue them; this
 			// will "stretch out" the queue, letting implementatations
@@ -578,6 +613,8 @@ double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, un
 		out_opCount = maxOps * nthreads;
 		
 		TQueue q;
+		if constexpr( bInitQueue )
+			q.init(maxOps * nthreads); 
 		if (nthreads == 1) {
 			// No contention -- measures raw single-item enqueue speed
 			auto start = getSystemTime();
@@ -639,6 +676,8 @@ double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, un
 			// Fill up the queue first
 			std::vector<SimpleThread> threads(benchmark == bench_spmc_preproduced ? 1 : nthreads);
 			counter_t itemsPerThread = benchmark == bench_spmc_preproduced ? maxOps * nthreads : maxOps;
+		if constexpr( bInitQueue )
+			q.init(itemsPerThread * nthreads); 
 			for (size_t tid = 0; tid != threads.size(); ++tid) {
 				threads[tid] = SimpleThread([&](size_t id) {
 					if (useTokens) {
@@ -716,6 +755,8 @@ double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, un
 	case bench_mostly_enqueue: {
 		// Measures the average operation speed when most threads are enqueueing
 		TQueue q;
+		if constexpr( bInitQueue )
+			q.init(maxOps * nthreads); 
 		out_opCount = maxOps * nthreads;
 		std::vector<SimpleThread> threads(nthreads);
 		std::vector<double> timings(nthreads);
@@ -777,6 +818,8 @@ double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, un
 	case bench_mostly_dequeue: {
 		// Measures the average operation speed when most threads are dequeueing
 		TQueue q;
+		if constexpr( bInitQueue )
+			q.init(maxOps * nthreads); 
 		out_opCount = maxOps * nthreads;
 		std::vector<SimpleThread> threads(nthreads);
 		std::vector<double> timings(nthreads);
@@ -859,6 +902,8 @@ double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, un
 	
 	case bench_only_enqueue_bulk_prealloc: {
 		TQueue q;
+		if constexpr( bInitQueue )
+			q.init(maxOps * nthreads); 
 		{
 			// Enqueue opcount elements first, then dequeue them; this
 			// will "stretch out" the queue, letting implementatations
@@ -1269,6 +1314,8 @@ double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, un
 		counter_t elementsToDequeue = maxOps * (nthreads - 1);
 		
 		TQueue q;
+		if constexpr( bInitQueue )
+			q.init(elementsToDequeue); 
 		std::vector<SimpleThread> threads(nthreads - 1);
 		std::vector<double> timings(nthreads - 1);
 		std::vector<counter_t> ops(nthreads - 1);
@@ -1333,6 +1380,8 @@ double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, un
 		counter_t elementsToDequeue = maxOps * (nthreads - 1);
 		std::vector<SimpleThread> threads(nthreads);
 		std::atomic<int> ready(0);
+		if constexpr( bInitQueue )
+			q.init(elementsToDequeue); 
 		for (int tid = 0; tid != nthreads; ++tid) {
 			if (tid == 0) {
 				// Consumer thread
@@ -1395,6 +1444,8 @@ double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, un
 		// Fill up then empty the queue first
 		{
 			std::vector<SimpleThread> threads(maxThreads > 0 ? maxThreads : 8);
+		if constexpr( bInitQueue )
+			q.init(threads.size() * 10000); 
 			for (size_t tid = 0; tid != threads.size(); ++tid) {
 				threads[tid] = SimpleThread([&](size_t id) {
 					if (useTokens) {
@@ -1482,6 +1533,8 @@ double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, un
 		// (that eight separate threads had at one point enqueued to)
 		out_opCount = maxOps * 2 * nthreads;
 		TQueue q;
+		if constexpr( bInitQueue )
+			q.init(out_opCount); 
 		if (nthreads == 1) {
 			// No contention -- measures speed of immediately dequeueing the item that was just enqueued
 			int item;
@@ -1547,6 +1600,8 @@ double runBenchmark(benchmark_type_t benchmark, int nthreads, bool useTokens, un
 		// Measures the average operation speed with many threads under heavy load
 		out_opCount = maxOps * nthreads;
 		TQueue q;
+		if constexpr( bInitQueue )
+			q.init(out_opCount); 
 		std::vector<SimpleThread> threads(nthreads);
 		std::vector<double> timings(nthreads);
 		std::atomic<int> ready(0);
@@ -1984,6 +2039,15 @@ int main(int argc, char** argv)
 					case queue_std:
 						maxOps = determineMaxOpsForBenchmark<StdQueueWrapper<int>>((benchmark_type_t)benchmark, nthreads, (bool)useTokens, seed);
 						break;
+					case queue_ftlmpmc:
+						maxOps = determineMaxOpsForBenchmark<FtlMpmcQueueWrapper<int>, true>((benchmark_type_t)benchmark, nthreads, (bool)useTokens, seed);
+						break;
+					case queue_ftlmpsc:
+						maxOps = determineMaxOpsForBenchmark<FtlMpscQueueWrapper<int>, true>((benchmark_type_t)benchmark, nthreads, (bool)useTokens, seed);
+						break;
+					case queue_ftlspmc:
+						maxOps = determineMaxOpsForBenchmark<FtlSpmcQueueWrapper<int>, true>((benchmark_type_t)benchmark, nthreads, (bool)useTokens, seed);
+						break;
 					default:
 						assert(false && "There should be a case here for every queue in the benchmarks!");
 					}
@@ -2016,6 +2080,15 @@ int main(int argc, char** argv)
 							break;
 						case queue_std:
 							elapsed = runBenchmark<StdQueueWrapper<int>>((benchmark_type_t)benchmark, nthreads, (bool)useTokens, seed, maxOps, maxThreads, ops);
+							break;
+						case queue_ftlmpmc:
+							elapsed = runBenchmark<FtlMpmcQueueWrapper<int>, true>((benchmark_type_t)benchmark, nthreads, (bool)useTokens, seed, maxOps, maxThreads, ops);
+							break;
+						case queue_ftlmpsc:
+							elapsed = runBenchmark<FtlMpscQueueWrapper<int>, true>((benchmark_type_t)benchmark, nthreads, (bool)useTokens, seed, maxOps, maxThreads, ops);
+							break;
+						case queue_ftlspmc:
+							elapsed = runBenchmark<FtlSpmcQueueWrapper<int>, true>((benchmark_type_t)benchmark, nthreads, (bool)useTokens, seed, maxOps, maxThreads, ops);
 							break;
 						default:
 							assert(false && "There should be a case here for every queue in the benchmarks!");

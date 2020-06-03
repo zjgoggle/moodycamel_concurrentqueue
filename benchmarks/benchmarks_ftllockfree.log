@@ -1,4 +1,4 @@
---- New run (Sat May 30 22:30:07 2020) ---
+--- New run (Tue Jun  2 20:19:48 2020) ---
 Running 64-bit benchmarks on a       Intel(R) Core(TM) i7-3820QM CPU @ 2.70GHz
 Note that these are synthetic benchmarks. Take them with a grain of salt.
 
@@ -15,89 +15,89 @@ balanced:
   under reasonable load -- small random intervals between accesses)
   > moodycamel::ConcurrentQueue
       Without tokens
-         2   threads:  Avg: 0.1513us  Range: [0.1497us, 0.1543us]  Ops/s:  13.22M  Ops/s/t:   6.61M
-         3   threads:  Avg: 0.2582us  Range: [0.2554us, 0.2613us]  Ops/s:  11.62M  Ops/s/t:   3.87M
-         4   threads:  Avg: 0.3905us  Range: [0.3799us, 0.4002us]  Ops/s:  10.24M  Ops/s/t:   2.56M
-         8   threads:  Avg: 1.3678us  Range: [1.3236us, 1.3951us]  Ops/s:   5.85M  Ops/s/t: 731.09k
-         12  threads:  Avg: 1.9164us  Range: [1.8696us, 1.9709us]  Ops/s:   6.26M  Ops/s/t: 521.81k
-         16  threads:  Avg: 2.7084us  Range: [2.5390us, 2.8684us]  Ops/s:   5.91M  Ops/s/t: 369.22k
-         Operations per second per thread (weighted average):   1.72M
+         2   threads:  Avg: 0.1539us  Range: [0.1521us, 0.1566us]  Ops/s:  13.00M  Ops/s/t:   6.50M
+         3   threads:  Avg: 0.2642us  Range: [0.2617us, 0.2670us]  Ops/s:  11.35M  Ops/s/t:   3.78M
+         4   threads:  Avg: 0.3944us  Range: [0.3819us, 0.4085us]  Ops/s:  10.14M  Ops/s/t:   2.54M
+         8   threads:  Avg: 1.3266us  Range: [1.2974us, 1.3393us]  Ops/s:   6.03M  Ops/s/t: 753.82k
+         12  threads:  Avg: 1.8254us  Range: [1.7585us, 1.8750us]  Ops/s:   6.57M  Ops/s/t: 547.83k
+         16  threads:  Avg: 2.6919us  Range: [2.5221us, 2.8238us]  Ops/s:   5.94M  Ops/s/t: 371.48k
+         Operations per second per thread (weighted average):   1.71M
 
       With tokens
-         2   threads:  Avg: 0.0988us  Range: [0.0967us, 0.1005us]  Ops/s:  20.24M  Ops/s/t:  10.12M
-         3   threads:  Avg: 0.1855us  Range: [0.1839us, 0.1874us]  Ops/s:  16.17M  Ops/s/t:   5.39M
-         4   threads:  Avg: 0.2780us  Range: [0.2728us, 0.2822us]  Ops/s:  14.39M  Ops/s/t:   3.60M
-         8   threads:  Avg: 0.8140us  Range: [0.8109us, 0.8166us]  Ops/s:   9.83M  Ops/s/t:   1.23M
-         12  threads:  Avg: 1.1336us  Range: [1.1105us, 1.1466us]  Ops/s:  10.59M  Ops/s/t: 882.15k
-         16  threads:  Avg: 1.6057us  Range: [1.5354us, 1.6456us]  Ops/s:   9.96M  Ops/s/t: 622.79k
-         Operations per second per thread (weighted average):   2.58M
+         2   threads:  Avg: 0.1077us  Range: [0.1059us, 0.1121us]  Ops/s:  18.58M  Ops/s/t:   9.29M
+         3   threads:  Avg: 0.1907us  Range: [0.1861us, 0.1936us]  Ops/s:  15.73M  Ops/s/t:   5.24M
+         4   threads:  Avg: 0.2839us  Range: [0.2806us, 0.2859us]  Ops/s:  14.09M  Ops/s/t:   3.52M
+         8   threads:  Avg: 0.7836us  Range: [0.7788us, 0.7904us]  Ops/s:  10.21M  Ops/s/t:   1.28M
+         12  threads:  Avg: 1.0677us  Range: [1.0542us, 1.0788us]  Ops/s:  11.24M  Ops/s/t: 936.57k
+         16  threads:  Avg: 1.5472us  Range: [1.5162us, 1.5774us]  Ops/s:  10.34M  Ops/s/t: 646.34k
+         Operations per second per thread (weighted average):   2.51M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         2   threads:  Avg: 0.1922us  Range: [0.1898us, 0.1957us]  Ops/s:  10.40M  Ops/s/t:   5.20M
-         3   threads:  Avg: 0.3312us  Range: [0.3246us, 0.3347us]  Ops/s:   9.06M  Ops/s/t:   3.02M
-         4   threads:  Avg: 0.4884us  Range: [0.4855us, 0.4919us]  Ops/s:   8.19M  Ops/s/t:   2.05M
-         8   threads:  Avg: 1.5269us  Range: [1.4470us, 1.5872us]  Ops/s:   5.24M  Ops/s/t: 654.93k
-         12  threads:  Avg: 2.1274us  Range: [2.0656us, 2.1716us]  Ops/s:   5.64M  Ops/s/t: 470.05k
-         16  threads:  Avg: 3.0433us  Range: [2.8894us, 3.1000us]  Ops/s:   5.26M  Ops/s/t: 328.59k
+         2   threads:  Avg: 0.1942us  Range: [0.1851us, 0.2025us]  Ops/s:  10.30M  Ops/s/t:   5.15M
+         3   threads:  Avg: 0.3275us  Range: [0.3249us, 0.3298us]  Ops/s:   9.16M  Ops/s/t:   3.05M
+         4   threads:  Avg: 0.4805us  Range: [0.4756us, 0.4836us]  Ops/s:   8.32M  Ops/s/t:   2.08M
+         8   threads:  Avg: 1.5337us  Range: [1.3909us, 1.5759us]  Ops/s:   5.22M  Ops/s/t: 652.01k
+         12  threads:  Avg: 2.1269us  Range: [2.0593us, 2.1894us]  Ops/s:   5.64M  Ops/s/t: 470.16k
+         16  threads:  Avg: 3.1863us  Range: [3.1286us, 3.2198us]  Ops/s:   5.02M  Ops/s/t: 313.84k
          Operations per second per thread (weighted average):   1.39M
 
       With tokens
-         2   threads:  Avg: 0.1566us  Range: [0.1540us, 0.1583us]  Ops/s:  12.77M  Ops/s/t:   6.38M
-         3   threads:  Avg: 0.2774us  Range: [0.2757us, 0.2799us]  Ops/s:  10.81M  Ops/s/t:   3.60M
-         4   threads:  Avg: 0.3950us  Range: [0.3928us, 0.3977us]  Ops/s:  10.13M  Ops/s/t:   2.53M
-         8   threads:  Avg: 1.0093us  Range: [0.9843us, 1.0203us]  Ops/s:   7.93M  Ops/s/t: 990.75k
-         12  threads:  Avg: 1.4273us  Range: [1.4222us, 1.4328us]  Ops/s:   8.41M  Ops/s/t: 700.65k
-         16  threads:  Avg: 1.9766us  Range: [1.9407us, 2.0227us]  Ops/s:   8.09M  Ops/s/t: 505.91k
-         Operations per second per thread (weighted average):   1.79M
+         2   threads:  Avg: 0.1549us  Range: [0.1485us, 0.1598us]  Ops/s:  12.91M  Ops/s/t:   6.45M
+         3   threads:  Avg: 0.2727us  Range: [0.2681us, 0.2762us]  Ops/s:  11.00M  Ops/s/t:   3.67M
+         4   threads:  Avg: 0.3873us  Range: [0.3779us, 0.3971us]  Ops/s:  10.33M  Ops/s/t:   2.58M
+         8   threads:  Avg: 1.0236us  Range: [0.9906us, 1.0389us]  Ops/s:   7.82M  Ops/s/t: 976.96k
+         12  threads:  Avg: 1.4093us  Range: [1.3460us, 1.4370us]  Ops/s:   8.51M  Ops/s/t: 709.58k
+         16  threads:  Avg: 1.9592us  Range: [1.9171us, 1.9903us]  Ops/s:   8.17M  Ops/s/t: 510.42k
+         Operations per second per thread (weighted average):   1.81M
 
   > boost::lockfree::queue
-     2   threads:  Avg: 0.3337us  Range: [0.3242us, 0.3510us]  Ops/s:   5.99M  Ops/s/t:   3.00M
-     3   threads:  Avg: 0.3772us  Range: [0.3741us, 0.3799us]  Ops/s:   7.95M  Ops/s/t:   2.65M
-     4   threads:  Avg: 0.5211us  Range: [0.5172us, 0.5252us]  Ops/s:   7.68M  Ops/s/t:   1.92M
-     8   threads:  Avg: 1.6301us  Range: [1.5938us, 1.6470us]  Ops/s:   4.91M  Ops/s/t: 613.46k
-     12  threads:  Avg: 2.0732us  Range: [2.0282us, 2.1056us]  Ops/s:   5.79M  Ops/s/t: 482.34k
-     16  threads:  Avg: 2.8683us  Range: [2.7846us, 2.9387us]  Ops/s:   5.58M  Ops/s/t: 348.64k
-     Operations per second per thread (weighted average):   1.13M
+     2   threads:  Avg: 0.3369us  Range: [0.3316us, 0.3454us]  Ops/s:   5.94M  Ops/s/t:   2.97M
+     3   threads:  Avg: 0.3969us  Range: [0.3943us, 0.3993us]  Ops/s:   7.56M  Ops/s/t:   2.52M
+     4   threads:  Avg: 0.5338us  Range: [0.5293us, 0.5375us]  Ops/s:   7.49M  Ops/s/t:   1.87M
+     8   threads:  Avg: 1.6266us  Range: [1.6118us, 1.6579us]  Ops/s:   4.92M  Ops/s/t: 614.77k
+     12  threads:  Avg: 2.0610us  Range: [2.0241us, 2.0786us]  Ops/s:   5.82M  Ops/s/t: 485.21k
+     16  threads:  Avg: 2.7960us  Range: [2.7099us, 2.8986us]  Ops/s:   5.72M  Ops/s/t: 357.65k
+     Operations per second per thread (weighted average):   1.11M
 
   > tbb::concurrent_queue
-     2   threads:  Avg: 0.1932us  Range: [0.1794us, 0.2394us]  Ops/s:  10.35M  Ops/s/t:   5.18M
-     3   threads:  Avg: 0.3133us  Range: [0.3105us, 0.3149us]  Ops/s:   9.58M  Ops/s/t:   3.19M
-     4   threads:  Avg: 0.4322us  Range: [0.4275us, 0.4369us]  Ops/s:   9.26M  Ops/s/t:   2.31M
-     8   threads:  Avg: 1.0617us  Range: [1.0394us, 1.0793us]  Ops/s:   7.53M  Ops/s/t: 941.86k
-     12  threads:  Avg: 0.0170ms  Range: [0.0134ms, 0.0196ms]  Ops/s: 703.96k  Ops/s/t:  58.66k
-     16  threads:  Avg: 0.0139ms  Range: [2.1422us, 0.0233ms]  Ops/s:   1.15M  Ops/s/t:  72.06k
-     Operations per second per thread (weighted average):   1.34M
+     2   threads:  Avg: 0.1754us  Range: [0.1748us, 0.1759us]  Ops/s:  11.40M  Ops/s/t:   5.70M
+     3   threads:  Avg: 0.3053us  Range: [0.3038us, 0.3068us]  Ops/s:   9.83M  Ops/s/t:   3.28M
+     4   threads:  Avg: 0.4171us  Range: [0.4138us, 0.4196us]  Ops/s:   9.59M  Ops/s/t:   2.40M
+     8   threads:  Avg: 1.0673us  Range: [1.0570us, 1.0889us]  Ops/s:   7.50M  Ops/s/t: 936.93k
+     12  threads:  Avg: 0.0243ms  Range: [0.0176ms, 0.0273ms]  Ops/s: 493.13k  Ops/s/t:  41.09k
+     16  threads:  Avg: 0.0386ms  Range: [0.0319ms, 0.0462ms]  Ops/s: 414.40k  Ops/s/t:  25.90k
+     Operations per second per thread (weighted average):   1.39M
 
   > SimpleLockFreeQueue
-     2   threads:  Avg: 0.2068us  Range: [0.2015us, 0.2134us]  Ops/s:   9.67M  Ops/s/t:   4.84M
-     3   threads:  Avg: 0.3830us  Range: [0.3802us, 0.3858us]  Ops/s:   7.83M  Ops/s/t:   2.61M
-     4   threads:  Avg: 0.5551us  Range: [0.5522us, 0.5598us]  Ops/s:   7.21M  Ops/s/t:   1.80M
-     8   threads:  Avg: 2.0027us  Range: [1.9891us, 2.0161us]  Ops/s:   3.99M  Ops/s/t: 499.32k
-     12  threads:  Avg: 2.4652us  Range: [2.3306us, 2.5099us]  Ops/s:   4.87M  Ops/s/t: 405.65k
-     16  threads:  Avg: 3.8182us  Range: [3.5035us, 3.9262us]  Ops/s:   4.19M  Ops/s/t: 261.91k
-     Operations per second per thread (weighted average):   1.22M
+     2   threads:  Avg: 0.2012us  Range: [0.1960us, 0.2041us]  Ops/s:   9.94M  Ops/s/t:   4.97M
+     3   threads:  Avg: 0.3852us  Range: [0.3822us, 0.3875us]  Ops/s:   7.79M  Ops/s/t:   2.60M
+     4   threads:  Avg: 0.5524us  Range: [0.5330us, 0.6154us]  Ops/s:   7.24M  Ops/s/t:   1.81M
+     8   threads:  Avg: 1.9396us  Range: [1.8038us, 1.9937us]  Ops/s:   4.12M  Ops/s/t: 515.58k
+     12  threads:  Avg: 2.4697us  Range: [2.3620us, 2.5500us]  Ops/s:   4.86M  Ops/s/t: 404.91k
+     16  threads:  Avg: 3.8037us  Range: [3.4093us, 3.9451us]  Ops/s:   4.21M  Ops/s/t: 262.90k
+     Operations per second per thread (weighted average):   1.23M
 
   > LockBasedQueue
-     2   threads:  Avg: 0.2919us  Range: [0.2836us, 0.2995us]  Ops/s:   6.85M  Ops/s/t:   3.43M
-     3   threads:  Avg: 0.7465us  Range: [0.7259us, 0.7542us]  Ops/s:   4.02M  Ops/s/t:   1.34M
-     4   threads:  Avg: 1.3648us  Range: [1.3349us, 1.4119us]  Ops/s:   2.93M  Ops/s/t: 732.71k
-     8   threads:  Avg: 8.9431us  Range: [8.8389us, 8.9857us]  Ops/s: 894.55k  Ops/s/t: 111.82k
-     12  threads:  Avg: 0.0200ms  Range: [0.0195ms, 0.0207ms]  Ops/s: 599.74k  Ops/s/t:  49.98k
-     16  threads:  Avg: 0.0376ms  Range: [0.0362ms, 0.0388ms]  Ops/s: 425.82k  Ops/s/t:  26.61k
-     Operations per second per thread (weighted average): 597.66k
+     2   threads:  Avg: 0.3749us  Range: [0.3705us, 0.3866us]  Ops/s:   5.33M  Ops/s/t:   2.67M
+     3   threads:  Avg: 0.9716us  Range: [0.9527us, 0.9878us]  Ops/s:   3.09M  Ops/s/t:   1.03M
+     4   threads:  Avg: 1.6248us  Range: [1.5990us, 1.6604us]  Ops/s:   2.46M  Ops/s/t: 615.47k
+     8   threads:  Avg: 9.8283us  Range: [9.7258us, 9.9214us]  Ops/s: 813.97k  Ops/s/t: 101.75k
+     12  threads:  Avg: 0.0235ms  Range: [0.0230ms, 0.0242ms]  Ops/s: 510.29k  Ops/s/t:  42.52k
+     16  threads:  Avg: 0.0434ms  Range: [0.0395ms, 0.0462ms]  Ops/s: 368.94k  Ops/s/t:  23.06k
+     Operations per second per thread (weighted average): 473.68k
 
   > std::queue
      (skipping, benchmark not supported...)
 
   > ftl::MPMCLockfree
-     2   threads:  Avg: 0.1330us  Range: [0.1299us, 0.1368us]  Ops/s:  15.04M  Ops/s/t:   7.52M
-     3   threads:  Avg: 0.2492us  Range: [0.2469us, 0.2526us]  Ops/s:  12.04M  Ops/s/t:   4.01M
-     4   threads:  Avg: 0.3301us  Range: [0.3231us, 0.3335us]  Ops/s:  12.12M  Ops/s/t:   3.03M
-     8   threads:  Avg: 0.8730us  Range: [0.8499us, 0.8888us]  Ops/s:   9.16M  Ops/s/t:   1.15M
-     12  threads:  Avg: 1.1752us  Range: [1.1149us, 1.1952us]  Ops/s:  10.21M  Ops/s/t: 850.95k
-     16  threads:  Avg: 1.7104us  Range: [1.6583us, 1.7287us]  Ops/s:   9.35M  Ops/s/t: 584.67k
-     Operations per second per thread (weighted average):   2.08M
+     2   threads:  Avg: 0.1352us  Range: [0.1327us, 0.1392us]  Ops/s:  14.79M  Ops/s/t:   7.40M
+     3   threads:  Avg: 0.2433us  Range: [0.2345us, 0.2483us]  Ops/s:  12.33M  Ops/s/t:   4.11M
+     4   threads:  Avg: 0.3247us  Range: [0.3185us, 0.3311us]  Ops/s:  12.32M  Ops/s/t:   3.08M
+     8   threads:  Avg: 0.8636us  Range: [0.8621us, 0.8652us]  Ops/s:   9.26M  Ops/s/t:   1.16M
+     12  threads:  Avg: 1.1800us  Range: [1.1762us, 1.1835us]  Ops/s:  10.17M  Ops/s/t: 847.44k
+     16  threads:  Avg: 1.6737us  Range: [1.6357us, 1.7107us]  Ops/s:   9.56M  Ops/s/t: 597.49k
+     Operations per second per thread (weighted average):   2.09M
 
   > ftl::MPSCLockfree
      (skipping, benchmark not supported...)
@@ -109,90 +109,90 @@ only enqueue:
   (Measures the average operation speed when all threads are producers)
   > moodycamel::ConcurrentQueue
       Without tokens
-         1    thread:  Avg: 9.4683ns  Range: [9.3949ns, 9.5537ns]  Ops/s: 105.62M  Ops/s/t: 105.62M
-         2   threads:  Avg: 0.0247us  Range: [0.0228us, 0.0268us]  Ops/s:  80.92M  Ops/s/t:  40.46M
-         4   threads:  Avg: 0.0529us  Range: [0.0453us, 0.0633us]  Ops/s:  75.66M  Ops/s/t:  18.91M
-         8   threads:  Avg: 0.1570us  Range: [0.1568us, 0.1575us]  Ops/s:  50.95M  Ops/s/t:   6.37M
-         12  threads:  Avg: 0.2374us  Range: [0.2254us, 0.2605us]  Ops/s:  50.56M  Ops/s/t:   4.21M
-         16  threads:  Avg: 0.3458us  Range: [0.3309us, 0.3685us]  Ops/s:  46.27M  Ops/s/t:   2.89M
-         Operations per second per thread (weighted average):  16.65M
+         1    thread:  Avg: 9.6512ns  Range: [9.6175ns, 9.6935ns]  Ops/s: 103.61M  Ops/s/t: 103.61M
+         2   threads:  Avg: 0.0233us  Range: [0.0232us, 0.0234us]  Ops/s:  85.68M  Ops/s/t:  42.84M
+         4   threads:  Avg: 0.0480us  Range: [0.0475us, 0.0488us]  Ops/s:  83.38M  Ops/s/t:  20.84M
+         8   threads:  Avg: 0.1607us  Range: [0.1598us, 0.1627us]  Ops/s:  49.78M  Ops/s/t:   6.22M
+         12  threads:  Avg: 0.2370us  Range: [0.2282us, 0.2467us]  Ops/s:  50.63M  Ops/s/t:   4.22M
+         16  threads:  Avg: 0.3514us  Range: [0.3316us, 0.3692us]  Ops/s:  45.54M  Ops/s/t:   2.85M
+         Operations per second per thread (weighted average):  16.96M
 
       With tokens
-         1    thread:  Avg: 3.7067ns  Range: [3.6374ns, 3.7619ns]  Ops/s: 269.78M  Ops/s/t: 269.78M
-         2   threads:  Avg: 0.0112us  Range: [0.0108us, 0.0118us]  Ops/s: 179.07M  Ops/s/t:  89.53M
-         4   threads:  Avg: 0.0245us  Range: [0.0216us, 0.0340us]  Ops/s: 163.25M  Ops/s/t:  40.81M
-         8   threads:  Avg: 0.0691us  Range: [0.0684us, 0.0696us]  Ops/s: 115.75M  Ops/s/t:  14.47M
-         12  threads:  Avg: 0.1048us  Range: [0.0918us, 0.1089us]  Ops/s: 114.45M  Ops/s/t:   9.54M
-         16  threads:  Avg: 0.1459us  Range: [0.1404us, 0.1480us]  Ops/s: 109.64M  Ops/s/t:   6.85M
-         Operations per second per thread (weighted average):  39.40M
+         1    thread:  Avg: 3.8424ns  Range: [3.8122ns, 3.8748ns]  Ops/s: 260.25M  Ops/s/t: 260.25M
+         2   threads:  Avg: 0.0110us  Range: [0.0108us, 0.0112us]  Ops/s: 181.70M  Ops/s/t:  90.85M
+         4   threads:  Avg: 0.0280us  Range: [0.0222us, 0.0303us]  Ops/s: 143.08M  Ops/s/t:  35.77M
+         8   threads:  Avg: 0.0691us  Range: [0.0687us, 0.0696us]  Ops/s: 115.70M  Ops/s/t:  14.46M
+         12  threads:  Avg: 0.1070us  Range: [0.0999us, 0.1110us]  Ops/s: 112.11M  Ops/s/t:   9.34M
+         16  threads:  Avg: 0.1630us  Range: [0.1552us, 0.1707us]  Ops/s:  98.16M  Ops/s/t:   6.13M
+         Operations per second per thread (weighted average):  37.95M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         1    thread:  Avg: 0.0144us  Range: [0.0144us, 0.0145us]  Ops/s:  69.40M  Ops/s/t:  69.40M
-         2   threads:  Avg: 0.0867us  Range: [0.0861us, 0.0876us]  Ops/s:  23.05M  Ops/s/t:  11.53M
-         4   threads:  Avg: 0.3072us  Range: [0.2657us, 0.3348us]  Ops/s:  13.02M  Ops/s/t:   3.26M
-         8   threads:  Avg: 0.9668us  Range: [0.9542us, 0.9798us]  Ops/s:   8.28M  Ops/s/t:   1.03M
-         12  threads:  Avg: 1.6086us  Range: [1.5420us, 1.6593us]  Ops/s:   7.46M  Ops/s/t: 621.65k
-         16  threads:  Avg: 2.5573us  Range: [2.2526us, 2.9085us]  Ops/s:   6.26M  Ops/s/t: 391.04k
-         Operations per second per thread (weighted average):   6.72M
+         1    thread:  Avg: 0.0149us  Range: [0.0149us, 0.0150us]  Ops/s:  66.89M  Ops/s/t:  66.89M
+         2   threads:  Avg: 0.0730us  Range: [0.0723us, 0.0734us]  Ops/s:  27.41M  Ops/s/t:  13.70M
+         4   threads:  Avg: 0.2694us  Range: [0.2462us, 0.2809us]  Ops/s:  14.85M  Ops/s/t:   3.71M
+         8   threads:  Avg: 1.1781us  Range: [1.0219us, 1.2525us]  Ops/s:   6.79M  Ops/s/t: 848.84k
+         12  threads:  Avg: 1.7955us  Range: [1.7064us, 1.9041us]  Ops/s:   6.68M  Ops/s/t: 556.95k
+         16  threads:  Avg: 3.0914us  Range: [2.7977us, 3.3708us]  Ops/s:   5.18M  Ops/s/t: 323.48k
+         Operations per second per thread (weighted average):   6.75M
 
       With tokens
-         1    thread:  Avg: 0.0101us  Range: [0.0101us, 0.0102us]  Ops/s:  98.62M  Ops/s/t:  98.62M
-         2   threads:  Avg: 0.0726us  Range: [0.0722us, 0.0728us]  Ops/s:  27.57M  Ops/s/t:  13.78M
-         4   threads:  Avg: 0.2782us  Range: [0.2743us, 0.2817us]  Ops/s:  14.38M  Ops/s/t:   3.59M
-         8   threads:  Avg: 1.2315us  Range: [1.1946us, 1.2430us]  Ops/s:   6.50M  Ops/s/t: 812.03k
-         12  threads:  Avg: 2.0450us  Range: [1.8704us, 2.1705us]  Ops/s:   5.87M  Ops/s/t: 489.00k
-         16  threads:  Avg: 2.6783us  Range: [2.5617us, 2.8334us]  Ops/s:   5.97M  Ops/s/t: 373.37k
-         Operations per second per thread (weighted average):   8.89M
+         1    thread:  Avg: 0.0104us  Range: [0.0103us, 0.0104us]  Ops/s:  96.26M  Ops/s/t:  96.26M
+         2   threads:  Avg: 0.0817us  Range: [0.0801us, 0.0824us]  Ops/s:  24.48M  Ops/s/t:  12.24M
+         4   threads:  Avg: 0.3014us  Range: [0.2852us, 0.3127us]  Ops/s:  13.27M  Ops/s/t:   3.32M
+         8   threads:  Avg: 1.5317us  Range: [1.2812us, 1.6073us]  Ops/s:   5.22M  Ops/s/t: 652.88k
+         12  threads:  Avg: 2.2645us  Range: [2.1673us, 2.3514us]  Ops/s:   5.30M  Ops/s/t: 441.61k
+         16  threads:  Avg: 4.9496us  Range: [4.6433us, 5.2124us]  Ops/s:   3.23M  Ops/s/t: 202.04k
+         Operations per second per thread (weighted average):   8.46M
 
   > boost::lockfree::queue
-     1    thread:  Avg: 0.0610us  Range: [0.0608us, 0.0612us]  Ops/s:  16.39M  Ops/s/t:  16.39M
-     2   threads:  Avg: 0.4463us  Range: [0.4319us, 0.4559us]  Ops/s:   4.48M  Ops/s/t:   2.24M
-     4   threads:  Avg: 1.9057us  Range: [1.7925us, 1.9783us]  Ops/s:   2.10M  Ops/s/t: 524.73k
-     8   threads:  Avg: 9.2105us  Range: [8.7856us, 9.4289us]  Ops/s: 868.57k  Ops/s/t: 108.57k
-     12  threads:  Avg: 0.0141ms  Range: [0.0135ms, 0.0147ms]  Ops/s: 851.12k  Ops/s/t:  70.93k
-     16  threads:  Avg: 0.0226ms  Range: [0.0209ms, 0.0233ms]  Ops/s: 706.73k  Ops/s/t:  44.17k
-     Operations per second per thread (weighted average):   1.45M
+     1    thread:  Avg: 0.0774us  Range: [0.0770us, 0.0777us]  Ops/s:  12.93M  Ops/s/t:  12.93M
+     2   threads:  Avg: 0.4410us  Range: [0.3297us, 0.5016us]  Ops/s:   4.54M  Ops/s/t:   2.27M
+     4   threads:  Avg: 1.9547us  Range: [1.9039us, 1.9922us]  Ops/s:   2.05M  Ops/s/t: 511.59k
+     8   threads:  Avg: 8.1664us  Range: [7.2778us, 8.4466us]  Ops/s: 979.63k  Ops/s/t: 122.45k
+     12  threads:  Avg: 0.0140ms  Range: [0.0126ms, 0.0146ms]  Ops/s: 858.23k  Ops/s/t:  71.52k
+     16  threads:  Avg: 0.0203ms  Range: [0.0185ms, 0.0214ms]  Ops/s: 788.05k  Ops/s/t:  49.25k
+     Operations per second per thread (weighted average):   1.22M
 
   > tbb::concurrent_queue
-     1    thread:  Avg: 0.0183us  Range: [0.0182us, 0.0184us]  Ops/s:  54.60M  Ops/s/t:  54.60M
-     2   threads:  Avg: 0.1836us  Range: [0.1687us, 0.1973us]  Ops/s:  10.90M  Ops/s/t:   5.45M
-     4   threads:  Avg: 0.6034us  Range: [0.5800us, 0.6125us]  Ops/s:   6.63M  Ops/s/t:   1.66M
-     8   threads:  Avg: 3.4197us  Range: [3.4046us, 3.4527us]  Ops/s:   2.34M  Ops/s/t: 292.42k
-     12  threads:  Avg: 0.0177ms  Range: [0.0175ms, 0.0178ms]  Ops/s: 678.71k  Ops/s/t:  56.56k
-     16  threads:  Avg: 0.0513ms  Range: [0.0498ms, 0.0537ms]  Ops/s: 312.09k  Ops/s/t:  19.51k
-     Operations per second per thread (weighted average):   4.54M
+     1    thread:  Avg: 0.0192us  Range: [0.0191us, 0.0193us]  Ops/s:  52.10M  Ops/s/t:  52.10M
+     2   threads:  Avg: 0.1639us  Range: [0.1613us, 0.1668us]  Ops/s:  12.20M  Ops/s/t:   6.10M
+     4   threads:  Avg: 0.6223us  Range: [0.5804us, 0.6375us]  Ops/s:   6.43M  Ops/s/t:   1.61M
+     8   threads:  Avg: 3.5162us  Range: [3.4935us, 3.5535us]  Ops/s:   2.28M  Ops/s/t: 284.39k
+     12  threads:  Avg: 0.0202ms  Range: [0.0167ms, 0.0220ms]  Ops/s: 594.84k  Ops/s/t:  49.57k
+     16  threads:  Avg: 0.0513ms  Range: [0.0493ms, 0.0536ms]  Ops/s: 312.06k  Ops/s/t:  19.50k
+     Operations per second per thread (weighted average):   4.42M
 
   > SimpleLockFreeQueue
-     1    thread:  Avg: 0.0343us  Range: [0.0342us, 0.0345us]  Ops/s:  29.12M  Ops/s/t:  29.12M
-     2   threads:  Avg: 0.2712us  Range: [0.2669us, 0.2743us]  Ops/s:   7.38M  Ops/s/t:   3.69M
-     4   threads:  Avg: 1.1226us  Range: [1.0095us, 1.2230us]  Ops/s:   3.56M  Ops/s/t: 890.76k
-     8   threads:  Avg: 6.3647us  Range: [6.0592us, 6.6673us]  Ops/s:   1.26M  Ops/s/t: 157.12k
-     12  threads:  Avg: 0.0113ms  Range: [0.0101ms, 0.0121ms]  Ops/s:   1.07M  Ops/s/t:  88.78k
-     16  threads:  Avg: 0.0186ms  Range: [0.0167ms, 0.0194ms]  Ops/s: 861.52k  Ops/s/t:  53.85k
-     Operations per second per thread (weighted average):   2.52M
+     1    thread:  Avg: 0.0371us  Range: [0.0369us, 0.0373us]  Ops/s:  26.93M  Ops/s/t:  26.93M
+     2   threads:  Avg: 0.2950us  Range: [0.2912us, 0.2983us]  Ops/s:   6.78M  Ops/s/t:   3.39M
+     4   threads:  Avg: 1.1184us  Range: [0.9902us, 1.2249us]  Ops/s:   3.58M  Ops/s/t: 894.16k
+     8   threads:  Avg: 6.7291us  Range: [6.6788us, 6.7932us]  Ops/s:   1.19M  Ops/s/t: 148.61k
+     12  threads:  Avg: 0.0115ms  Range: [0.0107ms, 0.0127ms]  Ops/s:   1.04M  Ops/s/t:  86.58k
+     16  threads:  Avg: 0.0206ms  Range: [0.0193ms, 0.0212ms]  Ops/s: 777.68k  Ops/s/t:  48.60k
+     Operations per second per thread (weighted average):   2.34M
 
   > LockBasedQueue
-     1    thread:  Avg: 0.0362us  Range: [0.0359us, 0.0366us]  Ops/s:  27.60M  Ops/s/t:  27.60M
-     2   threads:  Avg: 0.4916us  Range: [0.4340us, 0.5501us]  Ops/s:   4.07M  Ops/s/t:   2.03M
-     4   threads:  Avg: 1.7729us  Range: [1.6777us, 1.8036us]  Ops/s:   2.26M  Ops/s/t: 564.04k
-     8   threads:  Avg: 8.4788us  Range: [8.4687us, 8.4922us]  Ops/s: 943.53k  Ops/s/t: 117.94k
-     12  threads:  Avg: 0.0187ms  Range: [0.0186ms, 0.0188ms]  Ops/s: 640.92k  Ops/s/t:  53.41k
-     16  threads:  Avg: 0.0336ms  Range: [0.0332ms, 0.0338ms]  Ops/s: 476.49k  Ops/s/t:  29.78k
-     Operations per second per thread (weighted average):   2.19M
+     1    thread:  Avg: 0.0369us  Range: [0.0369us, 0.0370us]  Ops/s:  27.07M  Ops/s/t:  27.07M
+     2   threads:  Avg: 0.4637us  Range: [0.3953us, 0.5408us]  Ops/s:   4.31M  Ops/s/t:   2.16M
+     4   threads:  Avg: 1.7922us  Range: [1.7699us, 1.8047us]  Ops/s:   2.23M  Ops/s/t: 557.96k
+     8   threads:  Avg: 8.6331us  Range: [8.5660us, 8.6738us]  Ops/s: 926.66k  Ops/s/t: 115.83k
+     12  threads:  Avg: 0.0189ms  Range: [0.0186ms, 0.0191ms]  Ops/s: 636.25k  Ops/s/t:  53.02k
+     16  threads:  Avg: 0.0343ms  Range: [0.0340ms, 0.0345ms]  Ops/s: 467.13k  Ops/s/t:  29.20k
+     Operations per second per thread (weighted average):   2.17M
 
   > std::queue
-     1    thread:  Avg: 3.6690ns  Range: [3.6630ns, 3.6728ns]  Ops/s: 272.55M  Ops/s/t: 272.55M
-     Operations per second per thread (weighted average): 272.55M
+     1    thread:  Avg: 3.8066ns  Range: [3.7835ns, 3.8240ns]  Ops/s: 262.70M  Ops/s/t: 262.70M
+     Operations per second per thread (weighted average): 262.70M
 
   > ftl::MPMCLockfree
-     1    thread:  Avg: 0.0121us  Range: [0.0121us, 0.0122us]  Ops/s:  82.53M  Ops/s/t:  82.53M
-     2   threads:  Avg: 0.1932us  Range: [0.1783us, 0.2048us]  Ops/s:  10.35M  Ops/s/t:   5.18M
-     4   threads:  Avg: 1.1873us  Range: [1.1360us, 1.2165us]  Ops/s:   3.37M  Ops/s/t: 842.28k
-     8   threads:  Avg: 8.2682us  Range: [7.6568us, 8.7338us]  Ops/s: 967.57k  Ops/s/t: 120.95k
-     12  threads:  Avg: 0.0175ms  Range: [0.0170ms, 0.0178ms]  Ops/s: 685.99k  Ops/s/t:  57.17k
-     16  threads:  Avg: 0.0297ms  Range: [0.0282ms, 0.0309ms]  Ops/s: 538.38k  Ops/s/t:  33.65k
-     Operations per second per thread (weighted average):   6.27M
+     1    thread:  Avg: 0.0125us  Range: [0.0125us, 0.0126us]  Ops/s:  79.77M  Ops/s/t:  79.77M
+     2   threads:  Avg: 0.2008us  Range: [0.1779us, 0.2157us]  Ops/s:   9.96M  Ops/s/t:   4.98M
+     4   threads:  Avg: 1.2097us  Range: [1.1354us, 1.3460us]  Ops/s:   3.31M  Ops/s/t: 826.63k
+     8   threads:  Avg: 8.0444us  Range: [7.1758us, 8.4386us]  Ops/s: 994.48k  Ops/s/t: 124.31k
+     12  threads:  Avg: 0.0165ms  Range: [0.0151ms, 0.0170ms]  Ops/s: 728.45k  Ops/s/t:  60.70k
+     16  threads:  Avg: 0.0297ms  Range: [0.0286ms, 0.0307ms]  Ops/s: 538.52k  Ops/s/t:  33.66k
+     Operations per second per thread (weighted average):   6.06M
 
   > ftl::MPSCLockfree
      (skipping, benchmark not supported...)
@@ -205,72 +205,72 @@ only enqueue (pre-allocated):
   and the queue has been stretched out first)
   > moodycamel::ConcurrentQueue
       Without tokens
-         1    thread:  Avg: 9.0776ns  Range: [9.0552ns, 9.1097ns]  Ops/s: 110.16M  Ops/s/t: 110.16M
-         2   threads:  Avg: 0.0216us  Range: [0.0208us, 0.0226us]  Ops/s:  92.74M  Ops/s/t:  46.37M
-         4   threads:  Avg: 0.0818us  Range: [0.0538us, 0.1017us]  Ops/s:  48.91M  Ops/s/t:  12.23M
-         8   threads:  Avg: 0.1848us  Range: [0.1843us, 0.1861us]  Ops/s:  43.28M  Ops/s/t:   5.41M
-         Operations per second per thread (weighted average):  29.75M
+         1    thread:  Avg: 9.3611ns  Range: [9.3361ns, 9.3789ns]  Ops/s: 106.82M  Ops/s/t: 106.82M
+         2   threads:  Avg: 0.0223us  Range: [0.0217us, 0.0233us]  Ops/s:  89.53M  Ops/s/t:  44.76M
+         4   threads:  Avg: 0.1057us  Range: [0.1008us, 0.1091us]  Ops/s:  37.83M  Ops/s/t:   9.46M
+         8   threads:  Avg: 0.2028us  Range: [0.2024us, 0.2035us]  Ops/s:  39.45M  Ops/s/t:   4.93M
+         Operations per second per thread (weighted average):  28.03M
 
       With tokens
-         1    thread:  Avg: 3.2093ns  Range: [3.1885ns, 3.2255ns]  Ops/s: 311.59M  Ops/s/t: 311.59M
-         2   threads:  Avg: 0.0112us  Range: [0.0111us, 0.0113us]  Ops/s: 178.47M  Ops/s/t:  89.23M
-         4   threads:  Avg: 0.0311us  Range: [0.0302us, 0.0326us]  Ops/s: 128.58M  Ops/s/t:  32.14M
-         8   threads:  Avg: 0.0544us  Range: [0.0516us, 0.0594us]  Ops/s: 146.97M  Ops/s/t:  18.37M
-         Operations per second per thread (weighted average):  76.50M
+         1    thread:  Avg: 3.3298ns  Range: [3.3040ns, 3.3614ns]  Ops/s: 300.32M  Ops/s/t: 300.32M
+         2   threads:  Avg: 0.0109us  Range: [0.0106us, 0.0112us]  Ops/s: 183.74M  Ops/s/t:  91.87M
+         4   threads:  Avg: 0.0303us  Range: [0.0301us, 0.0308us]  Ops/s: 131.95M  Ops/s/t:  32.99M
+         8   threads:  Avg: 0.0580us  Range: [0.0519us, 0.0607us]  Ops/s: 137.83M  Ops/s/t:  17.23M
+         Operations per second per thread (weighted average):  75.24M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         1    thread:  Avg: 0.0142us  Range: [0.0141us, 0.0142us]  Ops/s:  70.61M  Ops/s/t:  70.61M
-         2   threads:  Avg: 0.1091us  Range: [0.1016us, 0.1159us]  Ops/s:  18.34M  Ops/s/t:   9.17M
-         4   threads:  Avg: 0.3861us  Range: [0.3755us, 0.4063us]  Ops/s:  10.36M  Ops/s/t:   2.59M
-         8   threads:  Avg: 1.0777us  Range: [1.0514us, 1.0983us]  Ops/s:   7.42M  Ops/s/t: 927.91k
-         Operations per second per thread (weighted average):  12.62M
+         1    thread:  Avg: 0.0151us  Range: [0.0150us, 0.0152us]  Ops/s:  66.25M  Ops/s/t:  66.25M
+         2   threads:  Avg: 0.1072us  Range: [0.0984us, 0.1141us]  Ops/s:  18.65M  Ops/s/t:   9.32M
+         4   threads:  Avg: 0.3523us  Range: [0.3456us, 0.3565us]  Ops/s:  11.35M  Ops/s/t:   2.84M
+         8   threads:  Avg: 1.3500us  Range: [1.2759us, 1.3766us]  Ops/s:   5.93M  Ops/s/t: 740.75k
+         Operations per second per thread (weighted average):  12.04M
 
       With tokens
-         1    thread:  Avg: 9.6668ns  Range: [9.6396ns, 9.6927ns]  Ops/s: 103.45M  Ops/s/t: 103.45M
-         2   threads:  Avg: 0.1114us  Range: [0.0991us, 0.1264us]  Ops/s:  17.96M  Ops/s/t:   8.98M
-         4   threads:  Avg: 0.4214us  Range: [0.4129us, 0.4275us]  Ops/s:   9.49M  Ops/s/t:   2.37M
-         8   threads:  Avg: 1.2598us  Range: [1.1841us, 1.3517us]  Ops/s:   6.35M  Ops/s/t: 793.79k
-         Operations per second per thread (weighted average):  17.00M
+         1    thread:  Avg: 9.9464ns  Range: [9.9144ns, 9.9902ns]  Ops/s: 100.54M  Ops/s/t: 100.54M
+         2   threads:  Avg: 0.0810us  Range: [0.0736us, 0.0877us]  Ops/s:  24.68M  Ops/s/t:  12.34M
+         4   threads:  Avg: 0.3695us  Range: [0.3561us, 0.3779us]  Ops/s:  10.82M  Ops/s/t:   2.71M
+         8   threads:  Avg: 1.7731us  Range: [1.7210us, 1.8063us]  Ops/s:   4.51M  Ops/s/t: 563.98k
+         Operations per second per thread (weighted average):  17.26M
 
   > boost::lockfree::queue
-     1    thread:  Avg: 0.0403us  Range: [0.0375us, 0.0421us]  Ops/s:  24.79M  Ops/s/t:  24.79M
-     2   threads:  Avg: 0.4327us  Range: [0.3980us, 0.4659us]  Ops/s:   4.62M  Ops/s/t:   2.31M
-     4   threads:  Avg: 1.4615us  Range: [1.4107us, 1.5043us]  Ops/s:   2.74M  Ops/s/t: 684.22k
-     8   threads:  Avg: 8.3865us  Range: [8.2871us, 8.5255us]  Ops/s: 953.92k  Ops/s/t: 119.24k
-     Operations per second per thread (weighted average):   4.11M
+     1    thread:  Avg: 0.0339us  Range: [0.0317us, 0.0347us]  Ops/s:  29.47M  Ops/s/t:  29.47M
+     2   threads:  Avg: 0.3798us  Range: [0.3594us, 0.4078us]  Ops/s:   5.27M  Ops/s/t:   2.63M
+     4   threads:  Avg: 1.9074us  Range: [1.6557us, 2.0511us]  Ops/s:   2.10M  Ops/s/t: 524.28k
+     8   threads:  Avg: 8.5823us  Range: [8.3314us, 8.8305us]  Ops/s: 932.15k  Ops/s/t: 116.52k
+     Operations per second per thread (weighted average):   4.77M
 
   > tbb::concurrent_queue
-     1    thread:  Avg: 0.0184us  Range: [0.0183us, 0.0185us]  Ops/s:  54.30M  Ops/s/t:  54.30M
-     2   threads:  Avg: 0.1776us  Range: [0.1704us, 0.1867us]  Ops/s:  11.26M  Ops/s/t:   5.63M
-     4   threads:  Avg: 0.6499us  Range: [0.6096us, 0.6702us]  Ops/s:   6.15M  Ops/s/t:   1.54M
-     8   threads:  Avg: 3.3225us  Range: [3.2791us, 3.3832us]  Ops/s:   2.41M  Ops/s/t: 300.97k
-     Operations per second per thread (weighted average):   9.14M
+     1    thread:  Avg: 0.0193us  Range: [0.0192us, 0.0196us]  Ops/s:  51.73M  Ops/s/t:  51.73M
+     2   threads:  Avg: 0.1883us  Range: [0.1833us, 0.1916us]  Ops/s:  10.62M  Ops/s/t:   5.31M
+     4   threads:  Avg: 0.6882us  Range: [0.6632us, 0.6972us]  Ops/s:   5.81M  Ops/s/t:   1.45M
+     8   threads:  Avg: 3.5920us  Range: [3.5286us, 3.6291us]  Ops/s:   2.23M  Ops/s/t: 278.40k
+     Operations per second per thread (weighted average):   8.69M
 
   > SimpleLockFreeQueue
-     1    thread:  Avg: 0.0321us  Range: [0.0315us, 0.0326us]  Ops/s:  31.18M  Ops/s/t:  31.18M
-     2   threads:  Avg: 0.3021us  Range: [0.2942us, 0.3160us]  Ops/s:   6.62M  Ops/s/t:   3.31M
-     4   threads:  Avg: 1.5488us  Range: [1.3581us, 1.7542us]  Ops/s:   2.58M  Ops/s/t: 645.66k
-     8   threads:  Avg: 8.4761us  Range: [7.8118us, 8.9358us]  Ops/s: 943.83k  Ops/s/t: 117.98k
-     Operations per second per thread (weighted average):   5.18M
+     1    thread:  Avg: 0.0388us  Range: [0.0336us, 0.0427us]  Ops/s:  25.78M  Ops/s/t:  25.78M
+     2   threads:  Avg: 0.3264us  Range: [0.3194us, 0.3335us]  Ops/s:   6.13M  Ops/s/t:   3.06M
+     4   threads:  Avg: 1.7389us  Range: [1.4058us, 1.9394us]  Ops/s:   2.30M  Ops/s/t: 575.07k
+     8   threads:  Avg: 0.0109ms  Range: [0.0104ms, 0.0111ms]  Ops/s: 732.22k  Ops/s/t:  91.53k
+     Operations per second per thread (weighted average):   4.35M
 
   > LockBasedQueue
-     1    thread:  Avg: 0.0386us  Range: [0.0371us, 0.0395us]  Ops/s:  25.90M  Ops/s/t:  25.90M
-     2   threads:  Avg: 0.5179us  Range: [0.4834us, 0.5523us]  Ops/s:   3.86M  Ops/s/t:   1.93M
-     4   threads:  Avg: 1.7632us  Range: [1.6626us, 1.8124us]  Ops/s:   2.27M  Ops/s/t: 567.16k
-     8   threads:  Avg: 8.4179us  Range: [8.3839us, 8.4552us]  Ops/s: 950.35k  Ops/s/t: 118.79k
-     Operations per second per thread (weighted average):   4.16M
+     1    thread:  Avg: 0.0389us  Range: [0.0378us, 0.0398us]  Ops/s:  25.72M  Ops/s/t:  25.72M
+     2   threads:  Avg: 0.5087us  Range: [0.4717us, 0.5478us]  Ops/s:   3.93M  Ops/s/t:   1.97M
+     4   threads:  Avg: 1.7791us  Range: [1.7156us, 1.8390us]  Ops/s:   2.25M  Ops/s/t: 562.08k
+     8   threads:  Avg: 8.5242us  Range: [8.4641us, 8.5576us]  Ops/s: 938.50k  Ops/s/t: 117.31k
+     Operations per second per thread (weighted average):   4.14M
 
   > std::queue
-     1    thread:  Avg: 3.7224ns  Range: [3.6948ns, 3.7615ns]  Ops/s: 268.64M  Ops/s/t: 268.64M
-     Operations per second per thread (weighted average): 268.64M
+     1    thread:  Avg: 3.8455ns  Range: [3.8173ns, 3.8667ns]  Ops/s: 260.04M  Ops/s/t: 260.04M
+     Operations per second per thread (weighted average): 260.04M
 
   > ftl::MPMCLockfree
-     1    thread:  Avg: 0.0120us  Range: [0.0120us, 0.0121us]  Ops/s:  83.04M  Ops/s/t:  83.04M
-     2   threads:  Avg: 0.1554us  Range: [0.1424us, 0.1671us]  Ops/s:  12.87M  Ops/s/t:   6.44M
-     4   threads:  Avg: 1.2609us  Range: [1.0206us, 1.3609us]  Ops/s:   3.17M  Ops/s/t: 793.11k
-     8   threads:  Avg: 8.4286us  Range: [7.8447us, 8.6784us]  Ops/s: 949.15k  Ops/s/t: 118.64k
-     Operations per second per thread (weighted average):  12.99M
+     1    thread:  Avg: 0.0124us  Range: [0.0124us, 0.0125us]  Ops/s:  80.33M  Ops/s/t:  80.33M
+     2   threads:  Avg: 0.1522us  Range: [0.1505us, 0.1561us]  Ops/s:  13.14M  Ops/s/t:   6.57M
+     4   threads:  Avg: 1.2080us  Range: [0.9551us, 1.3857us]  Ops/s:   3.31M  Ops/s/t: 827.80k
+     8   threads:  Avg: 8.0947us  Range: [7.7789us, 8.3512us]  Ops/s: 988.30k  Ops/s/t: 123.54k
+     Operations per second per thread (weighted average):  12.65M
 
   > ftl::MPSCLockfree
      (skipping, benchmark not supported...)
@@ -282,41 +282,41 @@ only enqueue bulk:
   (Measures the average speed of enqueueing an item in bulk when all threads are producers)
   > moodycamel::ConcurrentQueue
       Without tokens
-         1    thread:  Avg: 1.5636ns  Range: [1.5400ns, 1.6166ns]  Ops/s: 639.56M  Ops/s/t: 639.56M
-         2   threads:  Avg: 6.9774ns  Range: [5.9795ns, 7.7592ns]  Ops/s: 286.64M  Ops/s/t: 143.32M
-         4   threads:  Avg: 0.0109us  Range: [0.0106us, 0.0112us]  Ops/s: 365.58M  Ops/s/t:  91.39M
-         8   threads:  Avg: 0.0271us  Range: [0.0266us, 0.0279us]  Ops/s: 294.68M  Ops/s/t:  36.84M
-         12  threads:  Avg: 0.0502us  Range: [0.0476us, 0.0529us]  Ops/s: 239.21M  Ops/s/t:  19.93M
-         16  threads:  Avg: 0.0737us  Range: [0.0718us, 0.0745us]  Ops/s: 217.22M  Ops/s/t:  13.58M
-         Operations per second per thread (weighted average):  85.17M
+         1    thread:  Avg: 2.0792ns  Range: [2.0438ns, 2.1359ns]  Ops/s: 480.96M  Ops/s/t: 480.96M
+         2   threads:  Avg: 6.6886ns  Range: [6.1378ns, 7.5236ns]  Ops/s: 299.02M  Ops/s/t: 149.51M
+         4   threads:  Avg: 9.6609ns  Range: [9.6501ns, 9.6734ns]  Ops/s: 414.04M  Ops/s/t: 103.51M
+         8   threads:  Avg: 0.0274us  Range: [0.0270us, 0.0278us]  Ops/s: 291.55M  Ops/s/t:  36.44M
+         12  threads:  Avg: 0.0551us  Range: [0.0515us, 0.0576us]  Ops/s: 217.60M  Ops/s/t:  18.13M
+         16  threads:  Avg: 0.0755us  Range: [0.0684us, 0.0788us]  Ops/s: 211.88M  Ops/s/t:  13.24M
+         Operations per second per thread (weighted average):  76.04M
 
       With tokens
-         1    thread:  Avg: 1.8131ns  Range: [1.8041ns, 1.8186ns]  Ops/s: 551.53M  Ops/s/t: 551.53M
-         2   threads:  Avg: 4.5337ns  Range: [4.2162ns, 4.7799ns]  Ops/s: 441.14M  Ops/s/t: 220.57M
-         4   threads:  Avg: 8.1734ns  Range: [7.6170ns, 8.6922ns]  Ops/s: 489.39M  Ops/s/t: 122.35M
-         8   threads:  Avg: 0.0327us  Range: [0.0322us, 0.0330us]  Ops/s: 244.93M  Ops/s/t:  30.62M
-         12  threads:  Avg: 0.0441us  Range: [0.0413us, 0.0461us]  Ops/s: 271.88M  Ops/s/t:  22.66M
-         16  threads:  Avg: 0.0771us  Range: [0.0730us, 0.0802us]  Ops/s: 207.58M  Ops/s/t:  12.97M
-         Operations per second per thread (weighted average):  90.10M
+         1    thread:  Avg: 1.8696ns  Range: [1.8598ns, 1.8770ns]  Ops/s: 534.87M  Ops/s/t: 534.87M
+         2   threads:  Avg: 5.1470ns  Range: [5.0016ns, 5.2393ns]  Ops/s: 388.57M  Ops/s/t: 194.29M
+         4   threads:  Avg: 9.0393ns  Range: [8.4867ns, 9.9954ns]  Ops/s: 442.51M  Ops/s/t: 110.63M
+         8   threads:  Avg: 0.0268us  Range: [0.0264us, 0.0275us]  Ops/s: 298.98M  Ops/s/t:  37.37M
+         12  threads:  Avg: 0.0528us  Range: [0.0516us, 0.0536us]  Ops/s: 227.10M  Ops/s/t:  18.92M
+         16  threads:  Avg: 0.0681us  Range: [0.0648us, 0.0729us]  Ops/s: 234.99M  Ops/s/t:  14.69M
+         Operations per second per thread (weighted average):  85.74M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         1    thread:  Avg: 1.9234ns  Range: [1.9122ns, 1.9318ns]  Ops/s: 519.90M  Ops/s/t: 519.90M
-         2   threads:  Avg: 5.8275ns  Range: [5.3879ns, 6.1942ns]  Ops/s: 343.20M  Ops/s/t: 171.60M
-         4   threads:  Avg: 9.3988ns  Range: [9.3762ns, 9.4151ns]  Ops/s: 425.59M  Ops/s/t: 106.40M
-         8   threads:  Avg: 0.0261us  Range: [0.0259us, 0.0262us]  Ops/s: 306.99M  Ops/s/t:  38.37M
-         12  threads:  Avg: 0.0450us  Range: [0.0382us, 0.0474us]  Ops/s: 266.70M  Ops/s/t:  22.23M
-         16  threads:  Avg: 0.0740us  Range: [0.0706us, 0.0767us]  Ops/s: 216.16M  Ops/s/t:  13.51M
-         Operations per second per thread (weighted average):  82.61M
+         1    thread:  Avg: 1.9128ns  Range: [1.9034ns, 1.9197ns]  Ops/s: 522.78M  Ops/s/t: 522.78M
+         2   threads:  Avg: 6.1079ns  Range: [5.5158ns, 6.3760ns]  Ops/s: 327.45M  Ops/s/t: 163.72M
+         4   threads:  Avg: 0.0110us  Range: [0.0109us, 0.0111us]  Ops/s: 363.48M  Ops/s/t:  90.87M
+         8   threads:  Avg: 0.0280us  Range: [0.0270us, 0.0298us]  Ops/s: 285.47M  Ops/s/t:  35.68M
+         12  threads:  Avg: 0.0547us  Range: [0.0535us, 0.0569us]  Ops/s: 219.22M  Ops/s/t:  18.27M
+         16  threads:  Avg: 0.0757us  Range: [0.0749us, 0.0766us]  Ops/s: 211.41M  Ops/s/t:  13.21M
+         Operations per second per thread (weighted average):  78.41M
 
       With tokens
-         1    thread:  Avg: 1.8193ns  Range: [1.8143ns, 1.8322ns]  Ops/s: 549.67M  Ops/s/t: 549.67M
-         2   threads:  Avg: 3.5561ns  Range: [3.5103ns, 3.6116ns]  Ops/s: 562.42M  Ops/s/t: 281.21M
-         4   threads:  Avg: 0.0104us  Range: [0.0102us, 0.0106us]  Ops/s: 384.06M  Ops/s/t:  96.02M
-         8   threads:  Avg: 0.0323us  Range: [0.0297us, 0.0330us]  Ops/s: 248.06M  Ops/s/t:  31.01M
-         12  threads:  Avg: 0.0430us  Range: [0.0416us, 0.0454us]  Ops/s: 278.98M  Ops/s/t:  23.25M
-         16  threads:  Avg: 0.0647us  Range: [0.0615us, 0.0665us]  Ops/s: 247.42M  Ops/s/t:  15.46M
-         Operations per second per thread (weighted average):  93.12M
+         1    thread:  Avg: 1.8706ns  Range: [1.8563ns, 1.8862ns]  Ops/s: 534.59M  Ops/s/t: 534.59M
+         2   threads:  Avg: 4.0149ns  Range: [3.8617ns, 4.0908ns]  Ops/s: 498.15M  Ops/s/t: 249.07M
+         4   threads:  Avg: 8.5016ns  Range: [8.0690ns, 9.1489ns]  Ops/s: 470.50M  Ops/s/t: 117.63M
+         8   threads:  Avg: 0.0267us  Range: [0.0263us, 0.0269us]  Ops/s: 299.95M  Ops/s/t:  37.49M
+         12  threads:  Avg: 0.0444us  Range: [0.0421us, 0.0461us]  Ops/s: 270.40M  Ops/s/t:  22.53M
+         16  threads:  Avg: 0.0705us  Range: [0.0649us, 0.0739us]  Ops/s: 227.03M  Ops/s/t:  14.19M
+         Operations per second per thread (weighted average):  92.67M
 
   > boost::lockfree::queue
      (skipping, benchmark not supported...)
@@ -347,33 +347,33 @@ only enqueue bulk (pre-allocated):
   and the queue has been stretched out first)
   > moodycamel::ConcurrentQueue
       Without tokens
-         1    thread:  Avg: 1.5566ns  Range: [1.5401ns, 1.5726ns]  Ops/s: 642.43M  Ops/s/t: 642.43M
-         2   threads:  Avg: 7.4963ns  Range: [7.2706ns, 7.8436ns]  Ops/s: 266.80M  Ops/s/t: 133.40M
-         4   threads:  Avg: 0.0103us  Range: [8.9190ns, 0.0119us]  Ops/s: 387.17M  Ops/s/t:  96.79M
-         8   threads:  Avg: 0.0276us  Range: [0.0270us, 0.0284us]  Ops/s: 289.51M  Ops/s/t:  36.19M
-         Operations per second per thread (weighted average): 155.61M
+         1    thread:  Avg: 2.0165ns  Range: [1.9819ns, 2.0442ns]  Ops/s: 495.90M  Ops/s/t: 495.90M
+         2   threads:  Avg: 5.8292ns  Range: [5.4494ns, 6.1636ns]  Ops/s: 343.10M  Ops/s/t: 171.55M
+         4   threads:  Avg: 0.0104us  Range: [0.0103us, 0.0105us]  Ops/s: 384.60M  Ops/s/t:  96.15M
+         8   threads:  Avg: 0.0285us  Range: [0.0277us, 0.0290us]  Ops/s: 280.78M  Ops/s/t:  35.10M
+         Operations per second per thread (weighted average): 142.22M
 
       With tokens
-         1    thread:  Avg: 1.8609ns  Range: [1.8568ns, 1.8630ns]  Ops/s: 537.38M  Ops/s/t: 537.38M
-         2   threads:  Avg: 4.1059ns  Range: [4.0038ns, 4.2410ns]  Ops/s: 487.11M  Ops/s/t: 243.55M
-         4   threads:  Avg: 9.3611ns  Range: [9.2831ns, 9.4594ns]  Ops/s: 427.30M  Ops/s/t: 106.82M
-         8   threads:  Avg: 0.0333us  Range: [0.0330us, 0.0334us]  Ops/s: 240.46M  Ops/s/t:  30.06M
-         Operations per second per thread (weighted average): 162.99M
+         1    thread:  Avg: 1.8888ns  Range: [1.8802ns, 1.8950ns]  Ops/s: 529.43M  Ops/s/t: 529.43M
+         2   threads:  Avg: 5.1066ns  Range: [4.9891ns, 5.2431ns]  Ops/s: 391.65M  Ops/s/t: 195.83M
+         4   threads:  Avg: 8.8144ns  Range: [8.3980ns, 9.0886ns]  Ops/s: 453.80M  Ops/s/t: 113.45M
+         8   threads:  Avg: 0.0277us  Range: [0.0266us, 0.0282us]  Ops/s: 289.09M  Ops/s/t:  36.14M
+         Operations per second per thread (weighted average): 156.78M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         1    thread:  Avg: 1.9670ns  Range: [1.9620ns, 1.9731ns]  Ops/s: 508.38M  Ops/s/t: 508.38M
-         2   threads:  Avg: 6.2150ns  Range: [6.0317ns, 6.3466ns]  Ops/s: 321.80M  Ops/s/t: 160.90M
-         4   threads:  Avg: 0.0109us  Range: [0.0108us, 0.0110us]  Ops/s: 367.47M  Ops/s/t:  91.87M
-         8   threads:  Avg: 0.0280us  Range: [0.0274us, 0.0285us]  Ops/s: 286.05M  Ops/s/t:  35.76M
-         Operations per second per thread (weighted average): 140.94M
+         1    thread:  Avg: 1.9285ns  Range: [1.9051ns, 1.9466ns]  Ops/s: 518.54M  Ops/s/t: 518.54M
+         2   threads:  Avg: 5.9068ns  Range: [5.2467ns, 6.3503ns]  Ops/s: 338.59M  Ops/s/t: 169.30M
+         4   threads:  Avg: 0.0102us  Range: [0.0101us, 0.0103us]  Ops/s: 392.65M  Ops/s/t:  98.16M
+         8   threads:  Avg: 0.0274us  Range: [0.0247us, 0.0287us]  Ops/s: 291.96M  Ops/s/t:  36.50M
+         Operations per second per thread (weighted average): 146.01M
 
       With tokens
-         1    thread:  Avg: 1.8565ns  Range: [1.8371ns, 1.8661ns]  Ops/s: 538.65M  Ops/s/t: 538.65M
-         2   threads:  Avg: 4.5661ns  Range: [4.3489ns, 5.0406ns]  Ops/s: 438.01M  Ops/s/t: 219.01M
-         4   threads:  Avg: 7.8998ns  Range: [7.7766ns, 8.0374ns]  Ops/s: 506.34M  Ops/s/t: 126.58M
-         8   threads:  Avg: 0.0333us  Range: [0.0330us, 0.0336us]  Ops/s: 240.23M  Ops/s/t:  30.03M
-         Operations per second per thread (weighted average): 163.82M
+         1    thread:  Avg: 1.8556ns  Range: [1.8496ns, 1.8638ns]  Ops/s: 538.91M  Ops/s/t: 538.91M
+         2   threads:  Avg: 4.3871ns  Range: [4.1760ns, 4.5105ns]  Ops/s: 455.88M  Ops/s/t: 227.94M
+         4   threads:  Avg: 9.5164ns  Range: [9.4182ns, 9.6507ns]  Ops/s: 420.33M  Ops/s/t: 105.08M
+         8   threads:  Avg: 0.0274us  Range: [0.0267us, 0.0278us]  Ops/s: 291.72M  Ops/s/t:  36.46M
+         Operations per second per thread (weighted average): 162.17M
 
   > boost::lockfree::queue
      (skipping, benchmark not supported...)
@@ -403,90 +403,90 @@ only dequeue:
   (Measures the average operation speed when all threads are consumers)
   > moodycamel::ConcurrentQueue
       Without tokens
-         1    thread:  Avg: 0.0311us  Range: [0.0304us, 0.0320us]  Ops/s:  32.13M  Ops/s/t:  32.13M
-         2   threads:  Avg: 0.2623us  Range: [0.2467us, 0.2680us]  Ops/s:   7.62M  Ops/s/t:   3.81M
-         4   threads:  Avg: 1.0751us  Range: [0.8818us, 1.1297us]  Ops/s:   3.72M  Ops/s/t: 930.16k
-         8   threads:  Avg: 3.0986us  Range: [3.0479us, 3.1298us]  Ops/s:   2.58M  Ops/s/t: 322.73k
-         12  threads:  Avg: 4.2585us  Range: [4.1456us, 4.3427us]  Ops/s:   2.82M  Ops/s/t: 234.82k
-         16  threads:  Avg: 7.3078us  Range: [7.0901us, 7.5255us]  Ops/s:   2.19M  Ops/s/t: 136.84k
-         Operations per second per thread (weighted average):   2.83M
+         1    thread:  Avg: 0.0292us  Range: [0.0289us, 0.0293us]  Ops/s:  34.29M  Ops/s/t:  34.29M
+         2   threads:  Avg: 0.2865us  Range: [0.2833us, 0.2881us]  Ops/s:   6.98M  Ops/s/t:   3.49M
+         4   threads:  Avg: 1.1168us  Range: [1.1037us, 1.1256us]  Ops/s:   3.58M  Ops/s/t: 895.43k
+         8   threads:  Avg: 3.1101us  Range: [3.0385us, 3.1451us]  Ops/s:   2.57M  Ops/s/t: 321.53k
+         12  threads:  Avg: 4.6622us  Range: [4.1105us, 4.9861us]  Ops/s:   2.57M  Ops/s/t: 214.49k
+         16  threads:  Avg: 7.2977us  Range: [7.0529us, 7.5521us]  Ops/s:   2.19M  Ops/s/t: 137.03k
+         Operations per second per thread (weighted average):   2.94M
 
       With tokens
-         1    thread:  Avg: 0.0235us  Range: [0.0234us, 0.0236us]  Ops/s:  42.50M  Ops/s/t:  42.50M
-         2   threads:  Avg: 0.0493us  Range: [0.0490us, 0.0496us]  Ops/s:  40.58M  Ops/s/t:  20.29M
-         4   threads:  Avg: 0.1023us  Range: [0.1013us, 0.1040us]  Ops/s:  39.10M  Ops/s/t:   9.77M
-         8   threads:  Avg: 0.5563us  Range: [0.5490us, 0.5610us]  Ops/s:  14.38M  Ops/s/t:   1.80M
-         12  threads:  Avg: 0.8909us  Range: [0.8229us, 0.9286us]  Ops/s:  13.47M  Ops/s/t:   1.12M
-         16  threads:  Avg: 0.6988us  Range: [0.6237us, 0.7979us]  Ops/s:  22.90M  Ops/s/t:   1.43M
-         Operations per second per thread (weighted average):   7.17M
+         1    thread:  Avg: 0.0254us  Range: [0.0249us, 0.0256us]  Ops/s:  39.40M  Ops/s/t:  39.40M
+         2   threads:  Avg: 0.0501us  Range: [0.0499us, 0.0502us]  Ops/s:  39.93M  Ops/s/t:  19.96M
+         4   threads:  Avg: 0.1028us  Range: [0.1018us, 0.1048us]  Ops/s:  38.90M  Ops/s/t:   9.73M
+         8   threads:  Avg: 0.5206us  Range: [0.3632us, 0.5659us]  Ops/s:  15.37M  Ops/s/t:   1.92M
+         12  threads:  Avg: 0.8131us  Range: [0.7223us, 0.8805us]  Ops/s:  14.76M  Ops/s/t:   1.23M
+         16  threads:  Avg: 0.8423us  Range: [0.6865us, 0.9638us]  Ops/s:  19.00M  Ops/s/t:   1.19M
+         Operations per second per thread (weighted average):   6.90M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         1    thread:  Avg: 0.0354us  Range: [0.0348us, 0.0363us]  Ops/s:  28.25M  Ops/s/t:  28.25M
-         2   threads:  Avg: 0.3600us  Range: [0.3475us, 0.3743us]  Ops/s:   5.56M  Ops/s/t:   2.78M
-         4   threads:  Avg: 1.2051us  Range: [1.1960us, 1.2093us]  Ops/s:   3.32M  Ops/s/t: 829.82k
-         8   threads:  Avg: 6.8727us  Range: [6.7350us, 6.9876us]  Ops/s:   1.16M  Ops/s/t: 145.50k
-         12  threads:  Avg: 0.0116ms  Range: [0.0111ms, 0.0121ms]  Ops/s:   1.03M  Ops/s/t:  86.01k
-         16  threads:  Avg: 0.0177ms  Range: [0.0166ms, 0.0184ms]  Ops/s: 904.17k  Ops/s/t:  56.51k
-         Operations per second per thread (weighted average):   2.36M
+         1    thread:  Avg: 0.0413us  Range: [0.0408us, 0.0416us]  Ops/s:  24.21M  Ops/s/t:  24.21M
+         2   threads:  Avg: 0.3728us  Range: [0.3623us, 0.3821us]  Ops/s:   5.36M  Ops/s/t:   2.68M
+         4   threads:  Avg: 1.2087us  Range: [1.2052us, 1.2138us]  Ops/s:   3.31M  Ops/s/t: 827.36k
+         8   threads:  Avg: 4.5857us  Range: [4.5374us, 4.6151us]  Ops/s:   1.74M  Ops/s/t: 218.07k
+         12  threads:  Avg: 9.7414us  Range: [9.6055us, 9.9352us]  Ops/s:   1.23M  Ops/s/t: 102.65k
+         16  threads:  Avg: 0.0160ms  Range: [0.0147ms, 0.0174ms]  Ops/s:   1.00M  Ops/s/t:  62.56k
+         Operations per second per thread (weighted average):   2.10M
 
       With tokens
-         1    thread:  Avg: 0.0352us  Range: [0.0344us, 0.0361us]  Ops/s:  28.39M  Ops/s/t:  28.39M
-         2   threads:  Avg: 0.1677us  Range: [0.1650us, 0.1714us]  Ops/s:  11.92M  Ops/s/t:   5.96M
-         4   threads:  Avg: 1.1868us  Range: [1.1767us, 1.1936us]  Ops/s:   3.37M  Ops/s/t: 842.60k
-         8   threads:  Avg: 6.2549us  Range: [5.7562us, 6.5938us]  Ops/s:   1.28M  Ops/s/t: 159.88k
-         12  threads:  Avg: 0.0138ms  Range: [0.0132ms, 0.0141ms]  Ops/s: 869.42k  Ops/s/t:  72.45k
-         16  threads:  Avg: 0.0227ms  Range: [0.0214ms, 0.0238ms]  Ops/s: 703.48k  Ops/s/t:  43.97k
-         Operations per second per thread (weighted average):   2.68M
+         1    thread:  Avg: 0.0360us  Range: [0.0348us, 0.0374us]  Ops/s:  27.78M  Ops/s/t:  27.78M
+         2   threads:  Avg: 0.1823us  Range: [0.1527us, 0.1922us]  Ops/s:  10.97M  Ops/s/t:   5.48M
+         4   threads:  Avg: 1.1283us  Range: [1.0649us, 1.1558us]  Ops/s:   3.55M  Ops/s/t: 886.25k
+         8   threads:  Avg: 4.7209us  Range: [4.5986us, 4.7658us]  Ops/s:   1.69M  Ops/s/t: 211.82k
+         12  threads:  Avg: 9.4727us  Range: [8.5577us, 9.8078us]  Ops/s:   1.27M  Ops/s/t: 105.57k
+         16  threads:  Avg: 0.0166ms  Range: [0.0156ms, 0.0170ms]  Ops/s: 962.18k  Ops/s/t:  60.14k
+         Operations per second per thread (weighted average):   2.62M
 
   > boost::lockfree::queue
-     1    thread:  Avg: 0.0446us  Range: [0.0424us, 0.0468us]  Ops/s:  22.42M  Ops/s/t:  22.42M
-     2   threads:  Avg: 0.3112us  Range: [0.3030us, 0.3171us]  Ops/s:   6.43M  Ops/s/t:   3.21M
-     4   threads:  Avg: 1.5284us  Range: [1.5092us, 1.5534us]  Ops/s:   2.62M  Ops/s/t: 654.27k
-     8   threads:  Avg: 8.4149us  Range: [8.3925us, 8.4382us]  Ops/s: 950.69k  Ops/s/t: 118.84k
-     12  threads:  Avg: 0.0139ms  Range: [0.0134ms, 0.0142ms]  Ops/s: 861.01k  Ops/s/t:  71.75k
-     16  threads:  Avg: 0.0214ms  Range: [0.0179ms, 0.0232ms]  Ops/s: 747.68k  Ops/s/t:  46.73k
-     Operations per second per thread (weighted average):   1.98M
+     1    thread:  Avg: 0.0478us  Range: [0.0440us, 0.0500us]  Ops/s:  20.94M  Ops/s/t:  20.94M
+     2   threads:  Avg: 0.2983us  Range: [0.2941us, 0.3015us]  Ops/s:   6.71M  Ops/s/t:   3.35M
+     4   threads:  Avg: 1.6600us  Range: [1.6268us, 1.6886us]  Ops/s:   2.41M  Ops/s/t: 602.41k
+     8   threads:  Avg: 8.3899us  Range: [8.2978us, 8.4945us]  Ops/s: 953.53k  Ops/s/t: 119.19k
+     12  threads:  Avg: 0.0145ms  Range: [0.0141ms, 0.0149ms]  Ops/s: 830.07k  Ops/s/t:  69.17k
+     16  threads:  Avg: 0.0246ms  Range: [0.0229ms, 0.0256ms]  Ops/s: 650.73k  Ops/s/t:  40.67k
+     Operations per second per thread (weighted average):   1.88M
 
   > tbb::concurrent_queue
-     1    thread:  Avg: 0.0259us  Range: [0.0231us, 0.0291us]  Ops/s:  38.55M  Ops/s/t:  38.55M
-     2   threads:  Avg: 0.1976us  Range: [0.1873us, 0.2070us]  Ops/s:  10.12M  Ops/s/t:   5.06M
-     4   threads:  Avg: 1.0268us  Range: [1.0056us, 1.0560us]  Ops/s:   3.90M  Ops/s/t: 973.93k
-     8   threads:  Avg: 7.1438us  Range: [6.7079us, 7.7511us]  Ops/s:   1.12M  Ops/s/t: 139.98k
-     12  threads:  Avg: 0.0174ms  Range: [0.0173ms, 0.0175ms]  Ops/s: 691.44k  Ops/s/t:  57.62k
-     16  threads:  Avg: 0.0405ms  Range: [0.0394ms, 0.0411ms]  Ops/s: 395.05k  Ops/s/t:  24.69k
-     Operations per second per thread (weighted average):   3.29M
+     1    thread:  Avg: 0.0268us  Range: [0.0257us, 0.0276us]  Ops/s:  37.33M  Ops/s/t:  37.33M
+     2   threads:  Avg: 0.1944us  Range: [0.1924us, 0.1952us]  Ops/s:  10.29M  Ops/s/t:   5.14M
+     4   threads:  Avg: 1.0427us  Range: [1.0334us, 1.0511us]  Ops/s:   3.84M  Ops/s/t: 959.09k
+     8   threads:  Avg: 4.3683us  Range: [4.2912us, 4.4327us]  Ops/s:   1.83M  Ops/s/t: 228.92k
+     12  threads:  Avg: 0.0167ms  Range: [0.0157ms, 0.0185ms]  Ops/s: 717.73k  Ops/s/t:  59.81k
+     16  threads:  Avg: 0.0417ms  Range: [0.0399ms, 0.0429ms]  Ops/s: 383.95k  Ops/s/t:  24.00k
+     Operations per second per thread (weighted average):   3.23M
 
   > SimpleLockFreeQueue
-     1    thread:  Avg: 0.0235us  Range: [0.0220us, 0.0256us]  Ops/s:  42.59M  Ops/s/t:  42.59M
-     2   threads:  Avg: 0.2709us  Range: [0.2587us, 0.2843us]  Ops/s:   7.38M  Ops/s/t:   3.69M
-     4   threads:  Avg: 1.9250us  Range: [1.7822us, 2.0542us]  Ops/s:   2.08M  Ops/s/t: 519.49k
-     8   threads:  Avg: 0.0106ms  Range: [9.7473us, 0.0110ms]  Ops/s: 758.21k  Ops/s/t:  94.78k
-     12  threads:  Avg: 0.0227ms  Range: [0.0220ms, 0.0233ms]  Ops/s: 529.67k  Ops/s/t:  44.14k
-     16  threads:  Avg: 0.0373ms  Range: [0.0351ms, 0.0384ms]  Ops/s: 429.45k  Ops/s/t:  26.84k
-     Operations per second per thread (weighted average):   3.36M
+     1    thread:  Avg: 0.0259us  Range: [0.0252us, 0.0265us]  Ops/s:  38.59M  Ops/s/t:  38.59M
+     2   threads:  Avg: 0.2758us  Range: [0.2724us, 0.2780us]  Ops/s:   7.25M  Ops/s/t:   3.63M
+     4   threads:  Avg: 2.0978us  Range: [2.0702us, 2.1231us]  Ops/s:   1.91M  Ops/s/t: 476.68k
+     8   threads:  Avg: 0.0113ms  Range: [0.0104ms, 0.0119ms]  Ops/s: 705.07k  Ops/s/t:  88.13k
+     12  threads:  Avg: 0.0216ms  Range: [0.0208ms, 0.0222ms]  Ops/s: 555.03k  Ops/s/t:  46.25k
+     16  threads:  Avg: 0.0383ms  Range: [0.0360ms, 0.0394ms]  Ops/s: 417.91k  Ops/s/t:  26.12k
+     Operations per second per thread (weighted average):   3.07M
 
   > LockBasedQueue
-     1    thread:  Avg: 0.0375us  Range: [0.0360us, 0.0387us]  Ops/s:  26.67M  Ops/s/t:  26.67M
-     2   threads:  Avg: 1.2508us  Range: [1.2019us, 1.2836us]  Ops/s:   1.60M  Ops/s/t: 799.47k
-     4   threads:  Avg: 3.1182us  Range: [3.0208us, 3.2203us]  Ops/s:   1.28M  Ops/s/t: 320.69k
-     8   threads:  Avg: 0.0151ms  Range: [0.0147ms, 0.0160ms]  Ops/s: 528.40k  Ops/s/t:  66.05k
-     12  threads:  Avg: 0.0372ms  Range: [0.0368ms, 0.0374ms]  Ops/s: 323.01k  Ops/s/t:  26.92k
-     16  threads:  Avg: 0.0660ms  Range: [0.0657ms, 0.0665ms]  Ops/s: 242.26k  Ops/s/t:  15.14k
-     Operations per second per thread (weighted average):   1.96M
+     1    thread:  Avg: 0.0381us  Range: [0.0376us, 0.0386us]  Ops/s:  26.23M  Ops/s/t:  26.23M
+     2   threads:  Avg: 1.4485us  Range: [0.4306us, 1.7732us]  Ops/s:   1.38M  Ops/s/t: 690.39k
+     4   threads:  Avg: 3.5103us  Range: [3.3862us, 3.5746us]  Ops/s:   1.14M  Ops/s/t: 284.87k
+     8   threads:  Avg: 0.0166ms  Range: [0.0158ms, 0.0169ms]  Ops/s: 482.45k  Ops/s/t:  60.31k
+     12  threads:  Avg: 0.0390ms  Range: [0.0389ms, 0.0391ms]  Ops/s: 307.37k  Ops/s/t:  25.61k
+     16  threads:  Avg: 0.0694ms  Range: [0.0692ms, 0.0696ms]  Ops/s: 230.64k  Ops/s/t:  14.41k
+     Operations per second per thread (weighted average):   1.91M
 
   > std::queue
-     1    thread:  Avg: 2.4288ns  Range: [2.3151ns, 2.5347ns]  Ops/s: 411.73M  Ops/s/t: 411.73M
-     Operations per second per thread (weighted average): 411.73M
+     1    thread:  Avg: 3.1377ns  Range: [2.9941ns, 3.2405ns]  Ops/s: 318.71M  Ops/s/t: 318.71M
+     Operations per second per thread (weighted average): 318.71M
 
   > ftl::MPMCLockfree
-     1    thread:  Avg: 0.0138us  Range: [0.0130us, 0.0155us]  Ops/s:  72.63M  Ops/s/t:  72.63M
-     2   threads:  Avg: 0.1296us  Range: [0.1124us, 0.1464us]  Ops/s:  15.44M  Ops/s/t:   7.72M
-     4   threads:  Avg: 1.0997us  Range: [1.0016us, 1.1514us]  Ops/s:   3.64M  Ops/s/t: 909.33k
-     8   threads:  Avg: 8.3201us  Range: [7.7744us, 8.5481us]  Ops/s: 961.53k  Ops/s/t: 120.19k
-     12  threads:  Avg: 0.0166ms  Range: [0.0153ms, 0.0175ms]  Ops/s: 721.25k  Ops/s/t:  60.10k
-     16  threads:  Avg: 0.0301ms  Range: [0.0288ms, 0.0305ms]  Ops/s: 532.03k  Ops/s/t:  33.25k
-     Operations per second per thread (weighted average):   5.85M
+     1    thread:  Avg: 0.0156us  Range: [0.0153us, 0.0160us]  Ops/s:  63.95M  Ops/s/t:  63.95M
+     2   threads:  Avg: 0.1172us  Range: [0.1123us, 0.1243us]  Ops/s:  17.06M  Ops/s/t:   8.53M
+     4   threads:  Avg: 1.1978us  Range: [1.1877us, 1.2096us]  Ops/s:   3.34M  Ops/s/t: 834.86k
+     8   threads:  Avg: 8.2315us  Range: [7.7197us, 8.5176us]  Ops/s: 971.88k  Ops/s/t: 121.49k
+     12  threads:  Avg: 0.0167ms  Range: [0.0153ms, 0.0174ms]  Ops/s: 719.62k  Ops/s/t:  59.97k
+     16  threads:  Avg: 0.0299ms  Range: [0.0288ms, 0.0309ms]  Ops/s: 534.30k  Ops/s/t:  33.39k
+     Operations per second per thread (weighted average):   5.33M
 
   > ftl::MPSCLockfree
      (skipping, benchmark not supported...)
@@ -498,41 +498,41 @@ only dequeue bulk:
   (Measures the average speed of dequeueing an item in bulk when all threads are consumers)
   > moodycamel::ConcurrentQueue
       Without tokens
-         1    thread:  Avg: 1.1288ns  Range: [1.1062ns, 1.1839ns]  Ops/s: 885.90M  Ops/s/t: 885.90M
-         2   threads:  Avg: 3.1660ns  Range: [2.9876ns, 3.2612ns]  Ops/s: 631.70M  Ops/s/t: 315.85M
-         4   threads:  Avg: 0.0175us  Range: [0.0141us, 0.0190us]  Ops/s: 228.96M  Ops/s/t:  57.24M
-         8   threads:  Avg: 0.1215us  Range: [0.1137us, 0.1241us]  Ops/s:  65.85M  Ops/s/t:   8.23M
-         12  threads:  Avg: 0.1986us  Range: [0.1927us, 0.2023us]  Ops/s:  60.43M  Ops/s/t:   5.04M
-         16  threads:  Avg: 0.3272us  Range: [0.3179us, 0.3333us]  Ops/s:  48.90M  Ops/s/t:   3.06M
-         Operations per second per thread (weighted average): 101.99M
+         1    thread:  Avg: 1.1885ns  Range: [1.1025ns, 1.2686ns]  Ops/s: 841.43M  Ops/s/t: 841.43M
+         2   threads:  Avg: 3.1600ns  Range: [3.1321ns, 3.1771ns]  Ops/s: 632.92M  Ops/s/t: 316.46M
+         4   threads:  Avg: 0.0161us  Range: [0.0134us, 0.0180us]  Ops/s: 249.21M  Ops/s/t:  62.30M
+         8   threads:  Avg: 0.1159us  Range: [0.1153us, 0.1164us]  Ops/s:  69.01M  Ops/s/t:   8.63M
+         12  threads:  Avg: 0.1873us  Range: [0.1736us, 0.1986us]  Ops/s:  64.07M  Ops/s/t:   5.34M
+         16  threads:  Avg: 0.3187us  Range: [0.2976us, 0.3367us]  Ops/s:  50.21M  Ops/s/t:   3.14M
+         Operations per second per thread (weighted average):  99.89M
 
       With tokens
-         1    thread:  Avg: 1.1135ns  Range: [1.0682ns, 1.1281ns]  Ops/s: 898.08M  Ops/s/t: 898.08M
-         2   threads:  Avg: 1.9454ns  Range: [1.9195ns, 1.9707ns]  Ops/s:   1.03G  Ops/s/t: 514.04M
-         4   threads:  Avg: 5.2064ns  Range: [5.1798ns, 5.2631ns]  Ops/s: 768.28M  Ops/s/t: 192.07M
-         8   threads:  Avg: 0.0203us  Range: [0.0202us, 0.0204us]  Ops/s: 393.32M  Ops/s/t:  49.17M
-         12  threads:  Avg: 0.0253us  Range: [0.0251us, 0.0255us]  Ops/s: 474.15M  Ops/s/t:  39.51M
-         16  threads:  Avg: 0.0384us  Range: [0.0376us, 0.0387us]  Ops/s: 416.43M  Ops/s/t:  26.03M
-         Operations per second per thread (weighted average): 162.46M
+         1    thread:  Avg: 1.0381ns  Range: [1.0011ns, 1.1072ns]  Ops/s: 963.33M  Ops/s/t: 963.33M
+         2   threads:  Avg: 1.8058ns  Range: [1.7917ns, 1.8208ns]  Ops/s:   1.11G  Ops/s/t: 553.77M
+         4   threads:  Avg: 5.2785ns  Range: [5.1866ns, 5.4190ns]  Ops/s: 757.79M  Ops/s/t: 189.45M
+         8   threads:  Avg: 0.0204us  Range: [0.0202us, 0.0205us]  Ops/s: 391.98M  Ops/s/t:  49.00M
+         12  threads:  Avg: 0.0257us  Range: [0.0252us, 0.0261us]  Ops/s: 466.70M  Ops/s/t:  38.89M
+         16  threads:  Avg: 0.0383us  Range: [0.0381us, 0.0385us]  Ops/s: 417.72M  Ops/s/t:  26.11M
+         Operations per second per thread (weighted average): 170.20M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         1    thread:  Avg: 1.2475ns  Range: [1.2014ns, 1.3091ns]  Ops/s: 801.60M  Ops/s/t: 801.60M
-         2   threads:  Avg: 3.9247ns  Range: [3.2186ns, 4.9487ns]  Ops/s: 509.60M  Ops/s/t: 254.80M
-         4   threads:  Avg: 0.0168us  Range: [0.0140us, 0.0180us]  Ops/s: 237.48M  Ops/s/t:  59.37M
-         8   threads:  Avg: 0.1229us  Range: [0.1209us, 0.1242us]  Ops/s:  65.08M  Ops/s/t:   8.14M
-         12  threads:  Avg: 0.1889us  Range: [0.1758us, 0.2015us]  Ops/s:  63.52M  Ops/s/t:   5.29M
-         16  threads:  Avg: 0.3155us  Range: [0.2949us, 0.3378us]  Ops/s:  50.71M  Ops/s/t:   3.17M
-         Operations per second per thread (weighted average):  90.75M
+         1    thread:  Avg: 1.3004ns  Range: [1.2203ns, 1.3620ns]  Ops/s: 769.01M  Ops/s/t: 769.01M
+         2   threads:  Avg: 3.2090ns  Range: [3.1754ns, 3.2320ns]  Ops/s: 623.24M  Ops/s/t: 311.62M
+         4   threads:  Avg: 0.0160us  Range: [0.0150us, 0.0167us]  Ops/s: 249.43M  Ops/s/t:  62.36M
+         8   threads:  Avg: 0.1161us  Range: [0.1157us, 0.1164us]  Ops/s:  68.91M  Ops/s/t:   8.61M
+         12  threads:  Avg: 0.1862us  Range: [0.1816us, 0.1922us]  Ops/s:  64.46M  Ops/s/t:   5.37M
+         16  threads:  Avg: 0.3184us  Range: [0.3019us, 0.3239us]  Ops/s:  50.25M  Ops/s/t:   3.14M
+         Operations per second per thread (weighted average):  94.51M
 
       With tokens
-         1    thread:  Avg: 1.1855ns  Range: [1.0692ns, 1.2625ns]  Ops/s: 843.51M  Ops/s/t: 843.51M
-         2   threads:  Avg: 1.9655ns  Range: [1.9301ns, 2.0111ns]  Ops/s:   1.02G  Ops/s/t: 508.78M
-         4   threads:  Avg: 5.2870ns  Range: [5.2075ns, 5.4587ns]  Ops/s: 756.57M  Ops/s/t: 189.14M
-         8   threads:  Avg: 0.0204us  Range: [0.0203us, 0.0205us]  Ops/s: 392.11M  Ops/s/t:  49.01M
-         12  threads:  Avg: 0.0248us  Range: [0.0233us, 0.0255us]  Ops/s: 482.92M  Ops/s/t:  40.24M
-         16  threads:  Avg: 0.0384us  Range: [0.0377us, 0.0387us]  Ops/s: 416.43M  Ops/s/t:  26.03M
-         Operations per second per thread (weighted average): 157.99M
+         1    thread:  Avg: 1.1295ns  Range: [0.9807ns, 1.2065ns]  Ops/s: 885.36M  Ops/s/t: 885.36M
+         2   threads:  Avg: 1.9745ns  Range: [1.9624ns, 1.9881ns]  Ops/s:   1.01G  Ops/s/t: 506.46M
+         4   threads:  Avg: 5.6155ns  Range: [5.5701ns, 5.6469ns]  Ops/s: 712.31M  Ops/s/t: 178.08M
+         8   threads:  Avg: 0.0202us  Range: [0.0192us, 0.0205us]  Ops/s: 396.26M  Ops/s/t:  49.53M
+         12  threads:  Avg: 0.0253us  Range: [0.0230us, 0.0269us]  Ops/s: 474.62M  Ops/s/t:  39.55M
+         16  threads:  Avg: 0.0380us  Range: [0.0370us, 0.0384us]  Ops/s: 421.21M  Ops/s/t:  26.33M
+         Operations per second per thread (weighted average): 159.12M
 
   > boost::lockfree::queue
      (skipping, benchmark not supported...)
@@ -562,62 +562,62 @@ mostly enqueue:
   (Measures the average operation speed when most threads are enqueueing)
   > moodycamel::ConcurrentQueue
       Without tokens
-         2   threads:  Avg: 0.0909us  Range: [0.0902us, 0.0916us]  Ops/s:  22.01M  Ops/s/t:  11.01M
-         4   threads:  Avg: 0.0991us  Range: [0.0987us, 0.0995us]  Ops/s:  40.35M  Ops/s/t:  10.09M
-         8   threads:  Avg: 0.4146us  Range: [0.3231us, 0.4430us]  Ops/s:  19.30M  Ops/s/t:   2.41M
-         Operations per second per thread (weighted average):   6.82M
+         2   threads:  Avg: 0.0828us  Range: [0.0821us, 0.0833us]  Ops/s:  24.15M  Ops/s/t:  12.08M
+         4   threads:  Avg: 0.0970us  Range: [0.0953us, 0.0986us]  Ops/s:  41.22M  Ops/s/t:  10.31M
+         8   threads:  Avg: 0.4136us  Range: [0.3065us, 0.4453us]  Ops/s:  19.34M  Ops/s/t:   2.42M
+         Operations per second per thread (weighted average):   7.13M
 
       With tokens
-         2   threads:  Avg: 0.0539us  Range: [0.0536us, 0.0542us]  Ops/s:  37.10M  Ops/s/t:  18.55M
-         4   threads:  Avg: 0.0451us  Range: [0.0446us, 0.0454us]  Ops/s:  88.74M  Ops/s/t:  22.19M
-         8   threads:  Avg: 0.3337us  Range: [0.3251us, 0.3400us]  Ops/s:  23.97M  Ops/s/t:   3.00M
-         Operations per second per thread (weighted average):  12.67M
+         2   threads:  Avg: 0.0538us  Range: [0.0534us, 0.0541us]  Ops/s:  37.16M  Ops/s/t:  18.58M
+         4   threads:  Avg: 0.0472us  Range: [0.0468us, 0.0477us]  Ops/s:  84.68M  Ops/s/t:  21.17M
+         8   threads:  Avg: 0.3343us  Range: [0.3265us, 0.3405us]  Ops/s:  23.93M  Ops/s/t:   2.99M
+         Operations per second per thread (weighted average):  12.35M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         2   threads:  Avg: 0.1372us  Range: [0.1212us, 0.1628us]  Ops/s:  14.57M  Ops/s/t:   7.29M
-         4   threads:  Avg: 0.3817us  Range: [0.3697us, 0.3861us]  Ops/s:  10.48M  Ops/s/t:   2.62M
-         8   threads:  Avg: 1.5855us  Range: [1.3244us, 1.8017us]  Ops/s:   5.05M  Ops/s/t: 630.72k
-         Operations per second per thread (weighted average):   2.78M
+         2   threads:  Avg: 0.1629us  Range: [0.1569us, 0.1694us]  Ops/s:  12.27M  Ops/s/t:   6.14M
+         4   threads:  Avg: 0.3667us  Range: [0.3109us, 0.3936us]  Ops/s:  10.91M  Ops/s/t:   2.73M
+         8   threads:  Avg: 1.5930us  Range: [1.3376us, 1.6843us]  Ops/s:   5.02M  Ops/s/t: 627.73k
+         Operations per second per thread (weighted average):   2.55M
 
       With tokens
-         2   threads:  Avg: 0.1842us  Range: [0.1771us, 0.1907us]  Ops/s:  10.86M  Ops/s/t:   5.43M
-         4   threads:  Avg: 0.5026us  Range: [0.4739us, 0.5113us]  Ops/s:   7.96M  Ops/s/t:   1.99M
-         8   threads:  Avg: 1.6132us  Range: [1.4722us, 1.9075us]  Ops/s:   4.96M  Ops/s/t: 619.90k
-         Operations per second per thread (weighted average):   2.15M
+         2   threads:  Avg: 0.1650us  Range: [0.1627us, 0.1661us]  Ops/s:  12.12M  Ops/s/t:   6.06M
+         4   threads:  Avg: 0.3843us  Range: [0.3141us, 0.4076us]  Ops/s:  10.41M  Ops/s/t:   2.60M
+         8   threads:  Avg: 2.1363us  Range: [2.0678us, 2.2026us]  Ops/s:   3.74M  Ops/s/t: 468.09k
+         Operations per second per thread (weighted average):   2.42M
 
   > boost::lockfree::queue
-     2   threads:  Avg: 0.2352us  Range: [0.2229us, 0.2580us]  Ops/s:   8.50M  Ops/s/t:   4.25M
-     4   threads:  Avg: 1.3064us  Range: [1.2780us, 1.3290us]  Ops/s:   3.06M  Ops/s/t: 765.45k
-     8   threads:  Avg: 6.1841us  Range: [5.9465us, 6.3076us]  Ops/s:   1.29M  Ops/s/t: 161.71k
-     Operations per second per thread (weighted average):   1.28M
+     2   threads:  Avg: 0.2592us  Range: [0.2557us, 0.2606us]  Ops/s:   7.72M  Ops/s/t:   3.86M
+     4   threads:  Avg: 1.4354us  Range: [1.3732us, 1.4586us]  Ops/s:   2.79M  Ops/s/t: 696.68k
+     8   threads:  Avg: 6.2305us  Range: [5.9290us, 6.3513us]  Ops/s:   1.28M  Ops/s/t: 160.50k
+     Operations per second per thread (weighted average):   1.17M
 
   > tbb::concurrent_queue
-     2   threads:  Avg: 0.1285us  Range: [0.1239us, 0.1306us]  Ops/s:  15.57M  Ops/s/t:   7.78M
-     4   threads:  Avg: 0.4310us  Range: [0.4018us, 0.4573us]  Ops/s:   9.28M  Ops/s/t:   2.32M
-     8   threads:  Avg: 1.6558us  Range: [1.5287us, 1.8872us]  Ops/s:   4.83M  Ops/s/t: 603.94k
-     Operations per second per thread (weighted average):   2.78M
+     2   threads:  Avg: 0.1273us  Range: [0.1263us, 0.1280us]  Ops/s:  15.71M  Ops/s/t:   7.86M
+     4   threads:  Avg: 0.3668us  Range: [0.3660us, 0.3675us]  Ops/s:  10.91M  Ops/s/t:   2.73M
+     8   threads:  Avg: 1.6858us  Range: [1.6004us, 1.7447us]  Ops/s:   4.75M  Ops/s/t: 593.18k
+     Operations per second per thread (weighted average):   2.92M
 
   > SimpleLockFreeQueue
-     2   threads:  Avg: 0.3033us  Range: [0.2895us, 0.3104us]  Ops/s:   6.59M  Ops/s/t:   3.30M
-     4   threads:  Avg: 1.4288us  Range: [1.4161us, 1.4340us]  Ops/s:   2.80M  Ops/s/t: 699.88k
-     8   threads:  Avg: 6.3391us  Range: [6.1198us, 6.4930us]  Ops/s:   1.26M  Ops/s/t: 157.75k
-     Operations per second per thread (weighted average):   1.04M
+     2   threads:  Avg: 0.2783us  Range: [0.2268us, 0.2961us]  Ops/s:   7.19M  Ops/s/t:   3.59M
+     4   threads:  Avg: 1.1829us  Range: [1.0849us, 1.2091us]  Ops/s:   3.38M  Ops/s/t: 845.40k
+     8   threads:  Avg: 5.8311us  Range: [5.6599us, 6.0128us]  Ops/s:   1.37M  Ops/s/t: 171.49k
+     Operations per second per thread (weighted average):   1.16M
 
   > LockBasedQueue
-     2   threads:  Avg: 0.2376us  Range: [0.2268us, 0.2463us]  Ops/s:   8.42M  Ops/s/t:   4.21M
-     4   threads:  Avg: 1.9004us  Range: [1.8840us, 1.9168us]  Ops/s:   2.10M  Ops/s/t: 526.20k
-     8   threads:  Avg: 9.5945us  Range: [9.5601us, 9.6387us]  Ops/s: 833.81k  Ops/s/t: 104.23k
-     Operations per second per thread (weighted average):   1.17M
+     2   threads:  Avg: 0.5718us  Range: [0.4989us, 0.6020us]  Ops/s:   3.50M  Ops/s/t:   1.75M
+     4   threads:  Avg: 1.9951us  Range: [1.9579us, 2.0098us]  Ops/s:   2.00M  Ops/s/t: 501.24k
+     8   threads:  Avg: 9.8797us  Range: [9.8351us, 9.9239us]  Ops/s: 809.74k  Ops/s/t: 101.22k
+     Operations per second per thread (weighted average): 602.61k
 
   > std::queue
      (skipping, benchmark not supported...)
 
   > ftl::MPMCLockfree
-     2   threads:  Avg: 0.0549us  Range: [0.0408us, 0.0610us]  Ops/s:  36.41M  Ops/s/t:  18.20M
-     4   threads:  Avg: 0.7241us  Range: [0.6972us, 0.7383us]  Ops/s:   5.52M  Ops/s/t:   1.38M
-     8   threads:  Avg: 3.1764us  Range: [3.0891us, 3.2303us]  Ops/s:   2.52M  Ops/s/t: 314.82k
-     Operations per second per thread (weighted average):   4.71M
+     2   threads:  Avg: 0.0501us  Range: [0.0400us, 0.0580us]  Ops/s:  39.89M  Ops/s/t:  19.95M
+     4   threads:  Avg: 0.5795us  Range: [0.5747us, 0.5856us]  Ops/s:   6.90M  Ops/s/t:   1.73M
+     8   threads:  Avg: 2.9058us  Range: [2.7821us, 2.9676us]  Ops/s:   2.75M  Ops/s/t: 344.13k
+     Operations per second per thread (weighted average):   5.23M
 
   > ftl::MPSCLockfree
      (skipping, benchmark not supported...)
@@ -629,29 +629,29 @@ mostly enqueue bulk:
   (Measures the average speed of enqueueing an item in bulk under light contention)
   > moodycamel::ConcurrentQueue
       Without tokens
-         2   threads:  Avg: 5.2808ns  Range: [4.3605ns, 6.6356ns]  Ops/s: 378.73M  Ops/s/t: 189.36M
-         4   threads:  Avg: 0.0130us  Range: [0.0123us, 0.0143us]  Ops/s: 307.24M  Ops/s/t:  76.81M
-         8   threads:  Avg: 0.0267us  Range: [0.0254us, 0.0273us]  Ops/s: 300.02M  Ops/s/t:  37.50M
-         Operations per second per thread (weighted average):  84.50M
+         2   threads:  Avg: 6.0366ns  Range: [4.2327ns, 7.8655ns]  Ops/s: 331.31M  Ops/s/t: 165.66M
+         4   threads:  Avg: 0.0122us  Range: [0.0110us, 0.0136us]  Ops/s: 327.30M  Ops/s/t:  81.82M
+         8   threads:  Avg: 0.0269us  Range: [0.0266us, 0.0272us]  Ops/s: 297.05M  Ops/s/t:  37.13M
+         Operations per second per thread (weighted average):  80.57M
 
       With tokens
-         2   threads:  Avg: 3.5144ns  Range: [3.1841ns, 4.1659ns]  Ops/s: 569.08M  Ops/s/t: 284.54M
-         4   threads:  Avg: 7.5341ns  Range: [7.2967ns, 7.8494ns]  Ops/s: 530.92M  Ops/s/t: 132.73M
-         8   threads:  Avg: 0.0200us  Range: [0.0198us, 0.0202us]  Ops/s: 399.21M  Ops/s/t:  49.90M
-         Operations per second per thread (weighted average): 129.59M
+         2   threads:  Avg: 3.9192ns  Range: [3.9089ns, 3.9273ns]  Ops/s: 510.31M  Ops/s/t: 255.15M
+         4   threads:  Avg: 8.1303ns  Range: [7.9655ns, 8.2601ns]  Ops/s: 491.99M  Ops/s/t: 123.00M
+         8   threads:  Avg: 0.0238us  Range: [0.0233us, 0.0241us]  Ops/s: 336.11M  Ops/s/t:  42.01M
+         Operations per second per thread (weighted average): 116.24M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         2   threads:  Avg: 4.2061ns  Range: [4.1680ns, 4.2560ns]  Ops/s: 475.50M  Ops/s/t: 237.75M
-         4   threads:  Avg: 8.5319ns  Range: [8.4130ns, 8.5918ns]  Ops/s: 468.83M  Ops/s/t: 117.21M
-         8   threads:  Avg: 0.0236us  Range: [0.0227us, 0.0253us]  Ops/s: 339.59M  Ops/s/t:  42.45M
-         Operations per second per thread (weighted average): 110.64M
+         2   threads:  Avg: 4.3462ns  Range: [4.2952ns, 4.3899ns]  Ops/s: 460.18M  Ops/s/t: 230.09M
+         4   threads:  Avg: 7.8419ns  Range: [7.7564ns, 7.9047ns]  Ops/s: 510.08M  Ops/s/t: 127.52M
+         8   threads:  Avg: 0.0207us  Range: [0.0200us, 0.0210us]  Ops/s: 387.23M  Ops/s/t:  48.40M
+         Operations per second per thread (weighted average): 114.91M
 
       With tokens
-         2   threads:  Avg: 3.6744ns  Range: [3.6126ns, 3.7115ns]  Ops/s: 544.31M  Ops/s/t: 272.15M
-         4   threads:  Avg: 7.1070ns  Range: [7.0426ns, 7.1620ns]  Ops/s: 562.83M  Ops/s/t: 140.71M
-         8   threads:  Avg: 0.0243us  Range: [0.0235us, 0.0259us]  Ops/s: 328.70M  Ops/s/t:  41.09M
-         Operations per second per thread (weighted average): 125.35M
+         2   threads:  Avg: 3.7441ns  Range: [3.6474ns, 3.8158ns]  Ops/s: 534.17M  Ops/s/t: 267.08M
+         4   threads:  Avg: 7.8686ns  Range: [7.7864ns, 7.9832ns]  Ops/s: 508.35M  Ops/s/t: 127.09M
+         8   threads:  Avg: 0.0193us  Range: [0.0191us, 0.0195us]  Ops/s: 415.12M  Ops/s/t:  51.89M
+         Operations per second per thread (weighted average): 124.73M
 
   > boost::lockfree::queue
      (skipping, benchmark not supported...)
@@ -681,61 +681,61 @@ mostly dequeue:
   (Measures the average operation speed when most threads are dequeueing)
   > moodycamel::ConcurrentQueue
       Without tokens
-         2   threads:  Avg: 0.0561us  Range: [0.0559us, 0.0563us]  Ops/s:  35.64M  Ops/s/t:  17.82M
-         4   threads:  Avg: 0.4579us  Range: [0.4567us, 0.4590us]  Ops/s:   8.74M  Ops/s/t:   2.18M
-         8   threads:  Avg: 1.3823us  Range: [1.3645us, 1.4008us]  Ops/s:   5.79M  Ops/s/t: 723.45k
-         Operations per second per thread (weighted average):   5.06M
+         2   threads:  Avg: 0.0578us  Range: [0.0570us, 0.0586us]  Ops/s:  34.59M  Ops/s/t:  17.30M
+         4   threads:  Avg: 0.4592us  Range: [0.4567us, 0.4611us]  Ops/s:   8.71M  Ops/s/t:   2.18M
+         8   threads:  Avg: 1.3726us  Range: [1.3571us, 1.3848us]  Ops/s:   5.83M  Ops/s/t: 728.54k
+         Operations per second per thread (weighted average):   4.95M
 
       With tokens
-         2   threads:  Avg: 0.0522us  Range: [0.0456us, 0.0547us]  Ops/s:  38.35M  Ops/s/t:  19.17M
-         4   threads:  Avg: 0.5055us  Range: [0.4888us, 0.5240us]  Ops/s:   7.91M  Ops/s/t:   1.98M
-         8   threads:  Avg: 0.9560us  Range: [0.9418us, 0.9685us]  Ops/s:   8.37M  Ops/s/t:   1.05M
-         Operations per second per thread (weighted average):   5.45M
+         2   threads:  Avg: 0.0567us  Range: [0.0556us, 0.0577us]  Ops/s:  35.30M  Ops/s/t:  17.65M
+         4   threads:  Avg: 0.5000us  Range: [0.4878us, 0.5390us]  Ops/s:   8.00M  Ops/s/t:   2.00M
+         8   threads:  Avg: 0.9927us  Range: [0.9672us, 1.0033us]  Ops/s:   8.06M  Ops/s/t:   1.01M
+         Operations per second per thread (weighted average):   5.10M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         2   threads:  Avg: 0.1191us  Range: [0.1154us, 0.1219us]  Ops/s:  16.80M  Ops/s/t:   8.40M
-         4   threads:  Avg: 0.6844us  Range: [0.6730us, 0.6880us]  Ops/s:   5.84M  Ops/s/t:   1.46M
-         8   threads:  Avg: 3.1967us  Range: [3.0999us, 3.2706us]  Ops/s:   2.50M  Ops/s/t: 312.82k
-         Operations per second per thread (weighted average):   2.51M
+         2   threads:  Avg: 0.1245us  Range: [0.1220us, 0.1270us]  Ops/s:  16.06M  Ops/s/t:   8.03M
+         4   threads:  Avg: 0.6769us  Range: [0.6709us, 0.6823us]  Ops/s:   5.91M  Ops/s/t:   1.48M
+         8   threads:  Avg: 2.8362us  Range: [2.8087us, 2.8586us]  Ops/s:   2.82M  Ops/s/t: 352.59k
+         Operations per second per thread (weighted average):   2.45M
 
       With tokens
-         2   threads:  Avg: 0.1550us  Range: [0.1520us, 0.1573us]  Ops/s:  12.90M  Ops/s/t:   6.45M
-         4   threads:  Avg: 0.6879us  Range: [0.6745us, 0.7001us]  Ops/s:   5.81M  Ops/s/t:   1.45M
-         8   threads:  Avg: 3.2147us  Range: [3.1422us, 3.2667us]  Ops/s:   2.49M  Ops/s/t: 311.07k
-         Operations per second per thread (weighted average):   2.07M
+         2   threads:  Avg: 0.1700us  Range: [0.1646us, 0.1739us]  Ops/s:  11.77M  Ops/s/t:   5.88M
+         4   threads:  Avg: 0.7529us  Range: [0.7168us, 0.7946us]  Ops/s:   5.31M  Ops/s/t:   1.33M
+         8   threads:  Avg: 2.7665us  Range: [2.6785us, 2.8365us]  Ops/s:   2.89M  Ops/s/t: 361.47k
+         Operations per second per thread (weighted average):   1.92M
 
   > boost::lockfree::queue
-     2   threads:  Avg: 0.2528us  Range: [0.2478us, 0.2623us]  Ops/s:   7.91M  Ops/s/t:   3.96M
-     4   threads:  Avg: 0.9184us  Range: [0.7477us, 1.0483us]  Ops/s:   4.36M  Ops/s/t:   1.09M
-     8   threads:  Avg: 5.6113us  Range: [5.4814us, 5.6638us]  Ops/s:   1.43M  Ops/s/t: 178.21k
-     Operations per second per thread (weighted average):   1.33M
+     2   threads:  Avg: 0.2785us  Range: [0.2707us, 0.2826us]  Ops/s:   7.18M  Ops/s/t:   3.59M
+     4   threads:  Avg: 0.7581us  Range: [0.6340us, 0.9368us]  Ops/s:   5.28M  Ops/s/t:   1.32M
+     8   threads:  Avg: 6.3270us  Range: [4.9791us, 6.7249us]  Ops/s:   1.26M  Ops/s/t: 158.05k
+     Operations per second per thread (weighted average):   1.31M
 
   > tbb::concurrent_queue
-     2   threads:  Avg: 0.1377us  Range: [0.1291us, 0.1427us]  Ops/s:  14.52M  Ops/s/t:   7.26M
-     4   threads:  Avg: 0.5494us  Range: [0.5354us, 0.5595us]  Ops/s:   7.28M  Ops/s/t:   1.82M
-     8   threads:  Avg: 2.1725us  Range: [2.1526us, 2.2212us]  Ops/s:   3.68M  Ops/s/t: 460.30k
-     Operations per second per thread (weighted average):   2.44M
+     2   threads:  Avg: 0.1337us  Range: [0.1260us, 0.1387us]  Ops/s:  14.96M  Ops/s/t:   7.48M
+     4   threads:  Avg: 0.5372us  Range: [0.5300us, 0.5446us]  Ops/s:   7.45M  Ops/s/t:   1.86M
+     8   threads:  Avg: 2.1538us  Range: [2.0526us, 2.2465us]  Ops/s:   3.71M  Ops/s/t: 464.29k
+     Operations per second per thread (weighted average):   2.50M
 
   > SimpleLockFreeQueue
-     2   threads:  Avg: 0.2530us  Range: [0.2388us, 0.2723us]  Ops/s:   7.90M  Ops/s/t:   3.95M
-     4   threads:  Avg: 1.4098us  Range: [1.3146us, 1.4734us]  Ops/s:   2.84M  Ops/s/t: 709.32k
-     8   threads:  Avg: 7.2645us  Range: [6.8491us, 7.5564us]  Ops/s:   1.10M  Ops/s/t: 137.65k
-     Operations per second per thread (weighted average):   1.18M
+     2   threads:  Avg: 0.2564us  Range: [0.2501us, 0.2688us]  Ops/s:   7.80M  Ops/s/t:   3.90M
+     4   threads:  Avg: 1.2759us  Range: [0.9402us, 1.4576us]  Ops/s:   3.14M  Ops/s/t: 783.75k
+     8   threads:  Avg: 7.8213us  Range: [7.5599us, 7.9945us]  Ops/s:   1.02M  Ops/s/t: 127.86k
+     Operations per second per thread (weighted average):   1.19M
 
   > LockBasedQueue
-     2   threads:  Avg: 0.3169us  Range: [0.2637us, 0.3642us]  Ops/s:   6.31M  Ops/s/t:   3.16M
-     4   threads:  Avg: 1.8355us  Range: [1.8201us, 1.8527us]  Ops/s:   2.18M  Ops/s/t: 544.82k
-     8   threads:  Avg: 0.0102ms  Range: [0.0101ms, 0.0103ms]  Ops/s: 784.44k  Ops/s/t:  98.05k
-     Operations per second per thread (weighted average): 933.95k
+     2   threads:  Avg: 0.5609us  Range: [0.5305us, 0.5827us]  Ops/s:   3.57M  Ops/s/t:   1.78M
+     4   threads:  Avg: 2.1242us  Range: [2.0760us, 2.1533us]  Ops/s:   1.88M  Ops/s/t: 470.77k
+     8   threads:  Avg: 0.0109ms  Range: [0.0107ms, 0.0110ms]  Ops/s: 735.49k  Ops/s/t:  91.94k
+     Operations per second per thread (weighted average): 596.33k
 
   > std::queue
      (skipping, benchmark not supported...)
 
   > ftl::MPMCLockfree
-     2   threads:  Avg: 0.0346us  Range: [0.0308us, 0.0411us]  Ops/s:  57.78M  Ops/s/t:  28.89M
-     4   threads:  Avg: 0.4640us  Range: [0.4494us, 0.4752us]  Ops/s:   8.62M  Ops/s/t:   2.16M
-     8   threads:  Avg: 2.7122us  Range: [2.4913us, 2.9204us]  Ops/s:   2.95M  Ops/s/t: 368.70k
+     2   threads:  Avg: 0.0350us  Range: [0.0258us, 0.0460us]  Ops/s:  57.15M  Ops/s/t:  28.58M
+     4   threads:  Avg: 0.4275us  Range: [0.4097us, 0.4432us]  Ops/s:   9.36M  Ops/s/t:   2.34M
+     8   threads:  Avg: 2.5413us  Range: [2.5099us, 2.5719us]  Ops/s:   3.15M  Ops/s/t: 393.50k
      Operations per second per thread (weighted average):   7.40M
 
   > ftl::MPSCLockfree
@@ -748,29 +748,29 @@ mostly dequeue bulk:
   (Measures the average speed of dequeueing an item in bulk under light contention)
   > moodycamel::ConcurrentQueue
       Without tokens
-         2   threads:  Avg: 4.7538ns  Range: [4.5144ns, 4.9771ns]  Ops/s: 420.72M  Ops/s/t: 210.36M
-         4   threads:  Avg: 0.0189us  Range: [0.0175us, 0.0204us]  Ops/s: 211.30M  Ops/s/t:  52.83M
-         8   threads:  Avg: 0.0825us  Range: [0.0757us, 0.0870us]  Ops/s:  96.96M  Ops/s/t:  12.12M
-         Operations per second per thread (weighted average):  70.07M
+         2   threads:  Avg: 4.5808ns  Range: [4.4616ns, 4.7285ns]  Ops/s: 436.61M  Ops/s/t: 218.30M
+         4   threads:  Avg: 0.0179us  Range: [0.0153us, 0.0217us]  Ops/s: 224.04M  Ops/s/t:  56.01M
+         8   threads:  Avg: 0.0804us  Range: [0.0676us, 0.0869us]  Ops/s:  99.53M  Ops/s/t:  12.44M
+         Operations per second per thread (weighted average):  73.04M
 
       With tokens
-         2   threads:  Avg: 2.4898ns  Range: [2.3522ns, 2.6132ns]  Ops/s: 803.28M  Ops/s/t: 401.64M
-         4   threads:  Avg: 7.2519ns  Range: [6.8760ns, 7.5814ns]  Ops/s: 551.58M  Ops/s/t: 137.89M
-         8   threads:  Avg: 0.0179us  Range: [0.0177us, 0.0182us]  Ops/s: 445.89M  Ops/s/t:  55.74M
-         Operations per second per thread (weighted average): 160.42M
+         2   threads:  Avg: 2.1807ns  Range: [2.0720ns, 2.2238ns]  Ops/s: 917.13M  Ops/s/t: 458.56M
+         4   threads:  Avg: 6.3298ns  Range: [5.7996ns, 6.6501ns]  Ops/s: 631.93M  Ops/s/t: 157.98M
+         8   threads:  Avg: 0.0179us  Range: [0.0174us, 0.0184us]  Ops/s: 445.95M  Ops/s/t:  55.74M
+         Operations per second per thread (weighted average): 179.75M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         2   threads:  Avg: 4.5870ns  Range: [4.3198ns, 4.7272ns]  Ops/s: 436.02M  Ops/s/t: 218.01M
-         4   threads:  Avg: 0.0183us  Range: [0.0159us, 0.0211us]  Ops/s: 218.17M  Ops/s/t:  54.54M
-         8   threads:  Avg: 0.0805us  Range: [0.0563us, 0.0870us]  Ops/s:  99.36M  Ops/s/t:  12.42M
-         Operations per second per thread (weighted average):  72.49M
+         2   threads:  Avg: 4.6633ns  Range: [4.2374ns, 4.9145ns]  Ops/s: 428.88M  Ops/s/t: 214.44M
+         4   threads:  Avg: 0.0170us  Range: [0.0152us, 0.0201us]  Ops/s: 234.87M  Ops/s/t:  58.72M
+         8   threads:  Avg: 0.0817us  Range: [0.0784us, 0.0840us]  Ops/s:  97.92M  Ops/s/t:  12.24M
+         Operations per second per thread (weighted average):  72.94M
 
       With tokens
-         2   threads:  Avg: 2.9280ns  Range: [2.3241ns, 3.7790ns]  Ops/s: 683.06M  Ops/s/t: 341.53M
-         4   threads:  Avg: 5.5683ns  Range: [5.4407ns, 5.7562ns]  Ops/s: 718.35M  Ops/s/t: 179.59M
-         8   threads:  Avg: 0.0178us  Range: [0.0167us, 0.0183us]  Ops/s: 449.62M  Ops/s/t:  56.20M
-         Operations per second per thread (weighted average): 160.37M
+         2   threads:  Avg: 2.0160ns  Range: [2.0110ns, 2.0184ns]  Ops/s: 992.05M  Ops/s/t: 496.03M
+         4   threads:  Avg: 5.2355ns  Range: [5.0966ns, 5.4170ns]  Ops/s: 764.01M  Ops/s/t: 191.00M
+         8   threads:  Avg: 0.0174us  Range: [0.0148us, 0.0184us]  Ops/s: 458.50M  Ops/s/t:  57.31M
+         Operations per second per thread (weighted average): 199.53M
 
   > boost::lockfree::queue
      (skipping, benchmark not supported...)
@@ -800,238 +800,238 @@ single-producer, multi-consumer (measuring all but 1 thread):
   (Measures the average speed of dequeueing with only one producer, but multiple consumers)
   > moodycamel::ConcurrentQueue
       Without tokens
-         2   threads:  Avg: 0.0552us  Range: [0.0545us, 0.0557us]  Ops/s:  18.13M  Ops/s/t:  18.13M
-         4   threads:  Avg: 0.8581us  Range: [0.8558us, 0.8610us]  Ops/s:   3.50M  Ops/s/t:   1.17M
-         8   threads:  Avg: 3.3883us  Range: [3.3777us, 3.3997us]  Ops/s:   2.07M  Ops/s/t: 295.13k
-         16  threads:  Avg: 0.8746us  Range: [0.5195us, 1.2832us]  Ops/s:  17.15M  Ops/s/t:   1.14M
-         Operations per second per thread (weighted average):   2.74M
+         2   threads:  Avg: 0.0688us  Range: [0.0599us, 0.0812us]  Ops/s:  14.54M  Ops/s/t:  14.54M
+         4   threads:  Avg: 0.9024us  Range: [0.8924us, 0.9166us]  Ops/s:   3.32M  Ops/s/t:   1.11M
+         8   threads:  Avg: 3.2763us  Range: [3.2081us, 3.3002us]  Ops/s:   2.14M  Ops/s/t: 305.23k
+         16  threads:  Avg: 0.9402us  Range: [0.6082us, 1.9142us]  Ops/s:  15.95M  Ops/s/t:   1.06M
+         Operations per second per thread (weighted average):   2.31M
 
       With tokens
-         2   threads:  Avg: 0.0534us  Range: [0.0528us, 0.0537us]  Ops/s:  18.72M  Ops/s/t:  18.72M
-         4   threads:  Avg: 0.8589us  Range: [0.8432us, 0.8700us]  Ops/s:   3.49M  Ops/s/t:   1.16M
-         8   threads:  Avg: 2.8721us  Range: [2.7418us, 2.9302us]  Ops/s:   2.44M  Ops/s/t: 348.17k
-         16  threads:  Avg: 0.7310us  Range: [0.6142us, 0.9218us]  Ops/s:  20.52M  Ops/s/t:   1.37M
-         Operations per second per thread (weighted average):   2.91M
+         2   threads:  Avg: 0.0612us  Range: [0.0607us, 0.0618us]  Ops/s:  16.34M  Ops/s/t:  16.34M
+         4   threads:  Avg: 0.8077us  Range: [0.8030us, 0.8162us]  Ops/s:   3.71M  Ops/s/t:   1.24M
+         8   threads:  Avg: 2.3027us  Range: [2.2466us, 2.3500us]  Ops/s:   3.04M  Ops/s/t: 434.27k
+         16  threads:  Avg: 0.7648us  Range: [0.5751us, 1.0895us]  Ops/s:  19.61M  Ops/s/t:   1.31M
+         Operations per second per thread (weighted average):   2.67M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         2   threads:  Avg: 0.1055us  Range: [0.0888us, 0.1133us]  Ops/s:   9.48M  Ops/s/t:   9.48M
-         4   threads:  Avg: 0.1714us  Range: [0.1455us, 0.1949us]  Ops/s:  17.50M  Ops/s/t:   5.83M
-         8   threads:  Avg: 0.4161us  Range: [0.3740us, 0.4360us]  Ops/s:  16.82M  Ops/s/t:   2.40M
-         16  threads:  Avg: 0.1641us  Range: [0.1254us, 0.3572us]  Ops/s:  91.41M  Ops/s/t:   6.09M
-         Operations per second per thread (weighted average):   5.36M
+         2   threads:  Avg: 0.1079us  Range: [0.1052us, 0.1112us]  Ops/s:   9.27M  Ops/s/t:   9.27M
+         4   threads:  Avg: 0.2290us  Range: [0.2105us, 0.2385us]  Ops/s:  13.10M  Ops/s/t:   4.37M
+         8   threads:  Avg: 0.5053us  Range: [0.4676us, 0.5291us]  Ops/s:  13.85M  Ops/s/t:   1.98M
+         16  threads:  Avg: 0.1889us  Range: [0.1452us, 0.2857us]  Ops/s:  79.41M  Ops/s/t:   5.29M
+         Operations per second per thread (weighted average):   4.60M
 
       With tokens
-         2   threads:  Avg: 0.1108us  Range: [0.1093us, 0.1118us]  Ops/s:   9.02M  Ops/s/t:   9.02M
-         4   threads:  Avg: 0.1736us  Range: [0.1715us, 0.1763us]  Ops/s:  17.28M  Ops/s/t:   5.76M
-         8   threads:  Avg: 0.4764us  Range: [0.4542us, 0.4975us]  Ops/s:  14.69M  Ops/s/t:   2.10M
-         16  threads:  Avg: 0.1716us  Range: [0.1368us, 0.2993us]  Ops/s:  87.40M  Ops/s/t:   5.83M
-         Operations per second per thread (weighted average):   5.09M
+         2   threads:  Avg: 0.1146us  Range: [0.1135us, 0.1154us]  Ops/s:   8.73M  Ops/s/t:   8.73M
+         4   threads:  Avg: 0.2000us  Range: [0.1861us, 0.2145us]  Ops/s:  15.00M  Ops/s/t:   5.00M
+         8   threads:  Avg: 0.4796us  Range: [0.4528us, 0.4894us]  Ops/s:  14.59M  Ops/s/t:   2.08M
+         16  threads:  Avg: 0.1971us  Range: [0.1392us, 0.6444us]  Ops/s:  76.11M  Ops/s/t:   5.07M
+         Operations per second per thread (weighted average):   4.60M
 
   > boost::lockfree::queue
-     2   threads:  Avg: 0.1205us  Range: [0.1117us, 0.1313us]  Ops/s:   8.30M  Ops/s/t:   8.30M
-     4   threads:  Avg: 0.3872us  Range: [0.2667us, 0.4824us]  Ops/s:   7.75M  Ops/s/t:   2.58M
-     8   threads:  Avg: 1.4082us  Range: [1.2887us, 1.4902us]  Ops/s:   4.97M  Ops/s/t: 710.15k
-     16  threads:  Avg: 3.0045us  Range: [1.2855us, 5.3290us]  Ops/s:   4.99M  Ops/s/t: 332.83k
-     Operations per second per thread (weighted average):   1.72M
+     2   threads:  Avg: 0.1154us  Range: [0.1126us, 0.1213us]  Ops/s:   8.66M  Ops/s/t:   8.66M
+     4   threads:  Avg: 0.6126us  Range: [0.5984us, 0.6245us]  Ops/s:   4.90M  Ops/s/t:   1.63M
+     8   threads:  Avg: 1.9146us  Range: [1.6307us, 2.0879us]  Ops/s:   3.66M  Ops/s/t: 522.30k
+     16  threads:  Avg: 0.5929us  Range: [0.4537us, 7.1838us]  Ops/s:  25.30M  Ops/s/t:   1.69M
+     Operations per second per thread (weighted average):   2.10M
 
   > tbb::concurrent_queue
-     2   threads:  Avg: 0.0705us  Range: [0.0689us, 0.0717us]  Ops/s:  14.18M  Ops/s/t:  14.18M
-     4   threads:  Avg: 0.2086us  Range: [0.2017us, 0.2262us]  Ops/s:  14.38M  Ops/s/t:   4.79M
-     8   threads:  Avg: 4.3354us  Range: [2.6253us, 5.7561us]  Ops/s:   1.61M  Ops/s/t: 230.66k
-     16  threads:  Avg: 1.1971us  Range: [1.0160us, 1.5429us]  Ops/s:  12.53M  Ops/s/t: 835.33k
-     Operations per second per thread (weighted average):   2.85M
+     2   threads:  Avg: 0.0319us  Range: [0.0292us, 0.0347us]  Ops/s:  31.37M  Ops/s/t:  31.37M
+     4   threads:  Avg: 0.2183us  Range: [0.1790us, 0.2416us]  Ops/s:  13.74M  Ops/s/t:   4.58M
+     8   threads:  Avg: 4.1644us  Range: [3.4431us, 5.1990us]  Ops/s:   1.68M  Ops/s/t: 240.13k
+     16  threads:  Avg: 1.1632us  Range: [0.8567us, 1.6622us]  Ops/s:  12.90M  Ops/s/t: 859.67k
+     Operations per second per thread (weighted average):   4.68M
 
   > SimpleLockFreeQueue
-     2   threads:  Avg: 0.1486us  Range: [0.1382us, 0.1850us]  Ops/s:   6.73M  Ops/s/t:   6.73M
-     4   threads:  Avg: 1.3299us  Range: [1.2617us, 1.4157us]  Ops/s:   2.26M  Ops/s/t: 751.95k
-     8   threads:  Avg: 4.2668us  Range: [3.9614us, 4.4573us]  Ops/s:   1.64M  Ops/s/t: 234.37k
-     16  threads:  Avg: 0.7415us  Range: [0.5843us, 1.0992us]  Ops/s:  20.23M  Ops/s/t:   1.35M
+     2   threads:  Avg: 0.1627us  Range: [0.1601us, 0.1660us]  Ops/s:   6.15M  Ops/s/t:   6.15M
+     4   threads:  Avg: 1.2142us  Range: [1.0635us, 1.3023us]  Ops/s:   2.47M  Ops/s/t: 823.56k
+     8   threads:  Avg: 3.3771us  Range: [3.1944us, 3.4766us]  Ops/s:   2.07M  Ops/s/t: 296.11k
+     16  threads:  Avg: 0.7031us  Range: [0.6169us, 0.9130us]  Ops/s:  21.33M  Ops/s/t:   1.42M
      Operations per second per thread (weighted average):   1.50M
 
   > LockBasedQueue
-     2   threads:  Avg: 0.1101us  Range: [0.1042us, 0.1148us]  Ops/s:   9.08M  Ops/s/t:   9.08M
-     4   threads:  Avg: 1.2564us  Range: [1.2368us, 1.2762us]  Ops/s:   2.39M  Ops/s/t: 795.91k
-     8   threads:  Avg: 5.4817us  Range: [5.4532us, 5.4968us]  Ops/s:   1.28M  Ops/s/t: 182.43k
-     16  threads:  Avg: 0.0216ms  Range: [0.0216ms, 0.0217ms]  Ops/s: 694.28k  Ops/s/t:  46.29k
-     Operations per second per thread (weighted average):   1.20M
+     2   threads:  Avg: 0.1304us  Range: [0.1259us, 0.1325us]  Ops/s:   7.67M  Ops/s/t:   7.67M
+     4   threads:  Avg: 1.2797us  Range: [1.2641us, 1.2917us]  Ops/s:   2.34M  Ops/s/t: 781.45k
+     8   threads:  Avg: 5.4631us  Range: [5.4513us, 5.4799us]  Ops/s:   1.28M  Ops/s/t: 183.05k
+     16  threads:  Avg: 0.0196ms  Range: [0.0194ms, 0.0198ms]  Ops/s: 766.71k  Ops/s/t:  51.11k
+     Operations per second per thread (weighted average):   1.05M
 
   > std::queue
      (skipping, benchmark not supported...)
 
   > ftl::MPMCLockfree
-     2   threads:  Avg: 0.0658us  Range: [0.0653us, 0.0661us]  Ops/s:  15.20M  Ops/s/t:  15.20M
-     4   threads:  Avg: 0.8725us  Range: [0.8582us, 0.8811us]  Ops/s:   3.44M  Ops/s/t:   1.15M
-     8   threads:  Avg: 6.7352us  Range: [6.6734us, 6.7932us]  Ops/s:   1.04M  Ops/s/t: 148.47k
-     16  threads:  Avg: 0.0200ms  Range: [8.3114us, 0.0312ms]  Ops/s: 750.60k  Ops/s/t:  50.04k
-     Operations per second per thread (weighted average):   1.92M
+     2   threads:  Avg: 0.0173us  Range: [0.0163us, 0.0181us]  Ops/s:  57.92M  Ops/s/t:  57.92M
+     4   threads:  Avg: 0.7657us  Range: [0.7545us, 0.7782us]  Ops/s:   3.92M  Ops/s/t:   1.31M
+     8   threads:  Avg: 6.2906us  Range: [5.9493us, 6.5483us]  Ops/s:   1.11M  Ops/s/t: 158.97k
+     16  threads:  Avg: 8.5707us  Range: [2.2225us, 0.0311ms]  Ops/s:   1.75M  Ops/s/t: 116.68k
+     Operations per second per thread (weighted average):   6.60M
 
   > ftl::MPSCLockfree
      (skipping, benchmark not supported...)
 
   > ftl::SPMCLockfree
-     2   threads:  Avg: 0.0864us  Range: [0.0840us, 0.0888us]  Ops/s:  11.57M  Ops/s/t:  11.57M
-     4   threads:  Avg: 0.2833us  Range: [0.2673us, 0.3025us]  Ops/s:  10.59M  Ops/s/t:   3.53M
-     8   threads:  Avg: 6.1712us  Range: [6.0019us, 6.2632us]  Ops/s:   1.13M  Ops/s/t: 162.04k
-     16  threads:  Avg: 0.7549us  Range: [0.3263us, 0.0234ms]  Ops/s:  19.87M  Ops/s/t:   1.32M
-     Operations per second per thread (weighted average):   2.51M
+     2   threads:  Avg: 0.0304us  Range: [0.0282us, 0.0316us]  Ops/s:  32.85M  Ops/s/t:  32.85M
+     4   threads:  Avg: 0.8135us  Range: [0.7934us, 0.8219us]  Ops/s:   3.69M  Ops/s/t:   1.23M
+     8   threads:  Avg: 6.9350us  Range: [6.7887us, 7.0175us]  Ops/s:   1.01M  Ops/s/t: 144.20k
+     16  threads:  Avg: 7.6537us  Range: [1.8814us, 0.0330ms]  Ops/s:   1.96M  Ops/s/t: 130.66k
+     Operations per second per thread (weighted average):   3.88M
 
 single-producer, multi-consumer (pre-produced):
   (Measures the average speed of dequeueing from a queue pre-filled by one thread)
   > moodycamel::ConcurrentQueue
       Without tokens
-         1    thread:  Avg: 0.0336us  Range: [0.0318us, 0.0342us]  Ops/s:  29.72M  Ops/s/t:  29.72M
-         3   threads:  Avg: 0.6772us  Range: [0.6729us, 0.6809us]  Ops/s:   4.43M  Ops/s/t:   1.48M
-         7   threads:  Avg: 2.6183us  Range: [2.5507us, 2.6647us]  Ops/s:   2.67M  Ops/s/t: 381.93k
-         15  threads:  Avg: 8.0748us  Range: [7.8168us, 8.1948us]  Ops/s:   1.86M  Ops/s/t: 123.84k
-         Operations per second per thread (weighted average):   3.65M
+         1    thread:  Avg: 0.0290us  Range: [0.0286us, 0.0296us]  Ops/s:  34.43M  Ops/s/t:  34.43M
+         3   threads:  Avg: 0.6149us  Range: [0.6078us, 0.6221us]  Ops/s:   4.88M  Ops/s/t:   1.63M
+         7   threads:  Avg: 2.8109us  Range: [2.7965us, 2.8233us]  Ops/s:   2.49M  Ops/s/t: 355.75k
+         15  threads:  Avg: 8.2700us  Range: [8.0072us, 8.5851us]  Ops/s:   1.81M  Ops/s/t: 120.92k
+         Operations per second per thread (weighted average):   4.18M
 
       With tokens
-         1    thread:  Avg: 0.0248us  Range: [0.0242us, 0.0251us]  Ops/s:  40.38M  Ops/s/t:  40.38M
-         3   threads:  Avg: 0.6395us  Range: [0.6255us, 0.6520us]  Ops/s:   4.69M  Ops/s/t:   1.56M
-         7   threads:  Avg: 2.9713us  Range: [2.9189us, 3.0072us]  Ops/s:   2.36M  Ops/s/t: 336.56k
-         15  threads:  Avg: 9.0561us  Range: [8.8501us, 9.3825us]  Ops/s:   1.66M  Ops/s/t: 110.42k
-         Operations per second per thread (weighted average):   4.80M
+         1    thread:  Avg: 0.0253us  Range: [0.0246us, 0.0265us]  Ops/s:  39.60M  Ops/s/t:  39.60M
+         3   threads:  Avg: 0.5915us  Range: [0.5892us, 0.5928us]  Ops/s:   5.07M  Ops/s/t:   1.69M
+         7   threads:  Avg: 2.8352us  Range: [2.8264us, 2.8454us]  Ops/s:   2.47M  Ops/s/t: 352.71k
+         15  threads:  Avg: 8.7298us  Range: [8.4258us, 9.0851us]  Ops/s:   1.72M  Ops/s/t: 114.55k
+         Operations per second per thread (weighted average):   4.75M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         1    thread:  Avg: 0.0403us  Range: [0.0397us, 0.0408us]  Ops/s:  24.79M  Ops/s/t:  24.79M
-         3   threads:  Avg: 0.7056us  Range: [0.6988us, 0.7152us]  Ops/s:   4.25M  Ops/s/t:   1.42M
-         7   threads:  Avg: 3.1717us  Range: [3.0562us, 3.2467us]  Ops/s:   2.21M  Ops/s/t: 315.29k
-         15  threads:  Avg: 0.0166ms  Range: [0.0151ms, 0.0177ms]  Ops/s: 900.97k  Ops/s/t:  60.06k
-         Operations per second per thread (weighted average):   3.06M
+         1    thread:  Avg: 0.0418us  Range: [0.0407us, 0.0434us]  Ops/s:  23.90M  Ops/s/t:  23.90M
+         3   threads:  Avg: 0.7017us  Range: [0.6885us, 0.7143us]  Ops/s:   4.28M  Ops/s/t:   1.43M
+         7   threads:  Avg: 3.5781us  Range: [3.4890us, 3.6649us]  Ops/s:   1.96M  Ops/s/t: 279.48k
+         15  threads:  Avg: 0.0206ms  Range: [0.0190ms, 0.0214ms]  Ops/s: 728.97k  Ops/s/t:  48.60k
+         Operations per second per thread (weighted average):   2.95M
 
       With tokens
-         1    thread:  Avg: 0.0316us  Range: [0.0307us, 0.0322us]  Ops/s:  31.66M  Ops/s/t:  31.66M
-         3   threads:  Avg: 0.7163us  Range: [0.7146us, 0.7184us]  Ops/s:   4.19M  Ops/s/t:   1.40M
-         7   threads:  Avg: 3.7039us  Range: [3.5952us, 3.7762us]  Ops/s:   1.89M  Ops/s/t: 269.99k
-         15  threads:  Avg: 0.0218ms  Range: [0.0202ms, 0.0228ms]  Ops/s: 689.35k  Ops/s/t:  45.96k
-         Operations per second per thread (weighted average):   3.78M
+         1    thread:  Avg: 0.0368us  Range: [0.0354us, 0.0376us]  Ops/s:  27.18M  Ops/s/t:  27.18M
+         3   threads:  Avg: 0.6250us  Range: [0.6132us, 0.6326us]  Ops/s:   4.80M  Ops/s/t:   1.60M
+         7   threads:  Avg: 3.8038us  Range: [3.6995us, 3.8749us]  Ops/s:   1.84M  Ops/s/t: 262.90k
+         15  threads:  Avg: 0.0184ms  Range: [0.0176ms, 0.0188ms]  Ops/s: 816.91k  Ops/s/t:  54.46k
+         Operations per second per thread (weighted average):   3.34M
 
   > boost::lockfree::queue
-     1    thread:  Avg: 0.0455us  Range: [0.0445us, 0.0475us]  Ops/s:  21.98M  Ops/s/t:  21.98M
-     3   threads:  Avg: 0.8015us  Range: [0.7827us, 0.8099us]  Ops/s:   3.74M  Ops/s/t:   1.25M
-     7   threads:  Avg: 4.9919us  Range: [4.9097us, 5.0576us]  Ops/s:   1.40M  Ops/s/t: 200.32k
-     15  threads:  Avg: 0.0189ms  Range: [0.0179ms, 0.0195ms]  Ops/s: 792.47k  Ops/s/t:  52.83k
-     Operations per second per thread (weighted average):   2.69M
+     1    thread:  Avg: 0.0431us  Range: [0.0415us, 0.0472us]  Ops/s:  23.19M  Ops/s/t:  23.19M
+     3   threads:  Avg: 0.7625us  Range: [0.7578us, 0.7660us]  Ops/s:   3.93M  Ops/s/t:   1.31M
+     7   threads:  Avg: 5.1182us  Range: [5.0804us, 5.1760us]  Ops/s:   1.37M  Ops/s/t: 195.38k
+     15  threads:  Avg: 0.0208ms  Range: [0.0199ms, 0.0221ms]  Ops/s: 722.41k  Ops/s/t:  48.16k
+     Operations per second per thread (weighted average):   2.83M
 
   > tbb::concurrent_queue
-     1    thread:  Avg: 0.0200us  Range: [0.0194us, 0.0204us]  Ops/s:  49.91M  Ops/s/t:  49.91M
-     3   threads:  Avg: 0.4999us  Range: [0.4901us, 0.5110us]  Ops/s:   6.00M  Ops/s/t:   2.00M
-     7   threads:  Avg: 3.4827us  Range: [3.2654us, 3.6737us]  Ops/s:   2.01M  Ops/s/t: 287.14k
-     15  threads:  Avg: 0.0372ms  Range: [0.0362ms, 0.0392ms]  Ops/s: 402.83k  Ops/s/t:  26.86k
-     Operations per second per thread (weighted average):   5.86M
+     1    thread:  Avg: 0.0252us  Range: [0.0208us, 0.0391us]  Ops/s:  39.76M  Ops/s/t:  39.76M
+     3   threads:  Avg: 0.4673us  Range: [0.4567us, 0.4779us]  Ops/s:   6.42M  Ops/s/t:   2.14M
+     7   threads:  Avg: 2.8632us  Range: [2.7799us, 2.9581us]  Ops/s:   2.44M  Ops/s/t: 349.27k
+     15  threads:  Avg: 0.0359ms  Range: [0.0339ms, 0.0394ms]  Ops/s: 418.19k  Ops/s/t:  27.88k
+     Operations per second per thread (weighted average):   4.81M
 
   > SimpleLockFreeQueue
-     1    thread:  Avg: 0.0212us  Range: [0.0198us, 0.0236us]  Ops/s:  47.24M  Ops/s/t:  47.24M
-     3   threads:  Avg: 0.9346us  Range: [0.9080us, 0.9577us]  Ops/s:   3.21M  Ops/s/t:   1.07M
-     7   threads:  Avg: 6.8043us  Range: [6.6034us, 6.9280us]  Ops/s:   1.03M  Ops/s/t: 146.97k
-     15  threads:  Avg: 0.0325ms  Range: [0.0307ms, 0.0332ms]  Ops/s: 461.10k  Ops/s/t:  30.74k
-     Operations per second per thread (weighted average):   5.36M
+     1    thread:  Avg: 0.0267us  Range: [0.0252us, 0.0278us]  Ops/s:  37.49M  Ops/s/t:  37.49M
+     3   threads:  Avg: 0.8617us  Range: [0.8437us, 0.8806us]  Ops/s:   3.48M  Ops/s/t:   1.16M
+     7   threads:  Avg: 7.0807us  Range: [6.6418us, 7.2326us]  Ops/s: 988.60k  Ops/s/t: 141.23k
+     15  threads:  Avg: 0.0354ms  Range: [0.0344ms, 0.0361ms]  Ops/s: 423.77k  Ops/s/t:  28.25k
+     Operations per second per thread (weighted average):   4.32M
 
   > LockBasedQueue
-     1    thread:  Avg: 0.0373us  Range: [0.0363us, 0.0378us]  Ops/s:  26.82M  Ops/s/t:  26.82M
-     3   threads:  Avg: 1.3225us  Range: [1.2868us, 1.3540us]  Ops/s:   2.27M  Ops/s/t: 756.15k
-     7   threads:  Avg: 8.3777us  Range: [8.0519us, 8.7173us]  Ops/s: 835.55k  Ops/s/t: 119.36k
-     15  threads:  Avg: 0.0459ms  Range: [0.0457ms, 0.0463ms]  Ops/s: 326.52k  Ops/s/t:  21.77k
-     Operations per second per thread (weighted average):   3.08M
+     1    thread:  Avg: 0.0391us  Range: [0.0385us, 0.0401us]  Ops/s:  25.57M  Ops/s/t:  25.57M
+     3   threads:  Avg: 1.8908us  Range: [1.8056us, 1.9558us]  Ops/s:   1.59M  Ops/s/t: 528.87k
+     7   threads:  Avg: 9.0845us  Range: [9.0174us, 9.1474us]  Ops/s: 770.54k  Ops/s/t: 110.08k
+     15  threads:  Avg: 0.0494ms  Range: [0.0491ms, 0.0499ms]  Ops/s: 303.46k  Ops/s/t:  20.23k
+     Operations per second per thread (weighted average):   2.90M
 
   > std::queue
      (skipping, benchmark not supported...)
 
   > ftl::MPMCLockfree
-     1    thread:  Avg: 0.0155us  Range: [0.0153us, 0.0158us]  Ops/s:  64.33M  Ops/s/t:  64.33M
-     3   threads:  Avg: 0.3874us  Range: [0.2748us, 0.4181us]  Ops/s:   7.74M  Ops/s/t:   2.58M
-     7   threads:  Avg: 4.8116us  Range: [4.5424us, 5.0224us]  Ops/s:   1.45M  Ops/s/t: 207.83k
-     15  threads:  Avg: 0.0273ms  Range: [0.0261ms, 0.0284ms]  Ops/s: 548.85k  Ops/s/t:  36.59k
-     Operations per second per thread (weighted average):   7.51M
+     1    thread:  Avg: 0.0134us  Range: [0.0128us, 0.0141us]  Ops/s:  74.89M  Ops/s/t:  74.89M
+     3   threads:  Avg: 0.4224us  Range: [0.4134us, 0.4412us]  Ops/s:   7.10M  Ops/s/t:   2.37M
+     7   threads:  Avg: 4.4670us  Range: [4.3260us, 4.5385us]  Ops/s:   1.57M  Ops/s/t: 223.86k
+     15  threads:  Avg: 0.0271ms  Range: [0.0267ms, 0.0276ms]  Ops/s: 553.30k  Ops/s/t:  36.89k
+     Operations per second per thread (weighted average):   8.62M
 
   > ftl::MPSCLockfree
      (skipping, benchmark not supported...)
 
   > ftl::SPMCLockfree
-     1    thread:  Avg: 0.0116us  Range: [0.0106us, 0.0133us]  Ops/s:  85.85M  Ops/s/t:  85.85M
-     3   threads:  Avg: 0.6887us  Range: [0.6779us, 0.7014us]  Ops/s:   4.36M  Ops/s/t:   1.45M
-     7   threads:  Avg: 4.5293us  Range: [4.4022us, 4.7324us]  Ops/s:   1.55M  Ops/s/t: 220.79k
-     15  threads:  Avg: 0.0257ms  Range: [0.0244ms, 0.0267ms]  Ops/s: 584.39k  Ops/s/t:  38.96k
-     Operations per second per thread (weighted average):   9.63M
+     1    thread:  Avg: 0.0147us  Range: [0.0143us, 0.0148us]  Ops/s:  68.17M  Ops/s/t:  68.17M
+     3   threads:  Avg: 0.4792us  Range: [0.4753us, 0.4844us]  Ops/s:   6.26M  Ops/s/t:   2.09M
+     7   threads:  Avg: 4.4753us  Range: [4.1787us, 4.5665us]  Ops/s:   1.56M  Ops/s/t: 223.45k
+     15  threads:  Avg: 0.0262ms  Range: [0.0254ms, 0.0273ms]  Ops/s: 572.61k  Ops/s/t:  38.17k
+     Operations per second per thread (weighted average):   7.84M
 
 multi-producer, single-consumer (measuring 1 thread):
   (Measures the average speed of dequeueing with only one consumer, but multiple producers)
   > moodycamel::ConcurrentQueue
       Without tokens
-         2   threads:  Avg: 0.0753us  Range: [0.0743us, 0.0759us]  Ops/s:  13.29M  Ops/s/t:  13.29M
-         4   threads:  Avg: 0.0367us  Range: [0.0365us, 0.0368us]  Ops/s:  27.26M  Ops/s/t:  27.26M
-         8   threads:  Avg: 0.0504us  Range: [0.0498us, 0.0506us]  Ops/s:  19.86M  Ops/s/t:  19.86M
-         16  threads:  Avg: 0.0506us  Range: [0.0471us, 0.0537us]  Ops/s:  19.78M  Ops/s/t:  19.78M
-         Operations per second per thread (weighted average):  20.05M
+         2   threads:  Avg: 0.0733us  Range: [0.0714us, 0.0754us]  Ops/s:  13.65M  Ops/s/t:  13.65M
+         4   threads:  Avg: 0.0362us  Range: [0.0361us, 0.0363us]  Ops/s:  27.59M  Ops/s/t:  27.59M
+         8   threads:  Avg: 0.0428us  Range: [0.0424us, 0.0434us]  Ops/s:  23.36M  Ops/s/t:  23.36M
+         16  threads:  Avg: 0.0523us  Range: [0.0510us, 0.0537us]  Ops/s:  19.12M  Ops/s/t:  19.12M
+         Operations per second per thread (weighted average):  20.93M
 
       With tokens
-         2   threads:  Avg: 0.0389us  Range: [0.0378us, 0.0397us]  Ops/s:  25.70M  Ops/s/t:  25.70M
-         4   threads:  Avg: 0.0259us  Range: [0.0254us, 0.0264us]  Ops/s:  38.60M  Ops/s/t:  38.60M
-         8   threads:  Avg: 0.0252us  Range: [0.0249us, 0.0254us]  Ops/s:  39.70M  Ops/s/t:  39.70M
-         16  threads:  Avg: 0.0248us  Range: [0.0248us, 0.0248us]  Ops/s:  40.31M  Ops/s/t:  40.31M
-         Operations per second per thread (weighted average):  36.08M
+         2   threads:  Avg: 0.0397us  Range: [0.0387us, 0.0401us]  Ops/s:  25.21M  Ops/s/t:  25.21M
+         4   threads:  Avg: 0.0261us  Range: [0.0260us, 0.0264us]  Ops/s:  38.24M  Ops/s/t:  38.24M
+         8   threads:  Avg: 0.0257us  Range: [0.0255us, 0.0259us]  Ops/s:  38.91M  Ops/s/t:  38.91M
+         16  threads:  Avg: 0.0256us  Range: [0.0253us, 0.0258us]  Ops/s:  39.10M  Ops/s/t:  39.10M
+         Operations per second per thread (weighted average):  35.37M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         2   threads:  Avg: 0.0725us  Range: [0.0718us, 0.0730us]  Ops/s:  13.80M  Ops/s/t:  13.80M
-         4   threads:  Avg: 0.0642us  Range: [0.0585us, 0.0688us]  Ops/s:  15.58M  Ops/s/t:  15.58M
-         8   threads:  Avg: 0.0659us  Range: [0.0638us, 0.0670us]  Ops/s:  15.17M  Ops/s/t:  15.17M
-         16  threads:  Avg: 0.0752us  Range: [0.0663us, 0.0839us]  Ops/s:  13.29M  Ops/s/t:  13.29M
-         Operations per second per thread (weighted average):  14.46M
+         2   threads:  Avg: 0.0831us  Range: [0.0827us, 0.0834us]  Ops/s:  12.03M  Ops/s/t:  12.03M
+         4   threads:  Avg: 0.0659us  Range: [0.0654us, 0.0669us]  Ops/s:  15.18M  Ops/s/t:  15.18M
+         8   threads:  Avg: 0.0662us  Range: [0.0643us, 0.0674us]  Ops/s:  15.11M  Ops/s/t:  15.11M
+         16  threads:  Avg: 0.1010us  Range: [0.0940us, 0.1169us]  Ops/s:   9.90M  Ops/s/t:   9.90M
+         Operations per second per thread (weighted average):  13.06M
 
       With tokens
-         2   threads:  Avg: 0.0883us  Range: [0.0873us, 0.0893us]  Ops/s:  11.33M  Ops/s/t:  11.33M
-         4   threads:  Avg: 0.0544us  Range: [0.0538us, 0.0549us]  Ops/s:  18.38M  Ops/s/t:  18.38M
-         8   threads:  Avg: 0.0520us  Range: [0.0510us, 0.0528us]  Ops/s:  19.23M  Ops/s/t:  19.23M
-         16  threads:  Avg: 0.0507us  Range: [0.0370us, 0.0549us]  Ops/s:  19.73M  Ops/s/t:  19.73M
-         Operations per second per thread (weighted average):  17.17M
+         2   threads:  Avg: 0.0918us  Range: [0.0914us, 0.0920us]  Ops/s:  10.90M  Ops/s/t:  10.90M
+         4   threads:  Avg: 0.0561us  Range: [0.0557us, 0.0566us]  Ops/s:  17.83M  Ops/s/t:  17.83M
+         8   threads:  Avg: 0.0591us  Range: [0.0548us, 0.0657us]  Ops/s:  16.92M  Ops/s/t:  16.92M
+         16  threads:  Avg: 0.0560us  Range: [0.0520us, 0.0654us]  Ops/s:  17.87M  Ops/s/t:  17.87M
+         Operations per second per thread (weighted average):  15.88M
 
   > boost::lockfree::queue
-     2   threads:  Avg: 0.1311us  Range: [0.1228us, 0.1502us]  Ops/s:   7.63M  Ops/s/t:   7.63M
-     4   threads:  Avg: 0.1668us  Range: [0.1557us, 0.1822us]  Ops/s:   5.99M  Ops/s/t:   5.99M
-     8   threads:  Avg: 0.1621us  Range: [0.1568us, 0.1646us]  Ops/s:   6.17M  Ops/s/t:   6.17M
-     16  threads:  Avg: 0.1677us  Range: [0.1654us, 0.1685us]  Ops/s:   5.96M  Ops/s/t:   5.96M
-     Operations per second per thread (weighted average):   6.44M
+     2   threads:  Avg: 0.1399us  Range: [0.1326us, 0.1479us]  Ops/s:   7.15M  Ops/s/t:   7.15M
+     4   threads:  Avg: 0.1489us  Range: [0.1393us, 0.1621us]  Ops/s:   6.72M  Ops/s/t:   6.72M
+     8   threads:  Avg: 0.1600us  Range: [0.1590us, 0.1613us]  Ops/s:   6.25M  Ops/s/t:   6.25M
+     16  threads:  Avg: 0.1509us  Range: [0.1209us, 0.1709us]  Ops/s:   6.63M  Ops/s/t:   6.63M
+     Operations per second per thread (weighted average):   6.69M
 
   > tbb::concurrent_queue
-     2   threads:  Avg: 0.0677us  Range: [0.0663us, 0.0706us]  Ops/s:  14.78M  Ops/s/t:  14.78M
-     4   threads:  Avg: 0.0480us  Range: [0.0478us, 0.0483us]  Ops/s:  20.84M  Ops/s/t:  20.84M
-     8   threads:  Avg: 0.0572us  Range: [0.0570us, 0.0576us]  Ops/s:  17.48M  Ops/s/t:  17.48M
-     16  threads:  Avg: 0.2002us  Range: [0.1873us, 0.2103us]  Ops/s:   4.99M  Ops/s/t:   4.99M
-     Operations per second per thread (weighted average):  14.52M
+     2   threads:  Avg: 0.0635us  Range: [0.0630us, 0.0639us]  Ops/s:  15.76M  Ops/s/t:  15.76M
+     4   threads:  Avg: 0.0466us  Range: [0.0465us, 0.0467us]  Ops/s:  21.44M  Ops/s/t:  21.44M
+     8   threads:  Avg: 0.0572us  Range: [0.0561us, 0.0580us]  Ops/s:  17.48M  Ops/s/t:  17.48M
+     16  threads:  Avg: 0.2048us  Range: [0.1985us, 0.2090us]  Ops/s:   4.88M  Ops/s/t:   4.88M
+     Operations per second per thread (weighted average):  14.89M
 
   > SimpleLockFreeQueue
-     2   threads:  Avg: 0.1550us  Range: [0.1531us, 0.1570us]  Ops/s:   6.45M  Ops/s/t:   6.45M
-     4   threads:  Avg: 0.1236us  Range: [0.1155us, 0.1290us]  Ops/s:   8.09M  Ops/s/t:   8.09M
-     8   threads:  Avg: 0.1436us  Range: [0.1429us, 0.1443us]  Ops/s:   6.97M  Ops/s/t:   6.97M
-     16  threads:  Avg: 0.1380us  Range: [0.1284us, 0.1444us]  Ops/s:   7.25M  Ops/s/t:   7.25M
-     Operations per second per thread (weighted average):   7.19M
+     2   threads:  Avg: 0.1502us  Range: [0.1358us, 0.1574us]  Ops/s:   6.66M  Ops/s/t:   6.66M
+     4   threads:  Avg: 0.1383us  Range: [0.1335us, 0.1428us]  Ops/s:   7.23M  Ops/s/t:   7.23M
+     8   threads:  Avg: 0.1475us  Range: [0.1372us, 0.1547us]  Ops/s:   6.78M  Ops/s/t:   6.78M
+     16  threads:  Avg: 0.1408us  Range: [0.1276us, 0.1580us]  Ops/s:   7.10M  Ops/s/t:   7.10M
+     Operations per second per thread (weighted average):   6.94M
 
   > LockBasedQueue
-     2   threads:  Avg: 0.1374us  Range: [0.1147us, 0.1660us]  Ops/s:   7.28M  Ops/s/t:   7.28M
-     4   threads:  Avg: 0.1783us  Range: [0.1692us, 0.1813us]  Ops/s:   5.61M  Ops/s/t:   5.61M
-     8   threads:  Avg: 0.1934us  Range: [0.1920us, 0.1945us]  Ops/s:   5.17M  Ops/s/t:   5.17M
-     16  threads:  Avg: 0.1997us  Range: [0.1985us, 0.2011us]  Ops/s:   5.01M  Ops/s/t:   5.01M
-     Operations per second per thread (weighted average):   5.77M
+     2   threads:  Avg: 0.2872us  Range: [0.2536us, 0.3363us]  Ops/s:   3.48M  Ops/s/t:   3.48M
+     4   threads:  Avg: 0.1887us  Range: [0.1859us, 0.1926us]  Ops/s:   5.30M  Ops/s/t:   5.30M
+     8   threads:  Avg: 0.2000us  Range: [0.1991us, 0.2019us]  Ops/s:   5.00M  Ops/s/t:   5.00M
+     16  threads:  Avg: 0.2035us  Range: [0.1987us, 0.2145us]  Ops/s:   4.91M  Ops/s/t:   4.91M
+     Operations per second per thread (weighted average):   4.67M
 
   > std::queue
      (skipping, benchmark not supported...)
 
   > ftl::MPMCLockfree
-     2   threads:  Avg: 0.0231us  Range: [0.0199us, 0.0256us]  Ops/s:  43.32M  Ops/s/t:  43.32M
-     4   threads:  Avg: 0.0215us  Range: [0.0200us, 0.0234us]  Ops/s:  46.41M  Ops/s/t:  46.41M
-     8   threads:  Avg: 9.4877ns  Range: [9.0113ns, 0.0114us]  Ops/s: 105.40M  Ops/s/t: 105.40M
-     16  threads:  Avg: 0.0128us  Range: [0.0118us, 0.0146us]  Ops/s:  77.83M  Ops/s/t:  77.83M
-     Operations per second per thread (weighted average):  68.24M
+     2   threads:  Avg: 0.0235us  Range: [0.0197us, 0.0259us]  Ops/s:  42.63M  Ops/s/t:  42.63M
+     4   threads:  Avg: 0.0227us  Range: [0.0208us, 0.0255us]  Ops/s:  44.01M  Ops/s/t:  44.01M
+     8   threads:  Avg: 0.0106us  Range: [0.0103us, 0.0110us]  Ops/s:  94.56M  Ops/s/t:  94.56M
+     16  threads:  Avg: 0.0125us  Range: [0.0109us, 0.0141us]  Ops/s:  80.04M  Ops/s/t:  80.04M
+     Operations per second per thread (weighted average):  65.31M
 
   > ftl::MPSCLockfree
-     2   threads:  Avg: 0.0349us  Range: [0.0325us, 0.0372us]  Ops/s:  28.63M  Ops/s/t:  28.63M
-     4   threads:  Avg: 0.0440us  Range: [0.0375us, 0.0454us]  Ops/s:  22.70M  Ops/s/t:  22.70M
-     8   threads:  Avg: 0.0289us  Range: [0.0283us, 0.0295us]  Ops/s:  34.56M  Ops/s/t:  34.56M
-     16  threads:  Avg: 0.0268us  Range: [0.0248us, 0.0297us]  Ops/s:  37.33M  Ops/s/t:  37.33M
-     Operations per second per thread (weighted average):  30.80M
+     2   threads:  Avg: 0.0369us  Range: [0.0366us, 0.0373us]  Ops/s:  27.08M  Ops/s/t:  27.08M
+     4   threads:  Avg: 7.4763ns  Range: [6.8879ns, 7.9858ns]  Ops/s: 133.76M  Ops/s/t: 133.76M
+     8   threads:  Avg: 3.9917ns  Range: [3.7993ns, 4.6141ns]  Ops/s: 250.52M  Ops/s/t: 250.52M
+     16  threads:  Avg: 4.6290ns  Range: [4.2575ns, 4.9612ns]  Ops/s: 216.03M  Ops/s/t: 216.03M
+     Operations per second per thread (weighted average): 156.85M
 
   > ftl::SPMCLockfree
      (skipping, benchmark not supported...)
@@ -1041,73 +1041,73 @@ dequeue from empty:
   (that eight separate threads had at one point enqueued to))
   > moodycamel::ConcurrentQueue
       Without tokens
-         1    thread:  Avg: 0.0253us  Range: [0.0213us, 0.0268us]  Ops/s:  39.57M  Ops/s/t:  39.57M
+         1    thread:  Avg: 0.0221us  Range: [0.0216us, 0.0223us]  Ops/s:  45.23M  Ops/s/t:  45.23M
                 ^ Note: No contention -- measures raw failed dequeue speed on empty queue
-         2   threads:  Avg: 0.0771us  Range: [0.0735us, 0.0802us]  Ops/s:  25.96M  Ops/s/t:  12.98M
-         8   threads:  Avg: 0.7319us  Range: [0.6666us, 0.7763us]  Ops/s:  10.93M  Ops/s/t:   1.37M
-         Operations per second per thread (weighted average):  11.79M
+         2   threads:  Avg: 0.0533us  Range: [0.0495us, 0.0555us]  Ops/s:  37.52M  Ops/s/t:  18.76M
+         8   threads:  Avg: 0.3018us  Range: [0.2879us, 0.3318us]  Ops/s:  26.51M  Ops/s/t:   3.31M
+         Operations per second per thread (weighted average):  15.48M
 
       With tokens
-         1    thread:  Avg: 0.0180us  Range: [0.0149us, 0.0188us]  Ops/s:  55.69M  Ops/s/t:  55.69M
+         1    thread:  Avg: 0.0154us  Range: [0.0153us, 0.0154us]  Ops/s:  65.12M  Ops/s/t:  65.12M
                 ^ Note: No contention -- measures raw failed dequeue speed on empty queue
-         2   threads:  Avg: 0.0272us  Range: [0.0249us, 0.0295us]  Ops/s:  73.45M  Ops/s/t:  36.73M
-         8   threads:  Avg: 0.2975us  Range: [0.2124us, 0.4254us]  Ops/s:  26.89M  Ops/s/t:   3.36M
-         Operations per second per thread (weighted average):  22.34M
+         2   threads:  Avg: 0.0306us  Range: [0.0269us, 0.0323us]  Ops/s:  65.31M  Ops/s/t:  32.66M
+         8   threads:  Avg: 0.2155us  Range: [0.1954us, 0.2433us]  Ops/s:  37.13M  Ops/s/t:   4.64M
+         Operations per second per thread (weighted average):  23.73M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         1    thread:  Avg: 2.1981ns  Range: [2.1875ns, 2.2083ns]  Ops/s: 454.93M  Ops/s/t: 454.93M
+         1    thread:  Avg: 2.2761ns  Range: [2.2674ns, 2.2927ns]  Ops/s: 439.34M  Ops/s/t: 439.34M
                 ^ Note: No contention -- measures raw failed dequeue speed on empty queue
-         2   threads:  Avg: 1.3932ns  Range: [1.3749ns, 1.4132ns]  Ops/s:   1.44G  Ops/s/t: 717.75M
-         8   threads:  Avg: 0.0105us  Range: [0.0103us, 0.0105us]  Ops/s: 765.48M  Ops/s/t:  95.69M
-         Operations per second per thread (weighted average): 332.01M
+         2   threads:  Avg: 1.5270ns  Range: [1.4299ns, 1.6290ns]  Ops/s:   1.31G  Ops/s/t: 654.89M
+         8   threads:  Avg: 0.0104us  Range: [0.0101us, 0.0106us]  Ops/s: 772.85M  Ops/s/t:  96.61M
+         Operations per second per thread (weighted average): 312.58M
 
       With tokens
-         1    thread:  Avg: 2.1894ns  Range: [2.1862ns, 2.1909ns]  Ops/s: 456.74M  Ops/s/t: 456.74M
+         1    thread:  Avg: 2.2651ns  Range: [2.2520ns, 2.2822ns]  Ops/s: 441.48M  Ops/s/t: 441.48M
                 ^ Note: No contention -- measures raw failed dequeue speed on empty queue
-         2   threads:  Avg: 1.8107ns  Range: [1.2655ns, 2.0446ns]  Ops/s:   1.10G  Ops/s/t: 552.28M
-         8   threads:  Avg: 0.0107us  Range: [0.0107us, 0.0108us]  Ops/s: 745.08M  Ops/s/t:  93.14M
-         Operations per second per thread (weighted average): 286.35M
+         2   threads:  Avg: 1.2652ns  Range: [1.2502ns, 1.2779ns]  Ops/s:   1.58G  Ops/s/t: 790.41M
+         8   threads:  Avg: 0.0102us  Range: [9.9329ns, 0.0103us]  Ops/s: 783.48M  Ops/s/t:  97.94M
+         Operations per second per thread (weighted average): 350.26M
 
   > boost::lockfree::queue
-     1    thread:  Avg: 4.4114ns  Range: [4.3897ns, 4.4352ns]  Ops/s: 226.69M  Ops/s/t: 226.69M
+     1    thread:  Avg: 4.2839ns  Range: [4.2191ns, 4.3283ns]  Ops/s: 233.43M  Ops/s/t: 233.43M
             ^ Note: No contention -- measures raw failed dequeue speed on empty queue
-     2   threads:  Avg: 8.5850ns  Range: [8.4524ns, 8.8273ns]  Ops/s: 232.96M  Ops/s/t: 116.48M
-     8   threads:  Avg: 0.0551us  Range: [0.0550us, 0.0552us]  Ops/s: 145.08M  Ops/s/t:  18.13M
-     Operations per second per thread (weighted average):  84.44M
+     2   threads:  Avg: 9.1289ns  Range: [8.7436ns, 9.4559ns]  Ops/s: 219.08M  Ops/s/t: 109.54M
+     8   threads:  Avg: 0.0556us  Range: [0.0553us, 0.0561us]  Ops/s: 143.89M  Ops/s/t:  17.99M
+     Operations per second per thread (weighted average):  83.78M
 
   > tbb::concurrent_queue
-     1    thread:  Avg: 3.5765ns  Range: [3.4788ns, 3.6630ns]  Ops/s: 279.61M  Ops/s/t: 279.61M
+     1    thread:  Avg: 3.5513ns  Range: [3.5135ns, 3.6232ns]  Ops/s: 281.59M  Ops/s/t: 281.59M
             ^ Note: No contention -- measures raw failed dequeue speed on empty queue
-     2   threads:  Avg: 7.4740ns  Range: [7.3674ns, 7.5766ns]  Ops/s: 267.59M  Ops/s/t: 133.80M
-     8   threads:  Avg: 0.0614us  Range: [0.0614us, 0.0614us]  Ops/s: 130.30M  Ops/s/t:  16.29M
-     Operations per second per thread (weighted average):  98.21M
+     2   threads:  Avg: 8.1096ns  Range: [7.8188ns, 8.5226ns]  Ops/s: 246.62M  Ops/s/t: 123.31M
+     8   threads:  Avg: 0.0614us  Range: [0.0614us, 0.0616us]  Ops/s: 130.21M  Ops/s/t:  16.28M
+     Operations per second per thread (weighted average):  95.76M
 
   > SimpleLockFreeQueue
-     1    thread:  Avg: 5.3297ns  Range: [5.2499ns, 5.3877ns]  Ops/s: 187.63M  Ops/s/t: 187.63M
+     1    thread:  Avg: 5.6973ns  Range: [5.6610ns, 5.7428ns]  Ops/s: 175.52M  Ops/s/t: 175.52M
             ^ Note: No contention -- measures raw failed dequeue speed on empty queue
-     2   threads:  Avg: 0.0108us  Range: [0.0106us, 0.0109us]  Ops/s: 185.84M  Ops/s/t:  92.92M
-     8   threads:  Avg: 0.0788us  Range: [0.0783us, 0.0793us]  Ops/s: 101.53M  Ops/s/t:  12.69M
-     Operations per second per thread (weighted average):  67.70M
+     2   threads:  Avg: 0.0111us  Range: [0.0110us, 0.0112us]  Ops/s: 180.42M  Ops/s/t:  90.21M
+     8   threads:  Avg: 0.0800us  Range: [0.0788us, 0.0811us]  Ops/s: 100.03M  Ops/s/t:  12.50M
+     Operations per second per thread (weighted average):  64.56M
 
   > LockBasedQueue
-     1    thread:  Avg: 0.0204us  Range: [0.0202us, 0.0205us]  Ops/s:  49.08M  Ops/s/t:  49.08M
+     1    thread:  Avg: 0.0211us  Range: [0.0210us, 0.0211us]  Ops/s:  47.47M  Ops/s/t:  47.47M
             ^ Note: No contention -- measures raw failed dequeue speed on empty queue
-     2   threads:  Avg: 0.2458us  Range: [0.2386us, 0.2523us]  Ops/s:   8.14M  Ops/s/t:   4.07M
-     8   threads:  Avg: 5.1400us  Range: [5.0586us, 5.1757us]  Ops/s:   1.56M  Ops/s/t: 194.55k
-     Operations per second per thread (weighted average):  10.56M
+     2   threads:  Avg: 0.2120us  Range: [0.2021us, 0.2390us]  Ops/s:   9.43M  Ops/s/t:   4.72M
+     8   threads:  Avg: 5.0231us  Range: [4.9777us, 5.0713us]  Ops/s:   1.59M  Ops/s/t: 199.08k
+     Operations per second per thread (weighted average):  10.43M
 
   > std::queue
-     1    thread:  Avg: 2.1854ns  Range: [2.1812ns, 2.1892ns]  Ops/s: 457.58M  Ops/s/t: 457.58M
+     1    thread:  Avg: 2.5408ns  Range: [2.5370ns, 2.5452ns]  Ops/s: 393.58M  Ops/s/t: 393.58M
             ^ Note: No contention -- measures raw failed dequeue speed on empty queue
-     Operations per second per thread (weighted average): 457.58M
+     Operations per second per thread (weighted average): 393.58M
 
   > ftl::MPMCLockfree
-     1    thread:  Avg: 3.8840ns  Range: [3.8514ns, 3.9318ns]  Ops/s: 257.47M  Ops/s/t: 257.47M
+     1    thread:  Avg: 4.3871ns  Range: [4.1812ns, 4.4964ns]  Ops/s: 227.94M  Ops/s/t: 227.94M
             ^ Note: No contention -- measures raw failed dequeue speed on empty queue
-     2   threads:  Avg: 7.9654ns  Range: [7.8904ns, 8.0712ns]  Ops/s: 251.09M  Ops/s/t: 125.54M
-     8   threads:  Avg: 0.0639us  Range: [0.0636us, 0.0640us]  Ops/s: 125.25M  Ops/s/t:  15.66M
-     Operations per second per thread (weighted average):  91.42M
+     2   threads:  Avg: 8.1096ns  Range: [8.0191ns, 8.1736ns]  Ops/s: 246.62M  Ops/s/t: 123.31M
+     8   threads:  Avg: 0.0635us  Range: [0.0633us, 0.0637us]  Ops/s: 125.90M  Ops/s/t:  15.74M
+     Operations per second per thread (weighted average):  85.23M
 
   > ftl::MPSCLockfree
      (skipping, benchmark not supported...)
@@ -1120,81 +1120,81 @@ enqueue-dequeue pairs:
   followed by a dequeue)
   > moodycamel::ConcurrentQueue
       Without tokens
-         1    thread:  Avg: 0.0169us  Range: [0.0169us, 0.0170us]  Ops/s:  59.16M  Ops/s/t:  59.16M
+         1    thread:  Avg: 0.0176us  Range: [0.0175us, 0.0177us]  Ops/s:  56.89M  Ops/s/t:  56.89M
                 ^ Note: No contention -- measures speed of immediately dequeueing the item that was just enqueued
-         2   threads:  Avg: 0.1311us  Range: [0.1260us, 0.1341us]  Ops/s:  15.26M  Ops/s/t:   7.63M
-         4   threads:  Avg: 0.4884us  Range: [0.4846us, 0.4922us]  Ops/s:   8.19M  Ops/s/t:   2.05M
-         8   threads:  Avg: 1.8539us  Range: [1.8436us, 1.8632us]  Ops/s:   4.32M  Ops/s/t: 539.40k
-         Operations per second per thread (weighted average):  10.43M
+         2   threads:  Avg: 0.1021us  Range: [0.0772us, 0.1227us]  Ops/s:  19.59M  Ops/s/t:   9.79M
+         4   threads:  Avg: 0.4672us  Range: [0.4393us, 0.4799us]  Ops/s:   8.56M  Ops/s/t:   2.14M
+         8   threads:  Avg: 1.7760us  Range: [1.7499us, 1.7943us]  Ops/s:   4.50M  Ops/s/t: 563.07k
+         Operations per second per thread (weighted average):  10.58M
 
       With tokens
-         1    thread:  Avg: 0.0127us  Range: [0.0126us, 0.0127us]  Ops/s:  78.78M  Ops/s/t:  78.78M
+         1    thread:  Avg: 0.0131us  Range: [0.0130us, 0.0131us]  Ops/s:  76.53M  Ops/s/t:  76.53M
                 ^ Note: No contention -- measures speed of immediately dequeueing the item that was just enqueued
-         2   threads:  Avg: 0.0304us  Range: [0.0300us, 0.0312us]  Ops/s:  65.70M  Ops/s/t:  32.85M
-         4   threads:  Avg: 0.0656us  Range: [0.0645us, 0.0667us]  Ops/s:  60.93M  Ops/s/t:  15.23M
-         8   threads:  Avg: 0.2213us  Range: [0.2190us, 0.2233us]  Ops/s:  36.14M  Ops/s/t:   4.52M
-         Operations per second per thread (weighted average):  23.26M
+         2   threads:  Avg: 0.0333us  Range: [0.0313us, 0.0340us]  Ops/s:  59.98M  Ops/s/t:  29.99M
+         4   threads:  Avg: 0.0657us  Range: [0.0643us, 0.0663us]  Ops/s:  60.90M  Ops/s/t:  15.22M
+         8   threads:  Avg: 0.2166us  Range: [0.2126us, 0.2184us]  Ops/s:  36.93M  Ops/s/t:   4.62M
+         Operations per second per thread (weighted average):  22.43M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         1    thread:  Avg: 0.0250us  Range: [0.0249us, 0.0250us]  Ops/s:  40.08M  Ops/s/t:  40.08M
+         1    thread:  Avg: 0.0261us  Range: [0.0260us, 0.0261us]  Ops/s:  38.38M  Ops/s/t:  38.38M
                 ^ Note: No contention -- measures speed of immediately dequeueing the item that was just enqueued
-         2   threads:  Avg: 0.1860us  Range: [0.1650us, 0.2117us]  Ops/s:  10.75M  Ops/s/t:   5.38M
-         4   threads:  Avg: 0.7711us  Range: [0.7409us, 0.7851us]  Ops/s:   5.19M  Ops/s/t:   1.30M
-         8   threads:  Avg: 2.8492us  Range: [2.7986us, 2.8806us]  Ops/s:   2.81M  Ops/s/t: 350.97k
-         Operations per second per thread (weighted average):   7.08M
+         2   threads:  Avg: 0.1820us  Range: [0.1673us, 0.2023us]  Ops/s:  10.99M  Ops/s/t:   5.49M
+         4   threads:  Avg: 0.8123us  Range: [0.7138us, 0.8525us]  Ops/s:   4.92M  Ops/s/t:   1.23M
+         8   threads:  Avg: 3.0203us  Range: [2.8059us, 3.1299us]  Ops/s:   2.65M  Ops/s/t: 331.10k
+         Operations per second per thread (weighted average):   6.84M
 
       With tokens
-         1    thread:  Avg: 0.0210us  Range: [0.0209us, 0.0211us]  Ops/s:  47.57M  Ops/s/t:  47.57M
+         1    thread:  Avg: 0.0215us  Range: [0.0214us, 0.0216us]  Ops/s:  46.58M  Ops/s/t:  46.58M
                 ^ Note: No contention -- measures speed of immediately dequeueing the item that was just enqueued
-         2   threads:  Avg: 0.1062us  Range: [0.1040us, 0.1090us]  Ops/s:  18.83M  Ops/s/t:   9.41M
-         4   threads:  Avg: 0.7275us  Range: [0.5933us, 0.7669us]  Ops/s:   5.50M  Ops/s/t:   1.37M
-         8   threads:  Avg: 3.1354us  Range: [3.0217us, 3.2186us]  Ops/s:   2.55M  Ops/s/t: 318.94k
-         Operations per second per thread (weighted average):   8.91M
+         2   threads:  Avg: 0.0971us  Range: [0.0964us, 0.0976us]  Ops/s:  20.59M  Ops/s/t:  10.29M
+         4   threads:  Avg: 0.7197us  Range: [0.5933us, 0.7590us]  Ops/s:   5.56M  Ops/s/t:   1.39M
+         8   threads:  Avg: 2.8549us  Range: [2.8217us, 2.8773us]  Ops/s:   2.80M  Ops/s/t: 350.27k
+         Operations per second per thread (weighted average):   8.96M
 
   > boost::lockfree::queue
-     1    thread:  Avg: 0.0225us  Range: [0.0225us, 0.0226us]  Ops/s:  44.40M  Ops/s/t:  44.40M
+     1    thread:  Avg: 0.0230us  Range: [0.0229us, 0.0230us]  Ops/s:  43.57M  Ops/s/t:  43.57M
             ^ Note: No contention -- measures speed of immediately dequeueing the item that was just enqueued
-     2   threads:  Avg: 0.2674us  Range: [0.2642us, 0.2702us]  Ops/s:   7.48M  Ops/s/t:   3.74M
-     4   threads:  Avg: 1.1855us  Range: [1.0897us, 1.2669us]  Ops/s:   3.37M  Ops/s/t: 843.49k
-     8   threads:  Avg: 6.5155us  Range: [6.1720us, 6.7676us]  Ops/s:   1.23M  Ops/s/t: 153.48k
-     Operations per second per thread (weighted average):   7.15M
+     2   threads:  Avg: 0.2729us  Range: [0.2702us, 0.2768us]  Ops/s:   7.33M  Ops/s/t:   3.66M
+     4   threads:  Avg: 1.2478us  Range: [1.0099us, 1.3355us]  Ops/s:   3.21M  Ops/s/t: 801.40k
+     8   threads:  Avg: 7.5463us  Range: [7.3855us, 7.7683us]  Ops/s:   1.06M  Ops/s/t: 132.52k
+     Operations per second per thread (weighted average):   7.00M
 
   > tbb::concurrent_queue
-     1    thread:  Avg: 0.0176us  Range: [0.0175us, 0.0178us]  Ops/s:  56.72M  Ops/s/t:  56.72M
+     1    thread:  Avg: 0.0179us  Range: [0.0178us, 0.0180us]  Ops/s:  55.93M  Ops/s/t:  55.93M
             ^ Note: No contention -- measures speed of immediately dequeueing the item that was just enqueued
-     2   threads:  Avg: 0.1595us  Range: [0.1579us, 0.1614us]  Ops/s:  12.54M  Ops/s/t:   6.27M
-     4   threads:  Avg: 0.6348us  Range: [0.6309us, 0.6404us]  Ops/s:   6.30M  Ops/s/t:   1.58M
-     8   threads:  Avg: 3.5073us  Range: [3.3812us, 3.6169us]  Ops/s:   2.28M  Ops/s/t: 285.12k
-     Operations per second per thread (weighted average):   9.60M
+     2   threads:  Avg: 0.1645us  Range: [0.1636us, 0.1658us]  Ops/s:  12.16M  Ops/s/t:   6.08M
+     4   threads:  Avg: 0.6534us  Range: [0.5785us, 0.6869us]  Ops/s:   6.12M  Ops/s/t:   1.53M
+     8   threads:  Avg: 2.8898us  Range: [2.8603us, 2.9399us]  Ops/s:   2.77M  Ops/s/t: 346.05k
+     Operations per second per thread (weighted average):   9.47M
 
   > SimpleLockFreeQueue
-     1    thread:  Avg: 0.0294us  Range: [0.0292us, 0.0296us]  Ops/s:  33.99M  Ops/s/t:  33.99M
+     1    thread:  Avg: 0.0302us  Range: [0.0300us, 0.0303us]  Ops/s:  33.14M  Ops/s/t:  33.14M
             ^ Note: No contention -- measures speed of immediately dequeueing the item that was just enqueued
-     2   threads:  Avg: 0.3151us  Range: [0.3039us, 0.3268us]  Ops/s:   6.35M  Ops/s/t:   3.17M
-     4   threads:  Avg: 1.3301us  Range: [1.2315us, 1.3740us]  Ops/s:   3.01M  Ops/s/t: 751.81k
-     8   threads:  Avg: 7.1742us  Range: [6.8672us, 7.4816us]  Ops/s:   1.12M  Ops/s/t: 139.39k
-     Operations per second per thread (weighted average):   5.57M
+     2   threads:  Avg: 0.2940us  Range: [0.2764us, 0.3040us]  Ops/s:   6.80M  Ops/s/t:   3.40M
+     4   threads:  Avg: 1.2950us  Range: [0.9287us, 1.6294us]  Ops/s:   3.09M  Ops/s/t: 772.18k
+     8   threads:  Avg: 7.7630us  Range: [6.5515us, 8.6416us]  Ops/s:   1.03M  Ops/s/t: 128.82k
+     Operations per second per thread (weighted average):   5.50M
 
   > LockBasedQueue
-     1    thread:  Avg: 0.0244us  Range: [0.0243us, 0.0244us]  Ops/s:  41.05M  Ops/s/t:  41.05M
+     1    thread:  Avg: 0.0249us  Range: [0.0248us, 0.0251us]  Ops/s:  40.10M  Ops/s/t:  40.10M
             ^ Note: No contention -- measures speed of immediately dequeueing the item that was just enqueued
-     2   threads:  Avg: 0.4164us  Range: [0.3862us, 0.4261us]  Ops/s:   4.80M  Ops/s/t:   2.40M
-     4   threads:  Avg: 1.5532us  Range: [1.5515us, 1.5566us]  Ops/s:   2.58M  Ops/s/t: 643.83k
-     8   threads:  Avg: 9.0085us  Range: [8.9684us, 9.0398us]  Ops/s: 888.05k  Ops/s/t: 111.01k
-     Operations per second per thread (weighted average):   6.36M
+     2   threads:  Avg: 0.3340us  Range: [0.3143us, 0.3659us]  Ops/s:   5.99M  Ops/s/t:   2.99M
+     4   threads:  Avg: 1.6248us  Range: [1.6210us, 1.6293us]  Ops/s:   2.46M  Ops/s/t: 615.46k
+     8   threads:  Avg: 8.9404us  Range: [8.8843us, 8.9856us]  Ops/s: 894.82k  Ops/s/t: 111.85k
+     Operations per second per thread (weighted average):   6.34M
 
   > std::queue
-     1    thread:  Avg: 2.4221ns  Range: [2.4130ns, 2.4307ns]  Ops/s: 412.87M  Ops/s/t: 412.87M
+     1    thread:  Avg: 2.4871ns  Range: [2.4789ns, 2.4950ns]  Ops/s: 402.07M  Ops/s/t: 402.07M
             ^ Note: No contention -- measures speed of immediately dequeueing the item that was just enqueued
-     Operations per second per thread (weighted average): 412.87M
+     Operations per second per thread (weighted average): 402.07M
 
   > ftl::MPMCLockfree
-     1    thread:  Avg: 0.0102us  Range: [0.0102us, 0.0103us]  Ops/s:  97.61M  Ops/s/t:  97.61M
+     1    thread:  Avg: 0.0105us  Range: [0.0104us, 0.0105us]  Ops/s:  95.60M  Ops/s/t:  95.60M
             ^ Note: No contention -- measures speed of immediately dequeueing the item that was just enqueued
-     2   threads:  Avg: 0.1821us  Range: [0.1768us, 0.1877us]  Ops/s:  10.98M  Ops/s/t:   5.49M
-     4   threads:  Avg: 0.7558us  Range: [0.7326us, 0.7698us]  Ops/s:   5.29M  Ops/s/t:   1.32M
-     8   threads:  Avg: 4.4690us  Range: [4.2715us, 4.6789us]  Ops/s:   1.79M  Ops/s/t: 223.76k
+     2   threads:  Avg: 0.1453us  Range: [0.1343us, 0.1552us]  Ops/s:  13.76M  Ops/s/t:   6.88M
+     4   threads:  Avg: 0.7558us  Range: [0.7245us, 0.7709us]  Ops/s:   5.29M  Ops/s/t:   1.32M
+     8   threads:  Avg: 4.2229us  Range: [4.0486us, 4.3247us]  Ops/s:   1.89M  Ops/s/t: 236.80k
      Operations per second per thread (weighted average):  15.00M
 
   > ftl::MPSCLockfree
@@ -1207,89 +1207,89 @@ heavy concurrent:
   (Measures the average operation speed with many threads under heavy load)
   > moodycamel::ConcurrentQueue
       Without tokens
-         2   threads:  Avg: 0.1262us  Range: [0.1218us, 0.1289us]  Ops/s:  15.84M  Ops/s/t:   7.92M
-         3   threads:  Avg: 0.2026us  Range: [0.2007us, 0.2040us]  Ops/s:  14.81M  Ops/s/t:   4.94M
-         4   threads:  Avg: 0.4197us  Range: [0.3964us, 0.4291us]  Ops/s:   9.53M  Ops/s/t:   2.38M
-         8   threads:  Avg: 1.0877us  Range: [1.0046us, 1.1785us]  Ops/s:   7.36M  Ops/s/t: 919.40k
-         12  threads:  Avg: 2.0830us  Range: [2.0049us, 2.1558us]  Ops/s:   5.76M  Ops/s/t: 480.07k
-         16  threads:  Avg: 2.7732us  Range: [2.0079us, 3.2437us]  Ops/s:   5.77M  Ops/s/t: 360.60k
-         Operations per second per thread (weighted average):   1.96M
+         2   threads:  Avg: 0.1298us  Range: [0.1270us, 0.1372us]  Ops/s:  15.41M  Ops/s/t:   7.70M
+         3   threads:  Avg: 0.2060us  Range: [0.2048us, 0.2080us]  Ops/s:  14.56M  Ops/s/t:   4.85M
+         4   threads:  Avg: 0.4190us  Range: [0.4000us, 0.4280us]  Ops/s:   9.55M  Ops/s/t:   2.39M
+         8   threads:  Avg: 1.0788us  Range: [1.0219us, 1.1101us]  Ops/s:   7.42M  Ops/s/t: 926.94k
+         12  threads:  Avg: 2.0454us  Range: [2.0132us, 2.0989us]  Ops/s:   5.87M  Ops/s/t: 488.89k
+         16  threads:  Avg: 3.2089us  Range: [2.9287us, 3.3368us]  Ops/s:   4.99M  Ops/s/t: 311.63k
+         Operations per second per thread (weighted average):   1.92M
 
       With tokens
-         2   threads:  Avg: 0.0327us  Range: [0.0307us, 0.0337us]  Ops/s:  61.15M  Ops/s/t:  30.57M
-         3   threads:  Avg: 0.0664us  Range: [0.0639us, 0.0683us]  Ops/s:  45.19M  Ops/s/t:  15.06M
-         4   threads:  Avg: 0.2392us  Range: [0.2303us, 0.2498us]  Ops/s:  16.72M  Ops/s/t:   4.18M
-         8   threads:  Avg: 0.8789us  Range: [0.7868us, 0.9487us]  Ops/s:   9.10M  Ops/s/t:   1.14M
-         12  threads:  Avg: 1.3673us  Range: [1.0642us, 1.5983us]  Ops/s:   8.78M  Ops/s/t: 731.34k
-         16  threads:  Avg: 1.2976us  Range: [1.0202us, 1.9841us]  Ops/s:  12.33M  Ops/s/t: 770.67k
-         Operations per second per thread (weighted average):   5.60M
+         2   threads:  Avg: 0.0302us  Range: [0.0299us, 0.0307us]  Ops/s:  66.29M  Ops/s/t:  33.14M
+         3   threads:  Avg: 0.1113us  Range: [0.0654us, 0.1409us]  Ops/s:  26.96M  Ops/s/t:   8.99M
+         4   threads:  Avg: 0.2402us  Range: [0.2338us, 0.2479us]  Ops/s:  16.65M  Ops/s/t:   4.16M
+         8   threads:  Avg: 0.7195us  Range: [0.5094us, 0.8178us]  Ops/s:  11.12M  Ops/s/t:   1.39M
+         12  threads:  Avg: 1.2078us  Range: [0.8606us, 1.3918us]  Ops/s:   9.94M  Ops/s/t: 827.97k
+         16  threads:  Avg: 1.7235us  Range: [1.4629us, 1.9472us]  Ops/s:   9.28M  Ops/s/t: 580.23k
+         Operations per second per thread (weighted average):   5.17M
 
   > moodycamel::BlockingConcurrentQueue
       Without tokens
-         2   threads:  Avg: 0.1917us  Range: [0.1890us, 0.1938us]  Ops/s:  10.43M  Ops/s/t:   5.22M
-         3   threads:  Avg: 0.3475us  Range: [0.3444us, 0.3510us]  Ops/s:   8.63M  Ops/s/t:   2.88M
-         4   threads:  Avg: 0.6312us  Range: [0.5972us, 0.6487us]  Ops/s:   6.34M  Ops/s/t:   1.58M
-         8   threads:  Avg: 2.2929us  Range: [2.1713us, 2.4262us]  Ops/s:   3.49M  Ops/s/t: 436.14k
-         12  threads:  Avg: 4.5475us  Range: [3.5777us, 5.2647us]  Ops/s:   2.64M  Ops/s/t: 219.90k
-         16  threads:  Avg: 7.1068us  Range: [6.4328us, 8.1367us]  Ops/s:   2.25M  Ops/s/t: 140.71k
-         Operations per second per thread (weighted average):   1.17M
+         2   threads:  Avg: 0.2026us  Range: [0.1966us, 0.2091us]  Ops/s:   9.87M  Ops/s/t:   4.94M
+         3   threads:  Avg: 0.3495us  Range: [0.3441us, 0.3527us]  Ops/s:   8.58M  Ops/s/t:   2.86M
+         4   threads:  Avg: 0.6313us  Range: [0.4352us, 0.6889us]  Ops/s:   6.34M  Ops/s/t:   1.58M
+         8   threads:  Avg: 2.3780us  Range: [2.1787us, 2.6136us]  Ops/s:   3.36M  Ops/s/t: 420.52k
+         12  threads:  Avg: 4.5455us  Range: [4.1853us, 4.8309us]  Ops/s:   2.64M  Ops/s/t: 220.00k
+         16  threads:  Avg: 8.4529us  Range: [5.1855us, 0.0100ms]  Ops/s:   1.89M  Ops/s/t: 118.30k
+         Operations per second per thread (weighted average):   1.14M
 
       With tokens
-         2   threads:  Avg: 0.1013us  Range: [0.0991us, 0.1035us]  Ops/s:  19.75M  Ops/s/t:   9.88M
-         3   threads:  Avg: 0.2613us  Range: [0.2529us, 0.2684us]  Ops/s:  11.48M  Ops/s/t:   3.83M
-         4   threads:  Avg: 0.5449us  Range: [0.5347us, 0.5513us]  Ops/s:   7.34M  Ops/s/t:   1.84M
-         8   threads:  Avg: 2.1141us  Range: [2.0239us, 2.2517us]  Ops/s:   3.78M  Ops/s/t: 473.01k
-         12  threads:  Avg: 4.9239us  Range: [4.4701us, 5.5337us]  Ops/s:   2.44M  Ops/s/t: 203.09k
-         16  threads:  Avg: 7.7353us  Range: [7.3739us, 8.5149us]  Ops/s:   2.07M  Ops/s/t: 129.28k
-         Operations per second per thread (weighted average):   1.74M
+         2   threads:  Avg: 0.1143us  Range: [0.1111us, 0.1172us]  Ops/s:  17.50M  Ops/s/t:   8.75M
+         3   threads:  Avg: 0.2879us  Range: [0.2710us, 0.3188us]  Ops/s:  10.42M  Ops/s/t:   3.47M
+         4   threads:  Avg: 0.5583us  Range: [0.5323us, 0.5764us]  Ops/s:   7.16M  Ops/s/t:   1.79M
+         8   threads:  Avg: 2.5695us  Range: [2.4807us, 2.7101us]  Ops/s:   3.11M  Ops/s/t: 389.18k
+         12  threads:  Avg: 5.2674us  Range: [4.8744us, 5.5817us]  Ops/s:   2.28M  Ops/s/t: 189.85k
+         16  threads:  Avg: 9.4143us  Range: [8.9425us, 9.7654us]  Ops/s:   1.70M  Ops/s/t: 106.22k
+         Operations per second per thread (weighted average):   1.56M
 
   > boost::lockfree::queue
-     2   threads:  Avg: 0.2958us  Range: [0.2903us, 0.2982us]  Ops/s:   6.76M  Ops/s/t:   3.38M
-     3   threads:  Avg: 0.7029us  Range: [0.6900us, 0.7149us]  Ops/s:   4.27M  Ops/s/t:   1.42M
-     4   threads:  Avg: 1.0727us  Range: [1.0564us, 1.0996us]  Ops/s:   3.73M  Ops/s/t: 932.22k
-     8   threads:  Avg: 4.3056us  Range: [4.0080us, 4.5651us]  Ops/s:   1.86M  Ops/s/t: 232.25k
-     12  threads:  Avg: 9.1211us  Range: [8.1106us, 9.6921us]  Ops/s:   1.32M  Ops/s/t: 109.64k
-     16  threads:  Avg: 0.0123ms  Range: [0.0109ms, 0.0141ms]  Ops/s:   1.30M  Ops/s/t:  81.21k
-     Operations per second per thread (weighted average): 678.29k
+     2   threads:  Avg: 0.2557us  Range: [0.2454us, 0.2662us]  Ops/s:   7.82M  Ops/s/t:   3.91M
+     3   threads:  Avg: 0.7026us  Range: [0.6779us, 0.7234us]  Ops/s:   4.27M  Ops/s/t:   1.42M
+     4   threads:  Avg: 0.9803us  Range: [0.9698us, 1.0023us]  Ops/s:   4.08M  Ops/s/t:   1.02M
+     8   threads:  Avg: 6.6171us  Range: [6.1453us, 6.8924us]  Ops/s:   1.21M  Ops/s/t: 151.12k
+     12  threads:  Avg: 0.0118ms  Range: [8.3214us, 0.0131ms]  Ops/s:   1.02M  Ops/s/t:  84.88k
+     16  threads:  Avg: 0.0154ms  Range: [0.0129ms, 0.0188ms]  Ops/s:   1.04M  Ops/s/t:  64.81k
+     Operations per second per thread (weighted average): 713.54k
 
   > tbb::concurrent_queue
-     2   threads:  Avg: 0.1730us  Range: [0.1702us, 0.1757us]  Ops/s:  11.56M  Ops/s/t:   5.78M
-     3   threads:  Avg: 0.3155us  Range: [0.3137us, 0.3169us]  Ops/s:   9.51M  Ops/s/t:   3.17M
-     4   threads:  Avg: 0.5456us  Range: [0.5359us, 0.5515us]  Ops/s:   7.33M  Ops/s/t:   1.83M
-     8   threads:  Avg: 1.7009us  Range: [1.6137us, 1.8268us]  Ops/s:   4.70M  Ops/s/t: 587.93k
-     12  threads:  Avg: 4.1241us  Range: [3.0229us, 4.7316us]  Ops/s:   2.91M  Ops/s/t: 242.48k
-     16  threads:  Avg: 9.3982us  Range: [7.8764us, 0.0119ms]  Ops/s:   1.70M  Ops/s/t: 106.40k
+     2   threads:  Avg: 0.1706us  Range: [0.1698us, 0.1715us]  Ops/s:  11.73M  Ops/s/t:   5.86M
+     3   threads:  Avg: 0.3115us  Range: [0.3079us, 0.3141us]  Ops/s:   9.63M  Ops/s/t:   3.21M
+     4   threads:  Avg: 0.5341us  Range: [0.5326us, 0.5353us]  Ops/s:   7.49M  Ops/s/t:   1.87M
+     8   threads:  Avg: 1.6965us  Range: [1.6940us, 1.7012us]  Ops/s:   4.72M  Ops/s/t: 589.44k
+     12  threads:  Avg: 5.0870us  Range: [3.2261us, 7.2944us]  Ops/s:   2.36M  Ops/s/t: 196.58k
+     16  threads:  Avg: 0.0161ms  Range: [0.0142ms, 0.0180ms]  Ops/s: 994.83k  Ops/s/t:  62.18k
      Operations per second per thread (weighted average):   1.31M
 
   > SimpleLockFreeQueue
-     2   threads:  Avg: 0.3089us  Range: [0.3024us, 0.3111us]  Ops/s:   6.48M  Ops/s/t:   3.24M
-     3   threads:  Avg: 0.6242us  Range: [0.6187us, 0.6298us]  Ops/s:   4.81M  Ops/s/t:   1.60M
-     4   threads:  Avg: 1.2924us  Range: [1.2676us, 1.3159us]  Ops/s:   3.09M  Ops/s/t: 773.74k
-     8   threads:  Avg: 6.6529us  Range: [6.6112us, 6.6799us]  Ops/s:   1.20M  Ops/s/t: 150.31k
-     12  threads:  Avg: 0.0101ms  Range: [6.5126us, 0.0117ms]  Ops/s:   1.19M  Ops/s/t:  99.05k
-     16  threads:  Avg: 0.0144ms  Range: [6.7381us, 0.0198ms]  Ops/s:   1.11M  Ops/s/t:  69.42k
-     Operations per second per thread (weighted average): 644.29k
+     2   threads:  Avg: 0.2958us  Range: [0.2879us, 0.3060us]  Ops/s:   6.76M  Ops/s/t:   3.38M
+     3   threads:  Avg: 0.6494us  Range: [0.6453us, 0.6573us]  Ops/s:   4.62M  Ops/s/t:   1.54M
+     4   threads:  Avg: 1.4104us  Range: [1.1758us, 1.4837us]  Ops/s:   2.84M  Ops/s/t: 709.02k
+     8   threads:  Avg: 7.0007us  Range: [5.2314us, 7.7025us]  Ops/s:   1.14M  Ops/s/t: 142.84k
+     12  threads:  Avg: 9.1211us  Range: [7.9326us, 0.0111ms]  Ops/s:   1.32M  Ops/s/t: 109.64k
+     16  threads:  Avg: 0.0113ms  Range: [0.0105ms, 0.0123ms]  Ops/s:   1.42M  Ops/s/t:  88.48k
+     Operations per second per thread (weighted average): 647.93k
 
   > LockBasedQueue
-     2   threads:  Avg: 0.3280us  Range: [0.2097us, 0.3615us]  Ops/s:   6.10M  Ops/s/t:   3.05M
-     3   threads:  Avg: 0.9432us  Range: [0.9283us, 0.9577us]  Ops/s:   3.18M  Ops/s/t:   1.06M
-     4   threads:  Avg: 1.8732us  Range: [1.8204us, 1.9189us]  Ops/s:   2.14M  Ops/s/t: 533.85k
-     8   threads:  Avg: 0.0105ms  Range: [0.0101ms, 0.0107ms]  Ops/s: 761.71k  Ops/s/t:  95.21k
-     12  threads:  Avg: 0.0243ms  Range: [0.0241ms, 0.0246ms]  Ops/s: 493.20k  Ops/s/t:  41.10k
-     16  threads:  Avg: 0.0438ms  Range: [0.0427ms, 0.0447ms]  Ops/s: 364.91k  Ops/s/t:  22.81k
-     Operations per second per thread (weighted average): 499.95k
+     2   threads:  Avg: 0.3465us  Range: [0.3389us, 0.3515us]  Ops/s:   5.77M  Ops/s/t:   2.89M
+     3   threads:  Avg: 0.8816us  Range: [0.8594us, 0.8960us]  Ops/s:   3.40M  Ops/s/t:   1.13M
+     4   threads:  Avg: 1.9358us  Range: [1.8717us, 1.9823us]  Ops/s:   2.07M  Ops/s/t: 516.59k
+     8   threads:  Avg: 0.0107ms  Range: [0.0106ms, 0.0108ms]  Ops/s: 744.46k  Ops/s/t:  93.06k
+     12  threads:  Avg: 0.0239ms  Range: [0.0202ms, 0.0249ms]  Ops/s: 502.38k  Ops/s/t:  41.86k
+     16  threads:  Avg: 0.0454ms  Range: [0.0451ms, 0.0456ms]  Ops/s: 352.48k  Ops/s/t:  22.03k
+     Operations per second per thread (weighted average): 490.67k
 
   > std::queue
      (skipping, benchmark not supported...)
 
   > ftl::MPMCLockfree
-     2   threads:  Avg: 0.1837us  Range: [0.1690us, 0.1883us]  Ops/s:  10.89M  Ops/s/t:   5.44M
-     3   threads:  Avg: 0.3227us  Range: [0.3093us, 0.3325us]  Ops/s:   9.30M  Ops/s/t:   3.10M
-     4   threads:  Avg: 0.3835us  Range: [0.3792us, 0.3893us]  Ops/s:  10.43M  Ops/s/t:   2.61M
-     8   threads:  Avg: 2.3286us  Range: [1.8138us, 2.6563us]  Ops/s:   3.44M  Ops/s/t: 429.44k
-     12  threads:  Avg: 4.1023us  Range: [3.9024us, 4.3030us]  Ops/s:   2.93M  Ops/s/t: 243.77k
-     16  threads:  Avg: 7.1472us  Range: [6.2867us, 7.8225us]  Ops/s:   2.24M  Ops/s/t: 139.92k
-     Operations per second per thread (weighted average):   1.35M
+     2   threads:  Avg: 0.1238us  Range: [0.1180us, 0.1283us]  Ops/s:  16.15M  Ops/s/t:   8.07M
+     3   threads:  Avg: 0.3541us  Range: [0.2758us, 0.3895us]  Ops/s:   8.47M  Ops/s/t:   2.82M
+     4   threads:  Avg: 0.3709us  Range: [0.3592us, 0.3850us]  Ops/s:  10.79M  Ops/s/t:   2.70M
+     8   threads:  Avg: 2.3988us  Range: [2.1076us, 2.6310us]  Ops/s:   3.33M  Ops/s/t: 416.87k
+     12  threads:  Avg: 3.5413us  Range: [3.3076us, 3.9455us]  Ops/s:   3.39M  Ops/s/t: 282.39k
+     16  threads:  Avg: 6.3855us  Range: [5.8424us, 6.7885us]  Ops/s:   2.51M  Ops/s/t: 156.60k
+     Operations per second per thread (weighted average):   1.59M
 
   > ftl::MPSCLockfree
      (skipping, benchmark not supported...)
@@ -1300,13 +1300,14 @@ heavy concurrent:
 Overall average operations per second per thread (where higher-concurrency runs have more weight):
 (Take this summary with a grain of salt -- look at the individual benchmark results for a much
 better idea of how the queues measure up to each other):
-    moodycamel::ConcurrentQueue (including bulk):  43.98M
-    moodycamel::BlockingConcurrentQueue (including bulk):  47.80M
-    boost::lockfree::queue:   5.96M
-    tbb::concurrent_queue:   8.50M
-    SimpleLockFreeQueue:   5.69M
-    LockBasedQueue:   2.48M
-    std::queue (single thread only): 364.67M
-    ftl::MPMCLockfree (MPMC with prealloc):  11.73M
-    ftl::MPSCLockfree (MPSC):  30.80M
-    ftl::SPMCLockfree (SPMC):   6.07M
+    moodycamel::ConcurrentQueue (including bulk):  43.20M
+    moodycamel::BlockingConcurrentQueue (including bulk):  49.28M
+    boost::lockfree::queue:   5.97M
+    tbb::concurrent_queue:   8.42M
+    SimpleLockFreeQueue:   5.35M
+    LockBasedQueue:   2.33M
+    std::queue (single thread only): 327.42M
+    ftl::MPMCLockfree (MPMC with prealloc):  11.76M
+    ftl::MPSCLockfree (MPSC): 156.85M
+    ftl::SPMCLockfree (SPMC):   5.86M
+

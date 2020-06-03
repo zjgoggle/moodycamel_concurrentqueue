@@ -19,13 +19,12 @@ public:
 	template<typename U>
 	inline bool enqueue(U&& item)
 	{
-		q.push(std::forward<U>(item));
-		return true;		// assume successful allocation for the sake of the benchmarks
+    	return q.enqueue(std::forward<U>(item));
 	}
 	
 	inline bool try_dequeue(T& item)
 	{
-		return q.pop(&item);
+		return q.try_dequeue(item);
 	}
 	
 	// Dummy token methods (not used)

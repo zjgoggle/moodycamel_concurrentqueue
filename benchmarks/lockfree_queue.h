@@ -84,85 +84,85 @@ namespace internal
 
 } // namespace internal
 
-template<class T, bool bMultiProcuer, bool MultiConsumer, class AllocT = std::allocator<T>, std::size_t AvoidFalseSharingSize = 128>
-class LockfreeQueue;
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////
 ///                      SPSCCircularQueue
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-template<class T, class AllocT, std::size_t AvoidFalseSharingSize>
-class LockfreeQueue<T, false, false, AllocT, AvoidFalseSharingSize>
+template<class T, class AllocT = std::allocator<T>, std::size_t AvoidFalseSharingSize = 128>
+class SPSCArrayQueue
 {
-    AllocT mAlloc;
+    AllocT m_Alloc;
     size_t m_nEntriesMinus1 = 0;
-    T *mBuf = nullptr;
+    T *m_data = nullptr;
     char m_padding1[AvoidFalseSharingSize - sizeof( AllocT ) - sizeof( size_t ) - sizeof( T * )];
 
-    std::atomic<size_t> mPushPos{0};
+    std::atomic<size_t> m_iProd{0};
+    size_t m_iConsForLocalProd; // consumer position used for local producer.
     char m_padding2[AvoidFalseSharingSize - sizeof( std::atomic<size_t> )];
 
-    std::atomic<size_t> mPopPos{0};
+    std::atomic<size_t> m_iCons{0};
+    size_t m_iProdForLocalCons; // producer position used for local consumer.
     char m_padding3[AvoidFalseSharingSize - sizeof( std::atomic<size_t> )];
 
 public:
     constexpr static bool support_multiple_producer_threads = false, support_multiple_consumer_threads = false;
 
-    LockfreeQueue &operator=( const LockfreeQueue & ) = delete;
+    SPSCArrayQueue &operator=( const SPSCArrayQueue & ) = delete;
 
 public:
     using value_type = T;
 
-    LockfreeQueue( size_t cap = 0, const AllocT &alloc = AllocT() ) : mAlloc( alloc )
+    SPSCArrayQueue( size_t cap = 0, const AllocT &alloc = AllocT() ) : m_Alloc( alloc )
     {
         if ( cap )
             init( cap );
     }
 
-    LockfreeQueue( LockfreeQueue &&a ) : mAlloc( a.mAlloc ), m_nEntriesMinus1( a.m_nEntriesMinus1 ), mBuf( a.mBuf )
+    SPSCArrayQueue( SPSCArrayQueue &&a ) : m_Alloc( a.m_Alloc ), m_nEntriesMinus1( a.m_nEntriesMinus1 ), m_data( a.m_data )
     {
-        mPushPos = a.mPushPos.load();
-        mPopPos = a.mPopPos.load();
-        a.mBuf = nullptr;
-        a.mPushPos = 0;
-        a.mPopPos = 0;
-        if ( mBuf == nullptr && m_nEntriesMinus1 > 0 )
+        m_iProd = a.m_iProd.load();
+        m_iCons = a.m_iCons.load();
+        a.m_data = nullptr;
+        a.m_iProd = 0;
+        a.m_iCons = 0;
+        if ( m_data == nullptr && m_nEntriesMinus1 > 0 )
             init( m_nEntriesMinus1 + 1 );
     }
 
-    LockfreeQueue( const LockfreeQueue &a ) : mAlloc( a.alloc )
+    SPSCArrayQueue( const SPSCArrayQueue &a ) : m_Alloc( a.alloc )
     {
         init( a.m_nEntriesMinus1 + 1 );
     }
 
+    ~SPSCArrayQueue()
+    {
+        destruct();
+    }
     bool init( size_t cap )
     {
         assert( cap > 1 && ( cap & ( cap - 1 ) ) == 0 ); // power 2
         destruct();
         cap = internal::next_power2_inclusive( cap + 1 ); // plus 1 for the senitel in SPSC
         m_nEntriesMinus1 = cap - 1;
-        mPushPos = 0;
-        mPopPos = 0;
+        m_iProd = 0;
+        m_iCons = 0;
+        m_iConsForLocalProd = 0;
+        m_iProdForLocalCons = 0;
         if ( m_nEntriesMinus1 > 0 )
         {
-            mBuf = mAlloc.allocate( cap );
-            return mBuf;
+            m_data = m_Alloc.allocate( cap );
+            return m_data;
         }
         return true;
     }
 
-    ~LockfreeQueue()
-    {
-        destruct();
-    }
 
     void destruct()
     {
-        if ( mBuf )
+        if ( m_data )
         {
-            mAlloc.deallocate( mBuf, m_nEntriesMinus1 + 1 );
-            mBuf = nullptr;
+            m_Alloc.deallocate( m_data, m_nEntriesMinus1 + 1 );
+            m_data = nullptr;
         }
     }
 
@@ -173,16 +173,16 @@ public:
     bool full() const
     {
         return m_nEntriesMinus1 == 0 ||
-               ( ( mPushPos.load( std::memory_order_relaxed ) + 1 ) & m_nEntriesMinus1 ) == mPopPos.load( std::memory_order_relaxed );
+               ( ( m_iProd.load( std::memory_order_relaxed ) + 1 ) & m_nEntriesMinus1 ) == m_iCons.load( std::memory_order_relaxed );
     }
     bool empty() const
     {
-        return m_nEntriesMinus1 == 0 || mPushPos.load( std::memory_order_relaxed ) == mPopPos.load( std::memory_order_relaxed );
+        return m_nEntriesMinus1 == 0 || m_iProd.load( std::memory_order_relaxed ) == m_iCons.load( std::memory_order_relaxed );
     }
     size_t size() const
     {
-        auto pushpos = mPushPos.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
-        auto poppos = mPopPos.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
+        auto pushpos = m_iProd.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
+        auto poppos = m_iCons.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
         return pushpos >= poppos ? ( pushpos - poppos ) : ( m_nEntriesMinus1 + 1 - poppos + pushpos );
     }
 
@@ -191,21 +191,22 @@ public:
     {
         if ( !m_nEntriesMinus1 )
             return nullptr;
-        auto pushpos = mPushPos.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
-        auto poppos = mPopPos.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
+        auto pushpos = m_iProd.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
+        auto poppos = m_iCons.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
         if ( ( ( pushpos + 1 ) & m_nEntriesMinus1 ) == poppos ) // full
             return nullptr;
-        return mBuf + pushpos;
+        return m_data + pushpos;
     }
     // prepare_push must be called before commit_push
     void commit_push()
     {
-        mPushPos.fetch_add( 1, std::memory_order_acq_rel );
+        m_iProd.fetch_add( 1, std::memory_order_acq_rel );
     }
 
     template<class... Args>
     T *emplace( Args &&... args )
     {
+        assert( m_nEntriesMinus1 );
         if ( auto p = prepare_push() )
         {
             new ( p ) T( std::forward<Args>( args )... );
@@ -219,410 +220,66 @@ public:
         return emplace( val );
     }
 
+    bool enqueue( const T &val )
+    {
+        assert( m_nEntriesMinus1 );
+
+        auto iProd = m_iProd.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
+        if ( ( iProd + 1 ) == m_iConsForLocalProd ) // possibly full
+        {
+            m_iConsForLocalProd = m_iCons.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
+            if ( ( iProd + 1 ) == m_iConsForLocalProd ) // full
+                return false;
+        }
+        new ( &m_data[iProd] ) T( std::move( val ) );
+        m_iProd.store( iProd + 1, std::memory_order_release );
+        return true;
+    }
+
+    bool try_dequeue( T &val )
+    {
+        assert( m_nEntriesMinus1 );
+
+        auto iCons = m_iCons.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
+        if ( m_iProdForLocalCons == iCons ) // prossibly empty
+        {
+            m_iProdForLocalCons = m_iProd.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
+            if ( iCons == m_iConsForLocalProd ) // empty
+                return false;
+        }
+        val = std::move( m_data[iCons] );
+        m_data[iCons].~T();
+        m_iCons.store( iCons + 1, std::memory_order_release );
+        return true;
+    }
+
     T *top() const
     {
         if ( !m_nEntriesMinus1 )
             return nullptr;
-        auto pushpos = mPushPos.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
-        auto poppos = mPopPos.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
+        auto pushpos = m_iProd.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
+        auto poppos = m_iCons.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
         if ( pushpos == poppos ) // empty
             return nullptr;
-        return &mBuf[poppos];
+        return &m_data[poppos];
     }
     // v: uninitialized memory
     bool pop( T *buf = nullptr )
     {
         if ( !m_nEntriesMinus1 )
             return false;
-        auto pushpos = mPushPos.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
-        auto poppos = mPopPos.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
-        if ( pushpos == poppos ) // empty
+        auto iProd = m_iProd.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
+        auto iCons = m_iCons.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
+        if ( iProd == iCons ) // empty
             return false;
         if ( buf )
-            new ( buf ) T( std::move( mBuf[poppos] ) );
-        mBuf[poppos].~T();
-        mPopPos.fetch_add( 1, std::memory_order_acq_rel );
+            new ( buf ) T( std::move( m_data[iCons] ) );
+        m_data[iCons].~T();
+        m_iCons.store( iCons + 1, std::memory_order_release );
         return true;
     }
 };
 
-////////////////////////////////////////////////////////////////////////////////////////////
-///                      SPMCCircularQueue
-////////////////////////////////////////////////////////////////////////////////////////////
-
-template<class T, class AllocT, std::size_t AvoidFalseSharingSize>
-class LockfreeQueue<T, false, true, AllocT, AvoidFalseSharingSize>
-{
-    struct Node
-    {
-        std::atomic<bool> flag; // true for having value
-        T val;
-    };
-    using Alloc = typename std::allocator_traits<AllocT>::template rebind_alloc<Node>;
-
-    Alloc m_alloc;
-    Node *m_data = nullptr;
-    size_t m_nEntriesMinus1 = 0;
-    char m_padding1[std::max( 0UL, AvoidFalseSharingSize - sizeof( Alloc ) - sizeof( Node * ) - sizeof( size_t ) )];
-
-    std::atomic<size_t> m_begin{0};
-    char m_padding2[AvoidFalseSharingSize - sizeof( std::atomic<size_t> )];
-
-    std::atomic<size_t> m_end{0};
-    char m_padding3[AvoidFalseSharingSize - sizeof( std::atomic<size_t> )];
-
-public:
-    using value_type = T;
-    constexpr static bool support_multiple_producer_threads = false, support_multiple_consumer_threads = true;
-
-    LockfreeQueue( size_t nCap = 0, const Alloc &alloc = Alloc() ) : m_alloc( alloc )
-    {
-        if ( nCap )
-            init( nCap );
-    }
-
-    ~LockfreeQueue()
-    {
-        if ( m_data )
-        {
-            m_alloc.deallocate( m_data, m_nEntriesMinus1 + 1 );
-            m_data = nullptr;
-        }
-    }
-
-    bool init( size_t nCap )
-    {
-        assert( nCap > 1 && ( nCap & ( nCap - 1 ) ) == 0 ); // power 2
-        if ( nCap < 2 )
-            return false;
-        if ( m_data )
-        {
-            m_alloc.deallocate( m_data, m_nEntriesMinus1 + 1 );
-            m_data = nullptr;
-        }
-        nCap = internal::next_power2_inclusive( nCap );
-        m_data = m_alloc.allocate( nCap );
-        m_nEntriesMinus1 = nCap - 1;
-        for ( size_t i = 0; i < nCap; ++i )
-            m_data[i].flag.store( false );
-        return m_data;
-    }
-
-    /// @return false when full.
-    template<class... Args>
-    bool emplace( Args &&... args )
-    {
-        auto iEnd = m_end.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
-        if ( m_data[iEnd].flag.load( std::memory_order_acquire ) ) // full
-            return false;
-        new ( &m_data[iEnd].val ) T( std::forward<Args>( args )... );
-        assert( !m_data[iEnd].flag );
-        m_data[iEnd].flag.store( true, std::memory_order_release );
-        m_end.fetch_add( 1, std::memory_order_acq_rel );
-        return true;
-    }
-
-    bool push( const T &val )
-    {
-        return emplace( val );
-    }
-
-    bool pop( T *val = nullptr, const std::size_t maxtry = 10000ul )
-    {
-        size_t ibegin = m_begin.load( std::memory_order_acquire );
-        for ( auto i = 0ul; i < maxtry; ++i )
-        {
-            if ( ibegin == m_end.load( std::memory_order_acquire ) ) // emtpy
-                return false;
-            if ( m_begin.compare_exchange_weak( ibegin, ibegin + 1, std::memory_order_relaxed ) )
-            {
-                // alreay acquired the ownership.
-                ibegin &= m_nEntriesMinus1;
-                auto &data = m_data[ibegin];
-                assert( data.flag.load( std::memory_order_acquire ) );
-
-                if ( val )
-                    new ( val ) T( std::move( data.val ) );
-                data.val.~T();
-                data.flag.store( false, std::memory_order_release );
-                return true;
-            }
-        }
-        return false;
-    }
-
-    std::size_t size() const
-    {
-        auto poppos = m_begin.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
-        auto pushpos = m_end.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
-        if ( pushpos < poppos )
-            return m_nEntriesMinus1 + 1 - ( poppos - pushpos );
-        return pushpos - poppos;
-    }
-
-    // dequeue the last element may be in process.
-    bool empty() const
-    {
-        return m_begin.load() == m_end.load();
-    }
-
-    bool full() const
-    {
-        auto iEnd = m_end.load( std::memory_order_acquire ) & m_nEntriesMinus1;
-        return ( m_data[iEnd].flag.load( std::memory_order_relaxed ) ); // full
-    }
-
-    void clear()
-    {
-        while ( pop( nullptr ) )
-            ;
-    }
-};
-
-////////////////////////////////////////////////////////////////////////////////////////////
-///                      MPSCCircularQueueBase
-////////////////////////////////////////////////////////////////////////////////////////////
-
-
-template<class T, class AllocT, std::size_t AvoidFalseSharingSize>
-class LockfreeQueue<T, true, false, AllocT, AvoidFalseSharingSize>
-{
-public:
-    constexpr static bool support_multiple_producer_threads = true, support_multiple_consumer_threads = false;
-
-    using size_type = std::size_t;
-    using seq_type = std::atomic<size_type>;
-    struct Entry
-    {
-        seq_type mSeq; // padding for alignment
-        T mData;
-
-        seq_type &seq()
-        {
-            return *reinterpret_cast<seq_type *>( &mSeq );
-        }
-        T &data()
-        {
-            return *reinterpret_cast<T *>( &mData );
-        }
-    };
-    using allocator_type = AllocT;
-    using node_allocator = typename std::allocator_traits<AllocT>::template rebind_alloc<Entry>;
-
-protected:
-    node_allocator mAlloc;
-    size_type m_nEntriesMinus1 = 0;
-    Entry *mBuf = nullptr;
-    char m_padding1[std::max( 0UL, AvoidFalseSharingSize - sizeof( mAlloc ) - sizeof( std::size_t ) - sizeof( void * ) )];
-
-    seq_type mPushPos = 0;
-    char m_padding2[std::max( 0UL, AvoidFalseSharingSize - sizeof( seq_type ) )];
-
-    seq_type mPopPos = 0;
-    char m_padding3[AvoidFalseSharingSize - sizeof( seq_type )];
-
-public:
-    using value_type = T;
-
-    LockfreeQueue( size_t cap = 0, const allocator_type &alloc = allocator_type{} ) : mAlloc( alloc )
-    {
-        if ( cap )
-            init( cap );
-    }
-
-    ~LockfreeQueue()
-    {
-
-        if ( mBuf )
-        {
-            mAlloc.deallocate( mBuf, m_nEntriesMinus1 + 1 );
-            mBuf = nullptr;
-        }
-    }
-
-    /// @brief Move Constructor: move memory if it's allocated. Otherwise, allocate new buffer.
-    LockfreeQueue( LockfreeQueue &&a )
-        : mAlloc( std::move( a.mAlloc ) ),
-          m_nEntriesMinus1( a.m_nEntriesMinus1 ),
-          mBuf( a.mBuf ),
-          mPushPos( a.mPushPos.load() ),
-          mPopPos( a.mPopPos.load() )
-    {
-        a.mBuf = nullptr;
-        if ( mBuf == nullptr && m_nEntriesMinus1 > 0 )
-            init( m_nEntriesMinus1 );
-    }
-
-    /// @brief Copy Constructor: alway allocate new buffer.
-    LockfreeQueue( const LockfreeQueue &a ) : LockfreeQueue( a.mCap, a.mAlloc )
-    {
-    }
-
-    LockfreeQueue &operator=( const LockfreeQueue &a )
-    {
-        this->~MPSCBoundedQueue();
-        new ( this ) LockfreeQueue( a );
-        return *this;
-    }
-
-    LockfreeQueue &operator=( LockfreeQueue &&a )
-    {
-        this->~LockfreeQueue();
-        new ( this ) LockfreeQueue( std::move( a ) );
-        return *this;
-    }
-
-    bool init( size_t cap )
-    {
-        assert( cap && ( cap & ( cap - 1 ) ) == 0 ); // power 2
-        if ( mBuf )
-        {
-            mAlloc.deallocate( mBuf, m_nEntriesMinus1 + 1 );
-            mBuf = nullptr;
-        }
-        cap = internal::next_power2_inclusive( cap );
-        m_nEntriesMinus1 = cap - 1;
-        mBuf = mAlloc.allocate( cap );
-        if ( !mBuf )
-            return false;
-        for ( size_t i = 0; i < cap; ++i )
-        {
-            new ( &mBuf[i].seq() ) seq_type();
-            mBuf[i].seq() = i;
-        }
-        mPushPos = 0;
-        mPopPos = 0;
-        return true;
-    }
-
-    /// \brief emplace back.
-    /// \return false if it's full.
-    template<class... Args>
-    bool emplace( Args &&... args )
-    {
-        return emplace_retry( std::numeric_limits<std::size_t>::max(), std::forward<Args>( args )... );
-    }
-
-    template<class... Args>
-    bool emplace_retry( const std::size_t maxtry = 1000000ul, Args &&... args )
-    {
-        for ( auto i = 0ul; i < maxtry; ++i )
-        {
-            auto pushpos = mPushPos.load( std::memory_order_relaxed );
-            auto &entry = mBuf[pushpos & m_nEntriesMinus1];
-            auto seq = entry.seq().load( std::memory_order_acquire );
-
-            if ( seq == pushpos )
-            { // acquired pushpos & seq
-                if ( mPushPos.compare_exchange_weak( pushpos, pushpos + 1, std::memory_order_relaxed ) )
-                {
-                    new ( &entry.data() ) T( std::forward<Args>( args )... );
-                    entry.seq().store( seq + 1, std::memory_order_release ); // inc seq. when popping, seq == poppos+1
-                    return true;
-                } // else pushpos was acquired by other push thread, retry
-            }
-            else if ( seq == pushpos + 1 ) // seq was acquired by other producer before loading seq.
-            {
-                continue;
-            }
-            else if ( seq + m_nEntriesMinus1 == pushpos ) //  full: iseq - 1 +  CAPACITY == iprod
-            {
-                return false;
-            }
-            else if ( seq == pushpos + 1 + m_nEntriesMinus1 ) //  extremly unlikely, entry is consumed between fetching iprod and iseq. Retry it.
-            {
-                continue;
-            }
-            else
-            {
-                assert( false && "program logic error!" );
-                throw std::runtime_error( std::string( "MPSC push. Unexpected produce pos:" ) + std::to_string( pushpos ) +
-                                          ", iseq:" + std::to_string( seq ) + ", entries:" + std::to_string( m_nEntriesMinus1 + 1 ) );
-            }
-        }
-        return false;
-    }
-
-    /// \brief push back
-    bool push( const T &v, const std::size_t maxtry = 1000000ul )
-    {
-        return emplace_retry( maxtry, v );
-    }
-
-    /// \brief pop back.
-    /// buf: uninitialized memory
-    bool pop( T *buf = nullptr )
-    {
-        auto poppos = mPopPos.load( std::memory_order_acquire );
-        auto &entry = mBuf[poppos & m_nEntriesMinus1];
-        auto seq = entry.seq().load( std::memory_order_acquire );
-
-        if ( poppos + 1 == seq )
-        {
-            mPopPos.store( poppos + 1, std::memory_order_relaxed );
-            if ( buf )
-                new ( buf ) T( std::move( entry.data() ) );
-            entry.data().~T();
-            entry.seq().store( seq + m_nEntriesMinus1, std::memory_order_release ); // dec seq and plus mCap. when next push, seq == pushpos.
-            return true;
-        }
-        else
-        { // empty
-            //            assert( seq == poppos && "program logic error!" );
-            if ( seq != poppos )
-                throw std::runtime_error( std::string( "MPSC pop. Unexpected consume pos:" ) + std::to_string( poppos ) +
-                                          ", iseq:" + std::to_string( seq ) + ", iProd:" + std::to_string( mPushPos.load() ) +
-                                          ", entries:" + std::to_string( m_nEntriesMinus1 + 1 ) );
-            return false;
-        }
-    }
-
-    T *top() const
-    {
-        auto poppos = mPopPos.load( std::memory_order_acquire );
-        auto &entry = mBuf[poppos & m_nEntriesMinus1];
-        auto seq = entry.seq().load( std::memory_order_relaxed );
-
-        if ( poppos + 1 == seq )
-        {
-            return &entry.data();
-        }
-        else
-        { // empty
-            assert( seq == poppos );
-            if ( seq != poppos )
-                throw std::runtime_error( std::string( "Unexpected consume pos:" ) + std::to_string( poppos ) + ", iseq:" + std::to_string( seq ) +
-                                          ", entries:" + std::to_string( m_nEntriesMinus1 + 1 ) );
-            return nullptr;
-        }
-    }
-
-    std::size_t size() const
-    {
-        auto poppos = mPopPos.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
-        auto pushpos = mPushPos.load( std::memory_order_relaxed ) & m_nEntriesMinus1;
-        if ( pushpos < poppos )
-            return m_nEntriesMinus1 + 1 - ( poppos - pushpos );
-        return pushpos - poppos;
-    }
-
-    bool empty() const
-    {
-        auto poppos = mPopPos.load( std::memory_order_acquire );
-        return mBuf[poppos & m_nEntriesMinus1].seq().load( std::memory_order_relaxed ) == poppos;
-    }
-    // non-strictly full, enqueue the last entry my be in process.
-    bool full() const
-    {
-        auto pushpos = mPushPos.load( std::memory_order_acquire );
-        return mBuf[pushpos & m_nEntriesMinus1].seq().load( std::memory_order_relaxed ) + 2 + m_nEntriesMinus1 == pushpos;
-    }
-    void clear()
-    {
-        while ( pop( nullptr ) )
-            ;
-    }
-};
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 ///                      MPMCCircularQueueBase
@@ -669,7 +326,25 @@ protected:
     std::atomic<size_type> m_iProduce{0}; // m_iProduceCommitted == m_iProduce -1 for pending commit.
     char m_padding3[AvoidFalseSharingSize - sizeof( std::atomic<size_type> )];
 
+    MPMCCircularQueueBase( const MPMCCircularQueueBase & ) = delete;
+    MPMCCircularQueueBase &operator=( const MPMCCircularQueueBase & ) = delete;
+
 public:
+    MPMCCircularQueueBase() = default;
+    MPMCCircularQueueBase( MPMCCircularQueueBase &&a )
+        : m_nEntriesMinus1( a.m_nEntriesMinus1 ), m_data( a.m_data ), m_iConsume( a.m_iConsume.load() ), m_iProduce( a.m_iProduce.load() )
+    {
+        a.m_data = nullptr;
+    }
+    MPMCCircularQueueBase &operator=( MPMCCircularQueueBase &&a )
+    {
+        m_nEntriesMinus1 = a.m_nEntriesMinus1;
+        m_data = a.m_nEntriesMinus1;
+        m_iConsume = a.m_iConsume.load();
+        m_iProduce = a.m_iProduce.load();
+        return *this;
+    }
+
     bool init( void *buf, size_type bufsize )
     {
         size_type nEntries = bufsize / sizeof( Entry );
@@ -738,10 +413,40 @@ public:
         return false;
     }
 
+    // single producer version
+    template<class... Args>
+    bool emplace_sp( Args &&... args )
+    {
+        auto iprod = m_iProduce.load( std::memory_order_relaxed );
+        auto &entry = m_data[iprod & m_nEntriesMinus1];
+        auto seq = entry.seq.load( std::memory_order_acquire );
+
+        if ( seq == iprod )
+        {
+            m_iProduce.store( iprod + 1, std::memory_order_relaxed );
+
+            new ( entry.getObj() ) T( std::forward<Args>( args )... );
+            entry.seq.store( seq + 1, std::memory_order_release ); // inc seq. when popping, seq == poppos+1
+            return true;
+        }
+        else
+        {
+            assert( seq + m_nEntriesMinus1 == iprod && "program logic error!" ); // full
+            return false;
+            //            throw std::runtime_error( std::string( "MPSC push. Unexpected produce pos:" ) + std::to_string( iprod ) +
+            //                                      ", iseq:" + std::to_string( seq ) + ", entries:" + std::to_string( m_nEntriesMinus1 + 1 ) );
+        }
+    }
+
     bool push( const T &val, const std::size_t maxtry = 1000000ul )
     {
         return emplace_retry( maxtry, val );
     }
+    bool enqueue( const T &val, const std::size_t maxtry = 1000000ul )
+    {
+        return emplace_retry( maxtry, val );
+    }
+
 
     /// \brief Consumer pops from the front.
     bool pop( T *pObj )
@@ -780,6 +485,96 @@ public:
         pEntry->seq.store( iseq + m_nEntriesMinus1, std::memory_order_relaxed );
         return true;
     }
+    bool try_dequeue( T &obj )
+    {
+        size_type icons, iseq;
+        Entry *pEntry;
+        for ( ;; )
+        {
+            icons = m_iConsume.load( std::memory_order_acquire );
+            pEntry = &m_data[icons & m_nEntriesMinus1];
+            iseq = pEntry->seq.load( std::memory_order_relaxed );
+
+            if ( iseq == icons + 1 )
+            {
+                if ( m_iConsume.compare_exchange_weak( icons, icons + 1, std::memory_order_acq_rel ) )
+                    break;
+            } // actually should be "else continue;"
+            else if ( iseq == icons + 1 + m_nEntriesMinus1 ) // acquired by other consumer.
+                continue;
+            else if ( iseq == icons ) // empty
+                return false;
+            else if ( iseq == icons + 2 + m_nEntriesMinus1 ) // consumed by other, and produced again.
+                continue;
+            else
+            {
+                //                assert( false && "MPMC pop. program logic error!" );
+                throw std::runtime_error( std::string( "MPMC pop. Unexpected consume pos:" ) + std::to_string( icons ) +
+                                          ", iseq:" + std::to_string( iseq ) + ", iprod:" + std::to_string( m_iProduce.load() ) +
+                                          ", entries:" + std::to_string( m_nEntriesMinus1 + 1 ) );
+            }
+        }
+
+        obj = std::move( *pEntry->getObj() );
+        pEntry->getObj()->~T();
+        pEntry->seq.store( iseq + m_nEntriesMinus1, std::memory_order_relaxed );
+        return true;
+    }
+    bool try_dequeue_sc( T &val )
+    {
+        auto icons = m_iConsume.load( std::memory_order_acquire );
+        auto &entry = m_data[icons & m_nEntriesMinus1];
+        auto seq = entry.seq.load( std::memory_order_acquire );
+
+        if ( icons + 1 == seq )
+        {
+            m_iConsume.store( icons + 1, std::memory_order_relaxed );
+            val = std::move( *entry.getObj() );
+            entry.getObj()->~T();
+            entry.seq.store( seq + m_nEntriesMinus1, std::memory_order_release ); // dec seq and plus mCap. when next push, seq == pushpos.
+            return true;
+        }
+        else
+        { // empty
+            assert( icons == seq && "program logic error!" );
+            //            throw std::runtime_error( std::string( "MPSC pop. Unexpected consume pos:" ) + std::to_string( icons ) +
+            //                                      ", iseq:" + std::to_string( seq ) + ", iProd:" + std::to_string( m_iProduce.load() ) +
+            //                                      ", entries:" + std::to_string( m_nEntriesMinus1 + 1 ) );
+            return false;
+        }
+    }
+    bool pop_sc( T *pObj = nullptr )
+    {
+        auto icons = m_iConsume.load( std::memory_order_acquire );
+        auto &entry = m_data[icons & m_nEntriesMinus1];
+        auto seq = entry.seq.load( std::memory_order_acquire );
+
+        if ( icons + 1 == seq )
+        {
+            m_iConsume.store( icons + 1, std::memory_order_relaxed );
+            new ( pObj ) T( std::move( *entry.getObj() ) );
+            entry.getObj()->~T();
+            entry.seq.store( seq + m_nEntriesMinus1, std::memory_order_release ); // dec seq and plus mCap. when next push, seq == pushpos.
+            return true;
+        }
+        else
+        { // empty
+            assert( icons == seq && "program logic error!" );
+            //            throw std::runtime_error( std::string( "MPSC pop. Unexpected consume pos:" ) + std::to_string( icons ) +
+            //                                      ", iseq:" + std::to_string( seq ) + ", iProd:" + std::to_string( m_iProduce.load() ) +
+            //                                      ", entries:" + std::to_string( m_nEntriesMinus1 + 1 ) );
+            return false;
+        }
+    }
+    // only for Single Consumer
+    T *top()
+    {
+        auto icons = m_iConsume.load( std::memory_order_acquire );
+        auto &entry = m_data[icons & m_nEntriesMinus1];
+        auto seq = entry.seq.load( std::memory_order_acquire );
+
+        return icons + 1 == seq ? entry.getObj() : nullptr;
+    }
     void clear()
     {
         while ( pop( nullptr ) )
@@ -813,20 +608,28 @@ public:
     }
 };
 
+
+template<class T, bool bMultiProcuer, bool MultiConsumer, class AllocT = std::allocator<T>, std::size_t AvoidFalseSharingSize = 128>
+class LockfreeQueue;
+
 template<class T, class AllocT, std::size_t AvoidFalseSharingSize>
-class LockfreeQueue<T, true, true, AllocT, AvoidFalseSharingSize> : MPMCCircularQueueBase<T, AvoidFalseSharingSize>
+class LockfreeQueue<T, true, true, AllocT, AvoidFalseSharingSize> : public MPMCCircularQueueBase<T, AvoidFalseSharingSize>
 {
 public:
     using value_type = T;
     using base_type = MPMCCircularQueueBase<T, AvoidFalseSharingSize>;
     using base_type::clear;
     using base_type::emplace;
+    using base_type::emplace_sp;
     using base_type::empty;
+    using base_type::enqueue;
     using base_type::full;
     using base_type::init;
     using base_type::pop;
     using base_type::push;
     using base_type::size;
+    using base_type::top;
+    using base_type::try_dequeue_sc;
 
     constexpr static bool support_multiple_producer_threads = true, support_multiple_consumer_threads = true;
     using Alloc = typename std::allocator_traits<AllocT>::template rebind_alloc<typename base_type::Entry>;
@@ -836,12 +639,22 @@ public:
         if ( nCap > 1 )
             init( nCap );
     }
+    LockfreeQueue( LockfreeQueue &&a ) : base_type( std::move( a ) ), m_alloc( std::move( a.m_alloc ) )
+    {
+        if ( !base_type::m_data && a.base_type::m_nEntriesMinus1 )
+            init( base_type::m_nEntriesMinus1 + 1 );
+    }
+    LockfreeQueue &operator=( LockfreeQueue &&a )
+    {
+        this->~LockfreeQueue();
+        new ( this ) LockfreeQueue( std::move( a ) );
+        return *this;
+    }
 
     ~LockfreeQueue()
     {
         if ( base_type::m_data )
         {
-            clear();
             m_alloc.deallocate( base_type::m_data, base_type::m_nEntriesMinus1 + 1 );
             base_type::m_data = nullptr;
         }
@@ -863,6 +676,96 @@ public:
 protected:
     Alloc m_alloc;
 };
+
+// SPSC
+template<class T, class AllocT, std::size_t AvoidFalseSharingSize>
+class LockfreeQueue<T, false, false, AllocT, AvoidFalseSharingSize> : public LockfreeQueue<T, true, true, AllocT, AvoidFalseSharingSize>
+{
+public:
+    using value_type = T;
+    using base_type = LockfreeQueue<T, true, true, AllocT, AvoidFalseSharingSize>;
+    using base_type::capacity;
+    using base_type::empty;
+    using base_type::enqueue;
+    using base_type::init;
+    using base_type::push;
+    using base_type::size;
+    using base_type::top;
+
+
+    LockfreeQueue( std::size_t cap = 0, typename base_type::Alloc alloc = {} ) : base_type( cap, alloc )
+    {
+    }
+
+    bool try_dequeue( T &val )
+    {
+        return base_type::try_dequeue_sc( val );
+    }
+    bool enqueue( const T &val )
+    {
+        return base_type::emplace_sp( val );
+    }
+    bool pop( T *pObj = nullptr )
+    {
+        return base_type::pop_sc( pObj );
+    }
+};
+
+// MPSC
+template<class T, class AllocT, std::size_t AvoidFalseSharingSize>
+class LockfreeQueue<T, true, false, AllocT, AvoidFalseSharingSize> : LockfreeQueue<T, true, true, AllocT, AvoidFalseSharingSize>
+{
+public:
+    using value_type = T;
+    using base_type = LockfreeQueue<T, true, true, AllocT, AvoidFalseSharingSize>;
+    using base_type::capacity;
+    using base_type::empty;
+    using base_type::enqueue;
+    using base_type::init;
+    using base_type::push;
+    using base_type::size;
+    using base_type::top;
+
+    LockfreeQueue( std::size_t cap = 0, typename base_type::Alloc alloc = {} ) : base_type( cap, alloc )
+    {
+    }
+
+    bool try_dequeue( T &val )
+    {
+        return base_type::try_dequeue_sc( val );
+    }
+    bool pop( T *pObj = nullptr )
+    {
+        return base_type::pop_sc( pObj );
+    }
+};
+
+// SPMC
+template<class T, class AllocT, std::size_t AvoidFalseSharingSize>
+class LockfreeQueue<T, false, true, AllocT, AvoidFalseSharingSize> : LockfreeQueue<T, true, true, AllocT, AvoidFalseSharingSize>
+{
+public:
+    using value_type = T;
+    using base_type = LockfreeQueue<T, true, true, AllocT, AvoidFalseSharingSize>;
+    using base_type::capacity;
+    using base_type::empty;
+    using base_type::init;
+    using base_type::pop;
+    using base_type::push;
+    using base_type::size;
+    using base_type::try_dequeue;
+
+    LockfreeQueue( std::size_t cap = 0, typename base_type::Alloc alloc = {} ) : base_type( cap, alloc )
+    {
+    }
+
+
+    bool enqueue( const T &val )
+    {
+        return base_type::emplace_sp( val );
+    }
+};
+
 
 template<class T, class Alloc = std::allocator<T>, std::size_t AvoidFalseSharingSize = 128>
 using SPSCQueue = ftl::LockfreeQueue<T, false, false, Alloc, AvoidFalseSharingSize>;
